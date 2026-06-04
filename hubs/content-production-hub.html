@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KK Content Production Hub</title>
+<style>
+:root{
+  --ink:#0A0A0A;--navy:#0D2B6E;--blue:#1B4F9B;
+  --gold:#C8922A;--gold-bg:#FBF5E8;--gold-mid:#E8C879;
+  --E:#C0392B;--E-bg:#FEF0EE;--E-dark:#7B241C;
+  --G:#1A7A45;--G-bg:#EAFAF1;--G-dark:#145A32;
+  --C:#6C3483;--C-bg:#F5EEF8;--C-dark:#4A235A;
+  --hop:#E07B00;--hop-bg:#FFF3E0;
+  --pdev:#0D2B6E;--pdev-bg:#EAF2FB;
+  --surface:#FAFAF8;--border:#E8E4DC;--gray:#5D6D7E;
+  --shadow:0 3px 18px rgba(0,0,0,0.08);--shadow-lg:0 6px 32px rgba(0,0,0,0.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F5F3EF;color:var(--ink)}
+a{text-decoration:none}
+
+/* ─ SIDEBAR ─ */
+.sb{position:fixed;top:0;left:0;width:232px;height:100vh;background:var(--ink);overflow-y:auto;z-index:200;display:flex;flex-direction:column;padding-bottom:20px}
+.sb-brand{padding:18px 18px 12px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sb-brand h2{color:var(--gold);font-size:15px;font-weight:900;letter-spacing:.3px}
+.sb-brand p{color:rgba(255,255,255,.4);font-size:10px;margin-top:2px}
+.sb-section{padding:12px 14px 4px}
+.sb-section-lbl{color:rgba(255,255,255,.3);font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.9px;margin-bottom:7px}
+.sb-link{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:7px;color:rgba(255,255,255,.65);font-size:12px;font-weight:600;margin-bottom:1px;transition:all .12s;cursor:pointer}
+.sb-link:hover{background:rgba(255,255,255,.08);color:white}
+.sb-link.active{background:var(--gold);color:var(--ink);font-weight:800}
+.sb-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* ─ MAIN ─ */
+.main{margin-left:232px;min-height:100vh}
+
+/* ─ HERO ─ */
+.hero{background:var(--ink);padding:36px 44px;display:flex;align-items:flex-start;gap:28px;border-bottom:3px solid var(--gold)}
+.hero-av{width:86px;height:86px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;flex-shrink:0}
+.hero-av-fb{width:86px;height:86px;border-radius:50%;border:3px solid var(--gold);background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:var(--gold);flex-shrink:0}
+.hero-meta{flex:1}
+.hero-meta h1{color:white;font-size:26px;font-weight:900;line-height:1.1;margin-bottom:4px}
+.hero-roles{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.role-badge{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:800}
+.role-pantheon{background:var(--pdev-bg);color:var(--pdev)}
+.role-hop{background:var(--hop-bg);color:var(--hop)}
+.role-v{border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);background:transparent;font-size:10px;padding:3px 10px}
+.hero-stats{display:flex;gap:22px;margin-bottom:14px}
+.hs .v{color:white;font-size:20px;font-weight:900}
+.hs .l{color:rgba(255,255,255,.45);font-size:9px;text-transform:uppercase;letter-spacing:.5px}
+.hero-kk-desc{color:rgba(255,255,255,.7);font-size:13px;line-height:1.6;max-width:700px;margin-bottom:14px}
+.ct-row{display:flex;gap:8px;flex-wrap:wrap}
+.ct-chip{padding:5px 13px;border-radius:18px;font-size:11px;font-weight:800;border:1.5px solid}
+.ct-chip-e{border-color:var(--E);color:var(--E)}
+.ct-chip-g{border-color:var(--G);color:var(--G)}
+.ct-chip-c{border-color:var(--C);color:var(--C)}
+
+/* ─ WHAT WORKS ─ */
+.works-section{background:white;padding:36px 44px;border-bottom:2px solid var(--border)}
+.works-title{font-size:20px;font-weight:900;color:var(--navy);margin-bottom:4px}
+.works-sub{color:var(--gray);font-size:13px;margin-bottom:22px}
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.work-card{border-radius:12px;padding:18px;border-left:5px solid}
+.work-card h4{font-size:14px;font-weight:800;margin-bottom:6px}
+.work-card p{font-size:12px;line-height:1.5;color:#444}
+.work-card .proj-eng{font-size:18px;font-weight:900;margin-top:8px}
+.wc-1{background:var(--E-bg);border-color:var(--E)}.wc-1 h4,.wc-1 .proj-eng{color:var(--E)}
+.wc-2{background:var(--hop-bg);border-color:var(--hop)}.wc-2 h4,.wc-2 .proj-eng{color:var(--hop)}
+.wc-3{background:var(--G-bg);border-color:var(--G)}.wc-3 h4,.wc-3 .proj-eng{color:var(--G)}
+.wc-4{background:var(--C-bg);border-color:var(--C)}.wc-4 h4,.wc-4 .proj-eng{color:var(--C)}
+.wc-5{background:var(--pdev-bg);border-color:var(--navy)}.wc-5 h4,.wc-5 .proj-eng{color:var(--navy)}
+.wc-6{background:var(--gold-bg);border-color:var(--gold)}.wc-6 h4,.wc-6 .proj-eng{color:var(--gold)}
+
+/* ─ PAGE SECTION ─ */
+.ps{padding:36px 44px;border-bottom:2px solid var(--border)}
+.ps-title{font-size:20px;font-weight:900;color:var(--navy);margin-bottom:4px}
+.ps-sub{color:var(--gray);font-size:13px;margin-bottom:22px}
+
+/* ─ TYPE BANNER ─ */
+.type-banner{border-radius:13px;padding:20px 26px;margin-bottom:22px;display:flex;align-items:center;gap:16px}
+.type-banner.e{background:linear-gradient(135deg,var(--E),var(--E-dark))}
+.type-banner.g{background:linear-gradient(135deg,var(--G),var(--G-dark))}
+.type-banner.c{background:linear-gradient(135deg,var(--C),var(--C-dark))}
+.type-banner .tb-icon{font-size:38px}
+.type-banner .tb-text h2{color:white;font-size:20px;font-weight:900}
+.type-banner .tb-text p{color:rgba(255,255,255,.85);font-size:12px;margin-top:3px;max-width:640px;line-height:1.5}
+.type-banner .tb-pct{margin-left:auto;background:rgba(255,255,255,.2);border-radius:9px;padding:10px 16px;text-align:center;min-width:80px}
+.type-banner .tb-pct .p{color:white;font-size:22px;font-weight:900}
+.type-banner .tb-pct .l{color:rgba(255,255,255,.7);font-size:9px}
+
+/* ─ PRODUCTION CARD ─ */
+.prod{background:white;border-radius:14px;box-shadow:var(--shadow-lg);overflow:hidden;margin-bottom:28px;border-left:5px solid}
+.prod.e{border-left-color:var(--E)}.prod.g{border-left-color:var(--G)}.prod.c{border-left-color:var(--C)}
+
+.prod-header{padding:16px 22px 12px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:14px}
+.prod-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:white;flex-shrink:0}
+.pn-e{background:var(--E)}.pn-g{background:var(--G)}.pn-c{background:var(--C)}
+.prod-htitle{font-size:17px;font-weight:900;color:var(--ink);margin-bottom:6px}
+.tag-row{display:flex;gap:5px;flex-wrap:wrap}
+.tag{padding:2px 8px;border-radius:6px;font-size:10px;font-weight:800}
+.tag-e{background:var(--E-bg);color:var(--E)}
+.tag-g{background:var(--G-bg);color:var(--G)}
+.tag-c{background:var(--C-bg);color:var(--C)}
+.tag-hop{background:var(--hop-bg);color:var(--hop)}
+.tag-pdev{background:var(--pdev-bg);color:var(--pdev)}
+.tag-gold{background:var(--gold-bg);color:var(--gold)}
+.tag-dark{background:#F0ECE4;color:var(--gray)}
+
+/* ─ PROD BODY 2-COL ─ */
+.prod-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.prod-l{padding:20px 22px;border-right:1px solid var(--border)}
+.prod-r{padding:20px 22px}
+
+/* ─ FORMAT SECTION ─ */
+.format-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.format-label.e{color:var(--E)}.format-label.g{color:var(--G)}.format-label.c{color:var(--C)}.format-label.gold{color:var(--gold)}
+
+/* ─ COMPETITOR REFERENCE ─ */
+.comp-block{background:var(--surface);border-radius:11px;padding:14px;margin-bottom:14px;border:1px solid var(--border)}
+.comp-block-header{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.comp-av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:11px;color:white;flex-shrink:0}
+.comp-block-handle{font-size:12px;font-weight:700;color:var(--ink)}
+.comp-block-meta{font-size:10px;color:var(--gray)}
+.comp-format-chip{margin-left:auto;padding:2px 7px;border-radius:5px;font-size:9px;font-weight:800;background:#EEE;color:var(--gray)}
+.comp-format-chip.reel{background:#FFEBE6;color:#C0392B}
+.comp-format-chip.photo{background:#E6F4FF;color:#1B4F9B}
+.comp-format-chip.carousel{background:#F0FFF4;color:#1A7A45}
+
+/* ─ INSTAGRAM EMBED WRAPPER ─ */
+.ig-embed-wrap{width:100%;min-height:200px;background:#FAFAFA;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;border-radius:9px;overflow:hidden;margin:8px 0}
+.ig-embed-wrap .instagram-media{width:100% !important;min-width:100% !important;margin:0 !important;border:none !important;border-radius:0 !important}
+.ig-loading{text-align:center;padding:24px 12px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.ig-loading .sp{width:24px;height:24px;border:3px solid #E8EDF4;border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ig-loading p{font-size:11px;color:var(--gray)}
+.ig-open-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:linear-gradient(90deg,#833ab4,#fd1d1d,#fcb045);color:white;padding:8px 14px;border-radius:0 0 9px 9px;font-size:11px;font-weight:800;transition:opacity .15s;width:100%}
+.ig-open-btn:hover{opacity:.85}
+
+.comp-stats-row{display:flex;gap:12px;margin:6px 0 4px;flex-wrap:wrap}
+.comp-stat{font-size:11px;color:var(--gray)}
+.comp-stat strong{color:var(--ink);font-weight:800}
+.comp-caption{font-size:12px;color:#444;font-style:italic;line-height:1.5;padding:6px 10px;background:#F5F3EF;border-radius:7px;margin:6px 0}
+.comp-why{font-size:11px;color:var(--gray);line-height:1.4;margin-top:5px;padding:6px 8px;background:white;border-radius:6px;border-left:3px solid var(--gold)}
+
+/* ─ KK WILL WORK ─ */
+.kk-works-box{background:linear-gradient(135deg,var(--gold-bg),white);border:2px solid var(--gold-mid);border-radius:11px;padding:14px 16px;margin-bottom:14px}
+.kk-works-box .kwb-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gold);margin-bottom:7px}
+.kk-works-box p{font-size:13px;color:#333;line-height:1.5;font-weight:600}
+
+/* ─ PROD BRIEF GRID ─ */
+.brief-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.bi{border-radius:8px;padding:10px 12px}
+.bi-loc{background:#EAF2FB}
+.bi-cos{background:var(--gold-bg)}
+.bi-act{background:var(--G-bg)}
+.bi-dur{background:var(--C-bg)}
+.bi-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin-bottom:4px}
+.bi-val{font-size:12px;font-weight:600;color:#222;line-height:1.4}
+
+/* ─ SCRIPT ─ */
+.script-wrap{background:var(--surface);border-radius:10px;padding:14px 16px;border:1px solid var(--border)}
+.script-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--navy);margin-bottom:10px;display:flex;align-items:center;gap:5px}
+.scene{margin-bottom:11px;padding-left:11px;border-left:3px solid var(--border)}
+.scene:last-child{margin-bottom:0}
+.scene .sc-t{font-size:10px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px}
+.scene .sc-a{font-size:10px;color:var(--gray);font-style:italic;margin-bottom:2px}
+.scene .sc-v{font-size:12px;color:#222;line-height:1.55;background:white;padding:5px 8px;border-radius:5px;border-left:2px solid var(--gold-mid)}
+.scene .sc-vis{font-size:10px;color:var(--gray);margin-top:3px;padding-left:4px}
+
+/* ─ CONCEPT BOX ─ */
+.concept{background:var(--gold-bg);border-left:4px solid var(--gold);border-radius:0 9px 9px 0;padding:12px 14px;margin-bottom:12px}
+.concept-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gold);margin-bottom:5px}
+.concept p{font-size:13px;color:#333;line-height:1.5;font-weight:500}
+
+/* ─ HOP ADVANTAGE ─ */
+.hop-advantage{background:var(--hop-bg);border:2px solid var(--hop);border-radius:10px;padding:12px 14px;margin-bottom:12px;display:flex;align-items:flex-start;gap:10px}
+.hop-advantage .ha-icon{font-size:22px;flex-shrink:0}
+.hop-advantage .ha-text{font-size:12px;color:#333;line-height:1.5}
+.hop-advantage .ha-text strong{color:var(--hop);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+
+/* ─ WEEKLY CALENDAR ─ */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.cal-d{background:white;border-radius:10px;overflow:hidden;box-shadow:var(--shadow)}
+.cal-dh{padding:9px 8px;font-size:11px;font-weight:800;text-align:center;text-transform:uppercase}
+.cal-dh.mon,.cal-dh.wed,.cal-dh.fri,.cal-dh.sun{background:#F0ECE4;color:var(--gray)}
+.cal-dh.tue{background:var(--E);color:white}
+.cal-dh.thu{background:var(--G);color:white}
+.cal-dh.sat{background:var(--C);color:white}
+.cal-entry{margin:6px;border-radius:7px;padding:6px 8px;font-size:10px;line-height:1.4}
+.ce-e{background:var(--E-bg);color:var(--E)}
+.ce-g{background:var(--G-bg);color:var(--G)}
+.ce-c{background:var(--C-bg);color:var(--C)}
+.ce-n{background:#F5F3EF;color:var(--gray)}
+.ce-plat{font-weight:800;opacity:.7;font-size:9px;text-transform:uppercase;margin-bottom:1px}
+.ce-title{font-weight:700}
+.ce-time{opacity:.7;font-size:9px;margin-top:1px}
+
+/* ─ DO/DONT GRID ─ */
+.dd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.dd-card{border-radius:11px;padding:16px;box-shadow:var(--shadow)}
+.dd-card.e{background:var(--E-bg);border-top:4px solid var(--E)}.dd-card.e h4{color:var(--E)}
+.dd-card.g{background:var(--G-bg);border-top:4px solid var(--G)}.dd-card.g h4{color:var(--G)}
+.dd-card.c{background:var(--C-bg);border-top:4px solid var(--C)}.dd-card.c h4{color:var(--C)}
+.dd-card h4{font-size:13px;font-weight:800;margin-bottom:10px}
+.dd-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.dd-list li{font-size:11px;color:#333;padding-left:14px;position:relative;line-height:1.4}
+.dd-list li::before{content:"✓";position:absolute;left:0;font-weight:900;font-size:9px}
+.dd-card.e .dd-list li::before{color:var(--E)}
+.dd-card.g .dd-list li::before{color:var(--G)}
+.dd-card.c .dd-list li::before{color:var(--C)}
+
+/* ─ FOOTER ─ */
+.footer{background:var(--ink);padding:18px 44px;text-align:center;color:rgba(255,255,255,.4);font-size:11px}
+
+@media(max-width:1100px){
+  .sb{display:none}.main{margin-left:0}
+  .prod-body,.brief-grid,.works-grid,.dd-grid{grid-template-columns:1fr}
+  .prod-l{border-right:none;border-bottom:1px solid var(--border)}
+  .cal{grid-template-columns:repeat(3,1fr)}
+  .ps,.hero,.works-section{padding:24px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ SIDEBAR ══ -->
+<div class="sb">
+  <div class="sb-brand">
+    <h2>KK Production Hub</h2>
+    <p>Pantheon × HOP Events</p>
+  </div>
+  <div class="sb-section">
+    <div class="sb-section-lbl">Overview</div>
+    <a class="sb-link" href="#who">👤 Who is KK</a>
+    <a class="sb-link" href="#works">⭐ What Will Work</a>
+    <a class="sb-link" href="#calendar">📅 Weekly Calendar</a>
+  </div>
+  <div class="sb-section">
+    <div class="sb-section-lbl">❤️ Emotional (40%)</div>
+    <a class="sb-link" href="#e1"><span class="sb-dot" style="background:var(--E)"></span>E-1: Origin Story</a>
+    <a class="sb-link" href="#e2"><span class="sb-dot" style="background:var(--hop)"></span>E-2: HOP Events / Concert</a>
+    <a class="sb-link" href="#e3"><span class="sb-dot" style="background:var(--E)"></span>E-3: Vulnerability</a>
+    <a class="sb-link" href="#e4"><span class="sb-dot" style="background:var(--E)"></span>E-4: Cultural Festival</a>
+  </div>
+  <div class="sb-section">
+    <div class="sb-section-lbl">🚀 Growth (35%)</div>
+    <a class="sb-link" href="#g1"><span class="sb-dot" style="background:var(--G)"></span>G-1: Market Intel</a>
+    <a class="sb-link" href="#g2"><span class="sb-dot" style="background:var(--G)"></span>G-2: Builder's Diary</a>
+    <a class="sb-link" href="#g3"><span class="sb-dot" style="background:var(--hop)"></span>G-3: Artist / Collab</a>
+  </div>
+  <div class="sb-section">
+    <div class="sb-section-lbl">⚡ Controversy (25%)</div>
+    <a class="sb-link" href="#c1"><span class="sb-dot" style="background:var(--C)"></span>C-1: Dubai Market Take</a>
+    <a class="sb-link" href="#c2"><span class="sb-dot" style="background:var(--C)"></span>C-2: Industry Insider</a>
+    <a class="sb-link" href="#c3"><span class="sb-dot" style="background:var(--C)"></span>C-3: Founder Hot Take</a>
+  </div>
+  <div class="sb-section">
+    <div class="sb-section-lbl">Rules</div>
+    <a class="sb-link" href="#rules">✅ Do's &amp; Don'ts</a>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ══ HERO ══ -->
+<div class="hero" id="who">
+  <img src="https://instagram.fmem1-1.fna.fbcdn.net/v/t51.82787-19/623515557_18255800566295355_1590699961883432261_n.jpg?stp=dst-jpg_s320x320_tt6"
+    class="hero-av" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="KK">
+  <div class="hero-av-fb" style="display:none">KK</div>
+  <div class="hero-meta">
+    <h1>Kalpesh Kinariwala ✓</h1>
+    <div class="hero-roles">
+      <span class="role-badge role-pantheon">🏗 Founder & Chairman — Pantheon Development</span>
+      <span class="role-badge role-hop">🎭 Founder — HOP Events</span>
+      <span class="role-badge role-v">✓ Verified</span>
+    </div>
+    <div class="hero-kk-desc">Kalpesh Kinariwala is the rare founder operating at the intersection of two worlds: <strong style="color:var(--gold)">luxury real estate</strong> (Pantheon Development — Dusit, Voxa, Elysee Heights, Maison Élysée, Orvessa) and <strong style="color:var(--hop)">live entertainment & events</strong> (HOP Events — concerts, SOIC, cultural experiences). This dual identity is his single biggest differentiator on social media — and the most underused asset in his content strategy.</div>
+    <div class="hero-stats">
+      <div class="hs"><div class="v">55.5K</div><div class="l">Followers</div></div>
+      <div class="hs"><div class="v">4.8K</div><div class="l">Avg Eng</div></div>
+      <div class="hs"><div class="v">7.3M</div><div class="l">Annual Reach</div></div>
+      <div class="hs"><div class="v">35.3×</div><div class="l">vs Brand Acct</div></div>
+      <div class="hs"><div class="v">468%</div><div class="l">Peak ER (Arijit)</div></div>
+    </div>
+    <div class="ct-row">
+      <span class="ct-chip ct-chip-e">❤️ Emotional 40%</span>
+      <span class="ct-chip ct-chip-g">🚀 Follower Growth 35%</span>
+      <span class="ct-chip ct-chip-c">⚡ Controversy 25%</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WHAT WILL WORK ══ -->
+<div class="works-section" id="works">
+  <div class="works-title">⭐ What Will Actually Work for KK — Priority Order</div>
+  <div class="works-sub">Based on data analysis of 804 posts across 9 accounts, KK's own top posts, and his unique HOP Events advantage</div>
+  <div class="works-grid">
+    <div class="work-card wc-1">
+      <h4>🥇 #1 — Personal Origin Story Reel</h4>
+      <p>His journey from India → Dubai → founding Pantheon is completely untold. Rizwan's equivalent post earned <strong>233K eng at 16.7% ER</strong>. KK has the same story. This is his single highest ROI untapped content piece.</p>
+      <div class="proj-eng">Projected: 50–150K eng</div>
+    </div>
+    <div class="work-card wc-2">
+      <h4>🥈 #2 — HOP Events Concert/Artist Reel</h4>
+      <p>Already proven at <strong>259K eng, 468% ER</strong> (Arijit Singh). As HOP Events founder, KK has backstage access to every artist. This is a repeatable formula no competitor can replicate.</p>
+      <div class="proj-eng">Proven: 50–259K eng each</div>
+    </div>
+    <div class="work-card wc-3">
+      <h4>🥉 #3 — Dubai Market Intelligence (LinkedIn Primary)</h4>
+      <p>Developer-insider market takes on LinkedIn drive investor credibility and media attention. Rizwan's Dubai market Reel hit <strong>476K eng</strong>. KK's data is more credible — he builds the product.</p>
+      <div class="proj-eng">Projected: 20–80K eng</div>
+    </div>
+    <div class="work-card wc-4">
+      <h4>⚡ #4 — Controversy (White Space)</h4>
+      <p>Zero of the 5 UAE founders do this systematically. The boldest hook pattern in cohort earns <strong>342K avg eng</strong>. KK can own this territory with market takes no competitor will match.</p>
+      <div class="proj-eng">First-mover advantage: NOW</div>
+    </div>
+    <div class="work-card wc-5">
+      <h4>🏗 #5 — Builder's Diary (Site Visit)</h4>
+      <p>"The Executionist" pillar made visual. KK on site in a hard hat is proof of delivery that no campaign can replicate. Differentiates Pantheon from every other developer instantly.</p>
+      <div class="proj-eng">Trust builder: long-term</div>
+    </div>
+    <div class="work-card wc-6">
+      <h4>🎤 #6 — Artist Collab (HOP Events Exclusive)</h4>
+      <p>Masih's Hrithik Roshan collab: <strong>263K eng at 3,060% ER</strong>. KK brings artists to Dubai through HOP Events. One backstage collab post with a major artist = account transformation moment.</p>
+      <div class="proj-eng">Potential: 100K–500K eng</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ EMOTIONAL ══════ -->
+<div class="ps" id="emotional">
+  <div class="type-banner e">
+    <div class="tb-icon">❤️</div>
+    <div class="tb-text">
+      <h2>Emotional Content — 40% of Posts</h2>
+      <p>Human connection. Personal stories, HOP Events cultural moments, vulnerability, gratitude. KK's highest-performing pillar. His Arijit Singh Reel: 259K eng, 468% ER. Founder voice posts: +357% ER lift.</p>
+    </div>
+    <div class="tb-pct"><div class="p">40%</div><div class="l">of posts</div></div>
+  </div>
+
+  <!-- E-1 -->
+  <div class="prod e" id="e1">
+    <div class="prod-header">
+      <div class="prod-num pn-e">E1</div>
+      <div>
+        <div class="prod-htitle">Origin Story — "I Didn't Start Here"</div>
+        <div class="tag-row">
+          <span class="tag tag-e">❤️ Emotional</span><span class="tag tag-dark">🎬 Reel 60–75s</span>
+          <span class="tag tag-pdev">🏗 Pantheon Story</span><span class="tag tag-gold">Tue 12–15h UTC 🔒</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-l">
+        <div class="format-label e">📌 Competitor Reference — What Gets 233K+ Engagement</div>
+
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#C0392B">RS</div>
+            <div><div class="comp-block-handle">@rizwan.sajan · 1.4M followers</div><div class="comp-block-meta">Personal Storytelling · Humble Origins</div></div>
+            <div class="comp-format-chip reel">🎬 REEL</div>
+          </div>
+          <div class="comp-caption">"Every success has a small beginning. On the stage of @bbmarathi I shared a memory from when I was 14 — selling rakhis and crackers on the roadside just to earn some extra pocket money."</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>233,623</strong> eng</span>
+            <span class="comp-stat"><strong>16.7%</strong> ER</span>
+            <span class="comp-stat"><strong>1.5M</strong> views</span>
+          </div>
+          <div class="comp-why">Humble origin + current success = maximum emotional resonance. KK has this exact story. It is completely untold.</div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DX8nYznoiKM/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/reel/DX8nYznoiKM/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px;color:#385898">▶ Watch Rizwan's Origin Story Reel</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/reel/DX8nYznoiKM/" target="_blank">▶ Open on Instagram</a>
+        </div>
+
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#0D2B6E">KK</div>
+            <div><div class="comp-block-handle">@kalpesh.kinariwala — KK's Eid Post ⭐</div><div class="comp-block-meta">Best-performing own post · Emotional formula</div></div>
+            <div class="comp-format-chip reel">🎬 REEL</div>
+          </div>
+          <div class="comp-caption">"Wishing you and your family peace, happiness, and good health. May this Eid bring…"</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>33,568</strong> eng</span><span class="comp-stat"><strong>60.4%</strong> ER</span><span class="comp-stat"><strong>62K</strong> views</span>
+          </div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DWFyMMiEzvr/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/reel/DWFyMMiEzvr/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px;color:#0D2B6E">▶ Watch KK's Best Emotional Post</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/reel/DWFyMMiEzvr/" target="_blank">▶ Open on Instagram</a>
+        </div>
+      </div>
+      <div class="prod-r">
+        <div class="kk-works-box">
+          <div class="kwb-label">⭐ Why This Will Work for KK</div>
+          <p>Rizwan's origin story earned 233K eng on 1.4M followers (16.7% ER). KK's Eid post earned 33K on 55K followers (60.4% ER). KK's emotional resonance per-follower is ALREADY higher than Rizwan. He just hasn't told his story yet. This is the single highest-ROI piece of content available.</p>
+        </div>
+        <div class="concept"><div class="concept-lbl">💡 Concept for KK</div><p>"I didn't arrive in Dubai with connections or capital. I arrived with a blueprint I drew myself and a phone number I wasn't sure I should call. Here's what happened next."</p></div>
+        <div class="brief-grid">
+          <div class="bi bi-loc"><div class="bi-label">📍 Location</div><div class="bi-val">Al Fahidi Heritage District or KK's first Pantheon site — visual contrast: old Dubai → what was built</div></div>
+          <div class="bi bi-cos"><div class="bi-label">👔 Costume</div><div class="bi-val">White/cream shirt, no tie, no jacket. Relatable — not corporate. This is personal.</div></div>
+          <div class="bi bi-act"><div class="bi-label">🎬 Actors</div><div class="bi-val">KK only. Face-to-camera. Voice-over with B-roll cuts. No supporting cast.</div></div>
+          <div class="bi bi-dur"><div class="bi-label">⏱ Duration & Format</div><div class="bi-val">60–75s · Original voice · No music · 0 hashtags · No CTA</div></div>
+        </div>
+        <div class="script-wrap">
+          <div class="script-label">🎬 Production-Ready Script</div>
+          <div class="scene"><div class="sc-t">0–5 sec · HOOK · Face to camera, still</div><div class="sc-a">Direct eye contact. 2 sec silence before speaking.</div><div class="sc-v">"I didn't grow up with money. And I didn't arrive in Dubai knowing anyone."</div></div>
+          <div class="scene"><div class="sc-t">5–28 sec · THE STORY · B-roll: old Dubai / early site</div><div class="sc-a">Cuts: streets, a simple office, a blueprint.</div><div class="sc-v">"When I first came here, I had a plan — but no proof it would work. [Insert: first investor meeting, first rejection, the specific day he committed]. There were days I questioned everything."</div></div>
+          <div class="scene"><div class="sc-t">28–52 sec · THE TURN · Cut to present: Pantheon skyline</div><div class="sc-v">"What changed wasn't the market or luck. It was the decision to keep building something I genuinely believed in — even when the numbers said stop."</div></div>
+          <div class="scene"><div class="sc-t">52–68 sec · CLOSE · Back to face. Quiet.</div><div class="sc-v">"Every project Pantheon builds carries that original belief. That hasn't changed."</div><div class="sc-vis">Fade. No CTA. No hashtag. Caption: full story in 600+ chars, first person.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E-2 HOP EVENTS -->
+  <div class="prod e" id="e2">
+    <div class="prod-header">
+      <div class="prod-num pn-e">E2</div>
+      <div>
+        <div class="prod-htitle">HOP Events / Concert Reel — KK's Proven #1 Formula</div>
+        <div class="tag-row">
+          <span class="tag tag-e">❤️ Emotional</span><span class="tag tag-dark">🎬 Reel 45–60s</span>
+          <span class="tag tag-hop">🎭 HOP Events Exclusive</span><span class="tag tag-gold">Post within 24h of event</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-l">
+        <div class="format-label e">📌 Competitor Reference · Vivek's 4.1M Eng Concert Reel</div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#8E44AD">VO</div>
+            <div><div class="comp-block-handle">@vivekoberoi · 3.3M followers</div><div class="comp-block-meta">Cultural/Music Moment · Highest in cohort</div></div>
+            <div class="comp-format-chip reel">🎬 REEL</div>
+          </div>
+          <div class="comp-caption">"This song…. is just magic…anytime anywhere… just gets me grooving! Do your version of 'Tere Liye', and tag me!"</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>4.1M</strong> eng</span><span class="comp-stat"><strong>125.7%</strong> ER</span><span class="comp-stat"><strong>40.8M</strong> views</span>
+          </div>
+          <div class="comp-why">Pure authentic cultural joy. No strategy, no CTA. The boldness IS the content. KK already replicates this formula — but as a HOP Events founder, he can do it every event.</div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DRJtqtFkcUC/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/reel/DRJtqtFkcUC/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px;color:#8E44AD">▶ Watch Vivek's 4.1M Eng Concert Reel</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/reel/DRJtqtFkcUC/" target="_blank">▶ Open on Instagram</a>
+        </div>
+        <div class="format-label e" style="margin-top:12px">📌 KK's Own Proven Formula — Already 259K Eng</div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#0D2B6E">KK</div>
+            <div><div class="comp-block-handle">@kalpesh.kinariwala — Arijit Singh Concert ⭐</div><div class="comp-block-meta">KK's all-time best reel · 468% ER</div></div>
+            <div class="comp-format-chip reel">🎬 REEL</div>
+          </div>
+          <div class="comp-caption">"Tonight was pure magic. Watching everyone come together for Arijit Singh's incredible performance was truly something else. Thousands of hearts, one voice."</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>259,500</strong> eng</span><span class="comp-stat"><strong>468%</strong> ER 🔥</span><span class="comp-stat"><strong>890K</strong> views</span>
+          </div>
+          <a class="ig-open-btn" style="border-radius:9px;margin-top:6px;display:flex;width:fit-content;padding:6px 14px" href="https://www.instagram.com/reel/DC-3kzVyfbK/" target="_blank">▶ Open KK's Best Reel on Instagram</a>
+        </div>
+      </div>
+      <div class="prod-r">
+        <div class="hop-advantage">
+          <div class="ha-icon">🎭</div>
+          <div class="ha-text"><strong>HOP Events Exclusive Advantage</strong>As the founder of HOP Events, KK brings these artists to Dubai. He has backstage access, relationship access, and emotional investment in every event that no competitor can replicate. Every HOP Events concert = an E-2 production opportunity. This is an unfair advantage.</div>
+        </div>
+        <div class="kk-works-box">
+          <div class="kwb-label">⭐ Why This Will Work for KK</div>
+          <p>Already proven at 259K eng / 468% ER with Arijit Singh. As HOP Events founder, he can produce this content for EVERY major event. Vivek's equivalent without artist access earned 4.1M. KK can exceed that with backstage/front-row positioning and an authentic narrative hook.</p>
+        </div>
+        <div class="concept"><div class="concept-lbl">💡 Concept</div><p>"[Artist] reminded me why I chose Dubai. And why I built HOP Events — because moments like tonight are exactly what this city deserves."</p></div>
+        <div class="brief-grid">
+          <div class="bi bi-loc"><div class="bi-label">📍 Location</div><div class="bi-val">Concert venue — Coca-Cola Arena, Etihad Arena, or any HOP Events venue. Wide crowd shot to open.</div></div>
+          <div class="bi bi-cos"><div class="bi-label">👔 Costume</div><div class="bi-val">Whatever he actually wore. Authenticity over polish. Festive casual. No branded clothing.</div></div>
+          <div class="bi bi-act"><div class="bi-label">🎬 Actors</div><div class="bi-val">KK + organic crowd. Artist on stage in background if possible. For HOP Events: brief backstage/artist moment as opening shot.</div></div>
+          <div class="bi bi-dur"><div class="bi-label">⏱ Duration & Format</div><div class="bi-val">45–60s · Ambient venue audio · KK voice-over · 0 hashtags · Post within 24h</div></div>
+        </div>
+        <div class="script-wrap">
+          <div class="script-label">🎬 Production-Ready Script (Template)</div>
+          <div class="scene"><div class="sc-t">0–8 sec · VISUAL HOOK · Wide crowd + venue</div><div class="sc-a">Let the venue establish scale. No words yet.</div><div class="sc-vis">For HOP Events: open backstage — brief shot of artist/preparation. Cut to crowd.</div></div>
+          <div class="scene"><div class="sc-t">8–30 sec · KK REACTION · His face + stage</div><div class="sc-v">"[Artist]'s performance tonight wasn't just a concert. It was [one specific emotional observation — not facts about the setlist]."</div></div>
+          <div class="scene"><div class="sc-t">30–50 sec · THE CONNECTION</div><div class="sc-v">"This is why I built HOP Events. [One sentence about why bringing this artist/moment to Dubai matters to him personally]. Thousands of different stories — one room."</div></div>
+          <div class="scene"><div class="sc-t">50 sec · CLOSE · Crowd fade</div><div class="sc-vis">No CTA. No hashtags. Caption: the feeling in 600+ chars, first person, no event logistics.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E-3 -->
+  <div class="prod e" id="e3">
+    <div class="prod-header">
+      <div class="prod-num pn-e">E3</div>
+      <div>
+        <div class="prod-htitle">Vulnerability Post — "The Day I Almost Stopped"</div>
+        <div class="tag-row">
+          <span class="tag tag-e">❤️ Emotional</span><span class="tag tag-dark">🎬 Reel 60–90s</span>
+          <span class="tag tag-pdev">Founder Presence</span><span class="tag tag-gold">Highest ROI untapped format</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-l">
+        <div class="format-label e">📌 Competitor Reference — Rizwan's #1 Post 496K Eng</div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#C0392B">RS</div>
+            <div><div class="comp-block-handle">@rizwan.sajan — Vulnerability Formula</div></div>
+            <div class="comp-format-chip reel">🎬 REEL</div>
+          </div>
+          <div class="comp-caption">"When my father passed, I thought relatives would step in. Reality: all we got were words of encouragement, but not support. Life teaches you early, you can't always count on people…"</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>496,400</strong> eng</span><span class="comp-stat"><strong>34.5%</strong> ER</span><span class="comp-stat"><strong>3.4M</strong> views</span>
+          </div>
+          <div class="comp-why">#1 post in the entire 9-account cohort. Vulnerability + specific real hardship = maximum resonance. KK has 0 posts in this style. This is the biggest gap.</div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C_3N8-xNlVa/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/reel/C_3N8-xNlVa/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px;color:#C0392B">▶ Watch Rizwan's 496K Vulnerability Reel</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/reel/C_3N8-xNlVa/" target="_blank">▶ Open on Instagram</a>
+        </div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#17A589">MI</div>
+            <div><div class="comp-block-handle">@masihimtiaz — Simple 3-Word Emotional Post</div></div>
+            <div class="comp-format-chip photo">📸 PHOTO</div>
+          </div>
+          <div class="comp-caption">"Love and respect."</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>3,785</strong> eng</span><span class="comp-stat"><strong>44%</strong> ER</span><span class="comp-stat">3 words → 44% ER from 8.6K followers</span>
+          </div>
+          <div class="comp-why">Simplest emotional post. 3 words. 44% ER. Proves that authentic simplicity beats produced complexity every time.</div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DW0ULgjjNMF/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/p/DW0ULgjjNMF/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px;color:#17A589">▶ Open Masih's Emotional Post</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/p/DW0ULgjjNMF/" target="_blank">▶ Open on Instagram</a>
+        </div>
+      </div>
+      <div class="prod-r">
+        <div class="kk-works-box"><div class="kwb-label">⭐ Why This Will Work for KK</div><p>Rizwan's #1 post is vulnerability. KK has zero posts in this style — yet his founder voice posts earn +357% ER. One genuine vulnerability Reel could be his biggest post ever. The data is unambiguous: this is what earns trust at scale.</p></div>
+        <div class="concept"><div class="concept-lbl">💡 Concept</div><p>"There was a day I sat alone and thought about walking away from all of it. I'm sharing it — because every founder has this day, and nobody talks about it."</p></div>
+        <div class="brief-grid">
+          <div class="bi bi-loc"><div class="bi-label">📍 Location</div><div class="bi-val">Home study or private quiet room. NOT the office. Intimate, personal space.</div></div>
+          <div class="bi bi-cos"><div class="bi-label">👔 Costume</div><div class="bi-val">Most casual he'll film in — simple t-shirt or open collar. No watch. No accessories. The real him.</div></div>
+          <div class="bi bi-act"><div class="bi-label">🎬 Actors</div><div class="bi-val">KK only. Single locked-off camera. No movement. No B-roll. Stillness = the message.</div></div>
+          <div class="bi bi-dur"><div class="bi-label">⏱ Duration</div><div class="bi-val">60–90s · No music · Direct eye contact throughout · Never look away</div></div>
+        </div>
+        <div class="script-wrap">
+          <div class="script-label">🎬 Production-Ready Script</div>
+          <div class="scene"><div class="sc-t">0–4 sec · HOOK · Silence first</div><div class="sc-a">2 sec silence. Let the camera sit. Then:</div><div class="sc-v">"There was a day — one specific day — when I thought about stopping."</div></div>
+          <div class="scene"><div class="sc-t">4–38 sec · THE LOW</div><div class="sc-a">Stay absolutely still. Don't break eye contact. This discomfort is the authenticity.</div><div class="sc-v">"[The specific moment — where he was, what had happened, what was at risk. Name the thing. No vague language.]"</div></div>
+          <div class="scene"><div class="sc-t">38–68 sec · THE TURN</div><div class="sc-v">"What got me through wasn't a strategy. It was [one specific person, moment, or belief — be exact, not generic]."</div></div>
+          <div class="scene"><div class="sc-t">68–82 sec · CLOSE</div><div class="sc-v">"I'm sharing this because if you're in that place right now — the doubt is not the end. It's the middle."</div><div class="sc-vis">No CTA. No hashtags. Full story in caption. Long-form, first person.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E-4 -->
+  <div class="prod e" id="e4">
+    <div class="prod-header">
+      <div class="prod-num pn-e">E4</div>
+      <div>
+        <div class="prod-htitle">Cultural Festival — Eid / Diwali / National Day</div>
+        <div class="tag-row">
+          <span class="tag tag-e">❤️ Emotional</span><span class="tag tag-dark">📸 Photo or 🎬 Reel</span>
+          <span class="tag tag-pdev">People & Culture</span><span class="tag tag-gold">KK Eid: 33K eng / 60% ER</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-l">
+        <div class="format-label e">📌 KK's Own Best Static Post — 33K Eng</div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#0D2B6E">KK</div>
+            <div><div class="comp-block-handle">@kalpesh.kinariwala — Eid Post ⭐ Best All-Time</div></div>
+            <div class="comp-format-chip reel">🎬 REEL</div>
+          </div>
+          <div class="comp-caption">"Wishing you and your family peace, happiness, and good health. May this Eid bring…"</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>33,568</strong> eng</span><span class="comp-stat"><strong>60.4%</strong> ER</span>
+          </div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DWFyMMiEzvr/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/reel/DWFyMMiEzvr/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px">▶ Open on Instagram</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/reel/DWFyMMiEzvr/" target="_blank">▶ Open on Instagram</a>
+        </div>
+        <div class="format-label e" style="margin-top:10px">📌 KK's Spiritual Photo Post — 12K Eng</div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#0D2B6E">KK</div>
+            <div><div class="comp-block-handle">@kalpesh.kinariwala — Pooja Setup</div></div>
+            <div class="comp-format-chip photo">📸 PHOTO</div>
+          </div>
+          <div class="comp-caption">"Where beauty meets belief. Every detail of this pooja setup reflects intention…"</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>12,163</strong> eng</span><span class="comp-stat"><strong>21.9%</strong> ER</span><span class="comp-stat"><strong>316K</strong> views</span>
+          </div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DW8s_zvAL_b/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/reel/DW8s_zvAL_b/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px">▶ Open on Instagram</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/reel/DW8s_zvAL_b/" target="_blank">▶ Open on Instagram</a>
+        </div>
+      </div>
+      <div class="prod-r">
+        <div class="kk-works-box"><div class="kwb-label">⭐ Why This Works</div><p>Already proven — 33K eng / 60% ER (Eid) and 12K / 22% ER (Pooja). Cultural/religious posts are his most consistent performers. Run this formula for every major occasion: Eid, Diwali, National Day, Holi. Each time: personal caption, not corporate.</p></div>
+        <div class="concept"><div class="concept-lbl">💡 Concept (Diwali version)</div><p>"Diwali in Dubai hits different. The light doesn't just decorate — it reminds you why you built something worth celebrating in the first place."</p></div>
+        <div class="brief-grid">
+          <div class="bi bi-loc"><div class="bi-label">📍 Location</div><div class="bi-val">KK's home or personally decorated space. NOT office. NOT Pantheon property. Personal = authentic.</div></div>
+          <div class="bi bi-cos"><div class="bi-label">👔 Costume</div><div class="bi-val">Traditional appropriate to occasion — kurta for Diwali, formal for Eid. Cultural authenticity is the signal.</div></div>
+          <div class="bi bi-act"><div class="bi-label">🎬 Actors</div><div class="bi-val">KK + family if they consent. Genuine warmth — don't stage it. Photo or short 30–45s Reel both work.</div></div>
+          <div class="bi bi-dur"><div class="bi-label">⏱ Format</div><div class="bi-val">📸 Photo post OR 🎬 30–45s Reel · Traditional or ambient audio · 0 hashtags · No project mention</div></div>
+        </div>
+        <div class="script-wrap">
+          <div class="script-label">🎬 Caption Formula (any festival)</div>
+          <div class="scene"><div class="sc-t">Line 1–2 · Specific observation</div><div class="sc-v">"[Festival] in Dubai always [one specific personal observation — not generic, not 'grateful']."</div></div>
+          <div class="scene"><div class="sc-t">Line 3–5 · Personal connection</div><div class="sc-v">"This year [one specific thing KK is grateful for — a team member, a moment, a milestone — named specifically]."</div></div>
+          <div class="scene"><div class="sc-t">Closing · Genuine blessing</div><div class="sc-v">"To everyone celebrating — [one honest line. Not corporate copy. Something he'd actually say to a friend]."</div><div class="sc-vis">No Pantheon mention. No HOP Events mention. No CTA. This is personal.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ FOLLOWER GROWTH ══════ -->
+<div class="ps" id="growth">
+  <div class="type-banner g">
+    <div class="tb-icon">🚀</div>
+    <div class="tb-text">
+      <h2>Follower Growth — 35% of Posts</h2>
+      <p>Authority, credibility, expertise. Real market intelligence from a developer who has operated in Dubai since 2018. Builder's diary from Pantheon sites. Artist collabs via HOP Events. Primary platform: LinkedIn.</p>
+    </div>
+    <div class="tb-pct"><div class="p">35%</div><div class="l">of posts</div></div>
+  </div>
+
+  <!-- G-1 -->
+  <div class="prod g" id="g1">
+    <div class="prod-header">
+      <div class="prod-num pn-g">G1</div>
+      <div>
+        <div class="prod-htitle">Dubai Market Intelligence — "What I See From Inside a Developer's Desk"</div>
+        <div class="tag-row">
+          <span class="tag tag-g">🚀 Growth</span><span class="tag tag-dark">🎬 Reel + 💼 LinkedIn</span>
+          <span class="tag tag-pdev">Leadership Authority</span><span class="tag tag-gold">Thu IG / Tue LinkedIn</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-l">
+        <div class="format-label g">📌 Rizwan's Best Growth Reel — 476K Eng</div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#C0392B">RS</div>
+            <div><div class="comp-block-handle">@rizwan.sajan — Dubai Market Reel</div></div>
+            <div class="comp-format-chip reel">🎬 REEL</div>
+          </div>
+          <div class="comp-caption">"From no income tax to best in safety and infrastructure, let me tell you the 5 most fantastic reasons why you should come to Dubai Habibi!"</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>476,000</strong> eng</span><span class="comp-stat"><strong>33.1%</strong> ER</span><span class="comp-stat"><strong>2M</strong> views</span>
+          </div>
+          <div class="comp-why">5-point bold claim format. KK's developer perspective is MORE credible — he builds the products Rizwan sells.</div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXt8hbaj1M5/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/reel/DXt8hbaj1M5/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px;color:#C0392B">▶ Watch Rizwan's 97K Market Reel</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/reel/DXt8hbaj1M5/" target="_blank">▶ Open on Instagram</a>
+        </div>
+        <div class="format-label g" style="margin-top:10px">📌 KK's Own Top Growth Post — 9.9K Eng</div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#0D2B6E">KK</div>
+            <div><div class="comp-block-handle">@kalpesh.kinariwala — Gulf Business Awards</div></div>
+            <div class="comp-format-chip reel">🎬 REEL</div>
+          </div>
+          <div class="comp-caption">"An insightful evening at the @gulfbusiness Real Estate Awards 2026, connecting with industry leaders and visionaries…"</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>9,888</strong> eng</span><span class="comp-stat"><strong>17.8%</strong> ER</span>
+          </div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYZoujMuNFw/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/reel/DYZoujMuNFw/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px">▶ Open KK Award Post</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/reel/DYZoujMuNFw/" target="_blank">▶ Open on Instagram</a>
+        </div>
+      </div>
+      <div class="prod-r">
+        <div class="kk-works-box"><div class="kwb-label">⭐ Why This Will Work for KK</div><p>Developer-insider market takes are the most credible Growth content possible. Rizwan sells units and earns 476K. KK BUILDS units — his market view is the primary source data. LinkedIn is the primary distribution for this content: investor community, Forbes ME, Gulf Business, Khaleej Times all live there.</p></div>
+        <div class="concept"><div class="concept-lbl">💡 Concept</div><p>"I've been building in Dubai since 2018. Here are 5 things the market is doing right now that aren't in a press release — from inside a developer's pipeline."</p></div>
+        <div class="brief-grid">
+          <div class="bi bi-loc"><div class="bi-label">📍 Location</div><div class="bi-val">Pantheon executive office — floor-to-ceiling Dubai skyline window. Authority framing. The city = visual proof.</div></div>
+          <div class="bi bi-cos"><div class="bi-label">👔 Costume</div><div class="bi-val">Full business formal — dark suit. This is the credibility version of KK. The costume matches the confidence of the claims.</div></div>
+          <div class="bi bi-act"><div class="bi-label">🎬 Actors</div><div class="bi-val">KK only. Direct camera address. No graphics, no whiteboard. His conviction is the visual.</div></div>
+          <div class="bi bi-dur"><div class="bi-label">⏱ Duration</div><div class="bi-val">60–75s · Numbered delivery · Pause after each point · 1–3 hashtags</div></div>
+        </div>
+        <div class="script-wrap">
+          <div class="script-label">🎬 Production-Ready Script</div>
+          <div class="scene"><div class="sc-t">0–5 sec · HOOK</div><div class="sc-v">"I've been building in Dubai since 2018. Here's what the market is actually doing right now — things you won't find in a press release."</div></div>
+          <div class="scene"><div class="sc-t">5–55 sec · 5 POINTS</div><div class="sc-v">"Number one: [specific buyer behaviour shift in Pantheon's pipeline]. Number two: [neighbourhood or product type you're watching]. Number three: [what agents say vs what buyers actually do]. Number four: [pricing or supply observation]. Number five: [your H2 2026 prediction — specific, not hedged]."</div></div>
+          <div class="scene"><div class="sc-t">55–70 sec · CLOSE + INVITE</div><div class="sc-v">"I could be wrong on number five. But this is what our pipeline data is telling me. What are you seeing from your side?"</div><div class="sc-vis">Caption: full 5 points in 500–700 chars. LinkedIn: same + 2-3 supporting paragraphs.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- G-2 -->
+  <div class="prod g" id="g2">
+    <div class="prod-header">
+      <div class="prod-num pn-g">G2</div>
+      <div>
+        <div class="prod-htitle">Builder's Diary — Pantheon Site Visit</div>
+        <div class="tag-row">
+          <span class="tag tag-g">🚀 Growth</span><span class="tag tag-dark">🎬 Reel 60–90s</span>
+          <span class="tag tag-pdev">Building & Execution</span><span class="tag tag-gold">Thu 12–15h UTC</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-l">
+        <div class="format-label g">📌 Ankur's Blueprint-to-Building Reel — 31K Eng</div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#2980B9">CA</div>
+            <div><div class="comp-block-handle">@ankur.aggarwal01 — Vision to Reality</div></div>
+            <div class="comp-format-chip reel">🎬 REEL</div>
+          </div>
+          <div class="comp-caption">"Who would've thought that a dream, once scribbled on paper, would find its roots in the soil of Dubai? From blueprint to skyline, this is our story."</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>31,862</strong> eng</span><span class="comp-stat"><strong>0.54%</strong> ER</span><span class="comp-stat"><strong>253K</strong> views</span>
+          </div>
+          <div class="comp-why">Blueprint-to-building narrative earns 32K even on Ankur's huge base. KK's site-visit version should be more personal and specific — what he physically inspects, why it matters.</div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DJzPaaKSDLb/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/reel/DJzPaaKSDLb/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px;color:#2980B9">▶ Watch Ankur's Blueprint Reel</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/reel/DJzPaaKSDLb/" target="_blank">▶ Open on Instagram</a>
+        </div>
+      </div>
+      <div class="prod-r">
+        <div class="kk-works-box"><div class="kwb-label">⭐ Why This Will Work for KK</div><p>"The Executionist" pillar made visual. KK physically on site in a hard hat is the most powerful proof of Pantheon's delivery promise. No competitor can replicate a founder who actually shows up. This differentiates Pantheon from every other Dubai developer instantly.</p></div>
+        <div class="concept"><div class="concept-lbl">💡 Concept</div><p>"People ask why I visit every site personally. Here's the detail I check that most developers walk past — and why it matters to the person who'll live here."</p></div>
+        <div class="brief-grid">
+          <div class="bi bi-loc"><div class="bi-label">📍 Location</div><div class="bi-val">Active Pantheon site — Dusit, Orvessa, or Maison Élysée. Real construction, not a showroom.</div></div>
+          <div class="bi bi-cos"><div class="bi-label">👔 Costume</div><div class="bi-val">Hard hat + high-vis vest over business casual. Sleeves rolled. Working visit energy — not staged.</div></div>
+          <div class="bi bi-act"><div class="bi-label">🎬 Actors</div><div class="bi-val">KK + 1 site engineer (named & credited). Their real conversation IS the content.</div></div>
+          <div class="bi bi-dur"><div class="bi-label">⏱ Duration</div><div class="bi-val">60–90s · Walking shot · Ambient site audio · Voice-over</div></div>
+        </div>
+        <div class="script-wrap">
+          <div class="script-label">🎬 Script</div>
+          <div class="scene"><div class="sc-t">0–8 sec · ESTABLISHING · Wide site shot</div><div class="sc-v">"This is where we are this week on [project]. I visit every site personally — here's what I'm looking at today."</div></div>
+          <div class="scene"><div class="sc-t">8–50 sec · THE DETAIL · KK + engineer</div><div class="sc-v">"[Specific construction element — tile, joint, window]. This is the point most developers sign off and move on. We don't. Here's why: [plain-language explanation of the standard]."</div></div>
+          <div class="scene"><div class="sc-t">50–75 sec · THE PROMISE</div><div class="sc-v">"Six Sigma delivery isn't a promise on a brochure. It's this conversation — every week, on every floor, of every building we build."</div><div class="sc-vis">End on progress shot. Caption: the specific detail + why it matters to the resident.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- G-3 HOP EVENTS ARTIST COLLAB -->
+  <div class="prod g" id="g3">
+    <div class="prod-header">
+      <div class="prod-num pn-g">G3</div>
+      <div>
+        <div class="prod-htitle">HOP Events Artist Collab — Backstage / Partnership Moment</div>
+        <div class="tag-row">
+          <span class="tag tag-g">🚀 Growth</span><span class="tag tag-dark">🎬 Reel + 📸 Photo</span>
+          <span class="tag tag-hop">🎭 HOP Events Exclusive</span><span class="tag tag-gold">⭐ Tier-3 Breakthrough Bet</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-l">
+        <div class="format-label g">📌 Masih + Hrithik — 263K Eng / 3,060% ER</div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#17A589">MI</div>
+            <div><div class="comp-block-handle">@masihimtiaz — Hrithik Roshan Partnership</div></div>
+            <div class="comp-format-chip photo">📸 PHOTO</div>
+          </div>
+          <div class="comp-caption">"𝐈𝐦𝐭𝐢𝐚𝐳 𝐱 𝐇𝐫𝐢𝐭𝐡𝐢𝐤 — A partnership forged in mutual respect, trust and shared standards. @hrithikroshan @imtiazdevelopments"</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>263,194</strong> eng</span><span class="comp-stat"><strong>3,060%</strong> ER 🔥</span><span class="comp-stat">From only 8.6K followers!</span>
+          </div>
+          <div class="comp-why">One collab post permanently transformed Masih's account. KK has built-in access through HOP Events — he doesn't need to pitch for collabs, he hosts these artists.</div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DXPR0ZWDEZ1/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/p/DXPR0ZWDEZ1/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px;color:#17A589">▶ Watch Masih's 263K Hrithik Post</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/p/DXPR0ZWDEZ1/" target="_blank">▶ Open on Instagram</a>
+        </div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#2980B9">CA</div>
+            <div><div class="comp-block-handle">@ankur.aggarwal01 — Bageshwar Dham Collab</div></div>
+            <div class="comp-format-chip reel">🎬 REEL</div>
+          </div>
+          <div class="comp-caption">"An unforgettable moment for @bnw.developments as @iambageshvardhamsarkar ji graced our office…"</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>48,702</strong> eng</span><span class="comp-stat"><strong>1.2M</strong> views</span>
+          </div>
+          <a class="ig-open-btn" style="border-radius:9px;margin-top:4px;display:flex;width:fit-content;padding:6px 14px" href="https://www.instagram.com/reel/DNC_MZMyf9m/" target="_blank">▶ Open on Instagram</a>
+        </div>
+      </div>
+      <div class="prod-r">
+        <div class="hop-advantage">
+          <div class="ha-icon">🎭</div>
+          <div class="ha-text"><strong>KK's Unfair Advantage via HOP Events</strong>Masih paid or pitched for the Hrithik collab. KK brings these artists to Dubai through HOP Events. He already has the relationship, the access, and the authentic narrative. Every HOP Events headliner is a potential G-3 moment. This is the account transformation bet.</div>
+        </div>
+        <div class="kk-works-box"><div class="kwb-label">⭐ Why This Will Work for KK</div><p>Masih's Hrithik post: 263K eng / 3,060% ER from 8.6K followers. KK has 55K + HOP Events access. One authentic backstage moment with a major Indian/international artist could earn 200K–500K eng and permanently reposition his account. This is not a nice-to-have — it's the breakout play.</p></div>
+        <div class="concept"><div class="concept-lbl">💡 Concept</div><p>"[Artist] and I share one belief: what you build should outlast the moment you built it. Here's why bringing them to Dubai through HOP Events matters beyond the concert."</p></div>
+        <div class="brief-grid">
+          <div class="bi bi-loc"><div class="bi-label">📍 Location</div><div class="bi-val">Backstage at HOP Events venue OR Pantheon flagship showroom. The location tells the story of both worlds merging.</div></div>
+          <div class="bi bi-cos"><div class="bi-label">👔 Costume</div><div class="bi-val">Smart formal — dark suit. Guest: their signature style. The contrast between KK (developer) and artist (performer) IS the visual story.</div></div>
+          <div class="bi bi-act"><div class="bi-label">🎬 Actors</div><div class="bi-val">KK + the artist. Just the two of them in frame. No entourage. Use IG native Collab feature — both accounts co-own for maximum reach.</div></div>
+          <div class="bi bi-dur"><div class="bi-label">⏱ Duration</div><div class="bi-val">60–90s Reel OR single photo · IG Collab (mandatory) · Both handles tag each other</div></div>
+        </div>
+        <div class="script-wrap">
+          <div class="script-label">🎬 Script Template</div>
+          <div class="scene"><div class="sc-t">0–10 sec · THE MOMENT · Natural meeting shot</div><div class="sc-vis">Backstage arrival or natural meeting moment. NOT posed. Let the camera catch something real.</div></div>
+          <div class="scene"><div class="sc-t">10–50 sec · SHARED VALUES</div><div class="sc-v">"What [Artist] and I talked about today wasn't what people expect. It was about [the shared belief — execution, legacy, building something that lasts]. [One thing the artist said that genuinely moved or surprised KK — quote it directly]."</div></div>
+          <div class="scene"><div class="sc-t">50–75 sec · THE STATEMENT</div><div class="sc-v">"Dubai brings people like [Artist] here because this city is building something. And so are we."</div><div class="sc-vis">IG Collab. No branded graphics. Both accounts. The moment IS the content.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ CONTROVERSY ══════ -->
+<div class="ps" id="controversy">
+  <div class="type-banner c">
+    <div class="tb-icon">⚡</div>
+    <div class="tb-text">
+      <h2>Controversy — 25% of Posts · First-Mover White Space</h2>
+      <p>Zero of the 5 UAE founder competitors do this. Bold, defensible positions on Dubai real estate and founder life. Attack ideas — never people. The debate IS the distribution engine.</p>
+    </div>
+    <div class="tb-pct"><div class="p">25%</div><div class="l">of posts</div></div>
+  </div>
+
+  <!-- C-1 -->
+  <div class="prod c" id="c1">
+    <div class="prod-header">
+      <div class="prod-num pn-c">C1</div>
+      <div>
+        <div class="prod-htitle">Dubai Market Hot Take — "The Crash Won't Come"</div>
+        <div class="tag-row">
+          <span class="tag tag-c">⚡ Controversy</span><span class="tag tag-dark">🎬 Reel 45s</span>
+          <span class="tag tag-pdev">Leadership Authority</span><span class="tag tag-gold">Sat IG + Thu LinkedIn · 0 hashtags</span>
+          <span class="tag" style="background:#FFF0F5;color:#C0392B;font-weight:800">WHITE SPACE — 0 competitors</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-l">
+        <div class="format-label c">📌 Rizwan's Bold Claim Format — #1 Hook in Cohort</div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#C0392B">RS</div>
+            <div><div class="comp-block-handle">@rizwan.sajan — Top Hook Pattern</div></div>
+            <div class="comp-format-chip reel">🎬 REEL</div>
+          </div>
+          <div class="comp-caption">"From no income tax to best in safety and infrastructure, let me tell you the 5 most fantastic reasons why you should come to Dubai Habibi!"</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>342K</strong> avg eng</span><span class="comp-stat"><strong>23.6%</strong> avg ER</span><span class="comp-stat">#1 performing hook across all 9 accounts</span>
+          </div>
+          <div class="comp-why">Works because it's a BOLD CLAIM — debatable, shareable, confident. Rizwan does this accidentally. KK should do it deliberately with developer-backed data.</div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXgSnnwCQhY/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/reel/DXgSnnwCQhY/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px;color:#C0392B">▶ Watch Rizwan's Bold Claim Reel</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/reel/DXgSnnwCQhY/" target="_blank">▶ Open on Instagram</a>
+        </div>
+      </div>
+      <div class="prod-r">
+        <div class="kk-works-box"><div class="kwb-label">⭐ Why This Will Work for KK — First Mover</div><p>The boldest hook pattern in the entire cohort earns 342K avg engagement. Zero competitors are doing systematic controversy. KK's developer data makes his claims MORE credible than any other founder in this space. One controversial market take per week = he owns this voice in UAE real estate.</p></div>
+        <div class="concept"><div class="concept-lbl">💡 Concept</div><p>"Dubai real estate will NOT crash in 2026. I'll stake my reputation on it. Here's why the pessimists are wrong — with data from inside a developer's pipeline."</p></div>
+        <div class="brief-grid">
+          <div class="bi bi-loc"><div class="bi-label">📍 Location</div><div class="bi-val">Pantheon office — floor-to-ceiling Dubai skyline. The city = visual proof of the claim.</div></div>
+          <div class="bi bi-cos"><div class="bi-label">👔 Costume</div><div class="bi-val">Full dark suit. Most authoritative presentation. Costume matches boldness of claim.</div></div>
+          <div class="bi bi-act"><div class="bi-label">🎬 Actors</div><div class="bi-val">KK only. Locked-off camera. Direct eye contact. Stillness = certainty.</div></div>
+          <div class="bi bi-dur"><div class="bi-label">⏱ Duration</div><div class="bi-val">45s max · Fast · No padding · 0 hashtags · End: "Disagree? Tell me why."</div></div>
+        </div>
+        <div class="script-wrap">
+          <div class="script-label">🎬 Production-Ready Script</div>
+          <div class="scene"><div class="sc-t">0–3 sec · THE CLAIM · No intro</div><div class="sc-v">"Dubai real estate will NOT crash in 2026. I'll stake my reputation on it."</div></div>
+          <div class="scene"><div class="sc-t">3–14 sec · STEELMAN</div><div class="sc-v">"I hear the concerns — oversupply, rising rates, speculative buying. Those are real. Here's what the pessimists are missing."</div></div>
+          <div class="scene"><div class="sc-t">14–38 sec · 3 EVIDENCE POINTS</div><div class="sc-v">"Point one: [specific from Pantheon's buyer profile — end-user vs investor ratio]. Point two: [infrastructure or regulatory shift]. Point three: [what we're seeing in demand by nationality and income band]."</div></div>
+          <div class="scene"><div class="sc-t">38–45 sec · INVITE</div><div class="sc-v">"I could be wrong. But this is what our pipeline data tells me. Disagree? I genuinely want to hear your case."</div><div class="sc-vis">0 hashtags. Caption: full argument 400–500 chars. Reply every comment — this IS the play.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C-2 -->
+  <div class="prod c" id="c2">
+    <div class="prod-header">
+      <div class="prod-num pn-c">C2</div>
+      <div>
+        <div class="prod-htitle">Industry Insider — "Stop Chasing Payment Plans"</div>
+        <div class="tag-row">
+          <span class="tag tag-c">⚡ Controversy</span><span class="tag tag-dark">🎬 Reel 45–60s</span>
+          <span class="tag tag-pdev">Executionist Pillar</span><span class="tag tag-gold">Sat IG + Thu LinkedIn</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-l">
+        <div class="format-label c">📌 Rizwan's Casual Business Authority — 76K Eng</div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#C0392B">RS</div>
+            <div><div class="comp-block-handle">@rizwan.sajan — Business Conversation Format</div></div>
+            <div class="comp-format-chip reel">🎬 REEL</div>
+          </div>
+          <div class="comp-caption">"Sir ko dil ki baat bata Rahi thi unhone business analysis me Badal diya" — contrarian business perspective in conversation format</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>76,006</strong> eng</span><span class="comp-stat"><strong>5.4%</strong> ER</span><span class="comp-stat"><strong>1.5M</strong> views</span>
+          </div>
+          <div class="comp-why">Conversational business advice with confidence. KK can do this with MORE specific industry data — he builds what Rizwan sells.</div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DX4GwtjsGxE/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/reel/DX4GwtjsGxE/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px;color:#C0392B">▶ Watch Rizwan's 76K Business Reel</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/reel/DX4GwtjsGxE/" target="_blank">▶ Open on Instagram</a>
+        </div>
+      </div>
+      <div class="prod-r">
+        <div class="concept"><div class="concept-lbl">💡 Concept</div><p>"I'm a developer who OFFERS payment plans. And I'm telling you: the industry's obsession with longer payment plans is creating a problem buyers don't see until 3 years later. Here's the math."</p></div>
+        <div class="brief-grid">
+          <div class="bi bi-loc"><div class="bi-label">📍 Location</div><div class="bi-val">Pantheon sales floor or showroom — where payment plans are literally discussed. Setting = insider credibility.</div></div>
+          <div class="bi bi-cos"><div class="bi-label">👔 Costume</div><div class="bi-val">Smart business — suit jacket, no tie. Approachable authority. Confident, not stiff.</div></div>
+          <div class="bi bi-act"><div class="bi-label">🎬 Actors</div><div class="bi-val">KK only OR KK in dialogue with Pantheon finance director. Two-person format = honest internal conversation made public.</div></div>
+          <div class="bi bi-dur"><div class="bi-label">⏱ Duration</div><div class="bi-val">45–60s · Specific numbers if possible · End: "Agents will disagree. Tell me why."</div></div>
+        </div>
+        <div class="script-wrap">
+          <div class="script-label">🎬 Script</div>
+          <div class="scene"><div class="sc-t">0–4 sec · INSIDER REVEAL</div><div class="sc-v">"I'm going to say something unpopular — as a developer who offers payment plans."</div></div>
+          <div class="scene"><div class="sc-t">4–20 sec · THE PROBLEM</div><div class="sc-v">"The industry's obsession with 10-year payment plans is creating a problem. Here's what buyers don't see when they sign: [real cost structure, risk to completion, long-term buyer vs cash buyer resale comparison]."</div></div>
+          <div class="scene"><div class="sc-t">20–48 sec · THE ALTERNATIVE</div><div class="sc-v">"What I tell our buyers privately: [the actual honest advice — shorter plan, right product, market timing]. Because a sold unit that becomes a problem for the buyer becomes a problem for us too."</div></div>
+          <div class="scene"><div class="sc-t">48–58 sec · INVITE DEBATE</div><div class="sc-v">"Agents will disagree. So will some developers. Tell me why I'm wrong."</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- C-3 -->
+  <div class="prod c" id="c3">
+    <div class="prod-header">
+      <div class="prod-num pn-c">C3</div>
+      <div>
+        <div class="prod-htitle">Founder Hot Take — "What I Actually Believe About Building"</div>
+        <div class="tag-row">
+          <span class="tag tag-c">⚡ Controversy</span><span class="tag tag-dark">🎬 Reel 45–60s</span>
+          <span class="tag tag-gold">Founder Presence Pillar</span><span class="tag tag-gold">Sat 12–15h UTC</span>
+        </div>
+      </div>
+    </div>
+    <div class="prod-body">
+      <div class="prod-l">
+        <div class="format-label c">📌 Vivek's Defiant Ambition — 310K Eng</div>
+        <div class="comp-block">
+          <div class="comp-block-header">
+            <div class="comp-av" style="background:#8E44AD">VO</div>
+            <div><div class="comp-block-handle">@vivekoberoi — Vision & Ambition Post</div></div>
+            <div class="comp-format-chip carousel">🖼 CAROUSEL</div>
+          </div>
+          <div class="comp-caption">"Next stop: Higher. What began as a dream in 2024, built on belief, late nights and a shared vision, was soaring across the skies aboard @flyemirates…"</div>
+          <div class="comp-stats-row">
+            <span class="comp-stat"><strong>310,020</strong> eng</span><span class="comp-stat"><strong>9.4%</strong> ER</span>
+          </div>
+          <div class="comp-why">Quiet controversy: Vivek defies the expectation that an actor can't build real companies. KK's equivalent: the belief that guides Pantheon + HOP Events that the industry would push back on.</div>
+          <div class="ig-embed-wrap">
+            <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DPv-DZ1CXVU/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;margin:0;max-width:100%;min-width:100%;padding:0;width:100%"><a href="https://www.instagram.com/p/DPv-DZ1CXVU/" target="_blank" style="padding:14px;display:block;text-align:center;font-size:12px;color:#8E44AD">▶ Watch Vivek's 310K Vision Post</a></blockquote>
+          </div>
+          <a class="ig-open-btn" href="https://www.instagram.com/p/DPv-DZ1CXVU/" target="_blank">▶ Open on Instagram</a>
+        </div>
+      </div>
+      <div class="prod-r">
+        <div class="hop-advantage">
+          <div class="ha-icon">🎭</div>
+          <div class="ha-text"><strong>KK's Dual-Founder Angle</strong>KK runs a real estate company AND an events company. That's the controversy: "Everyone told me to focus. I chose to build two things at once. Here's what that's actually cost — and what it's given me that a single business never could."</div>
+        </div>
+        <div class="concept"><div class="concept-lbl">💡 Concept</div><p>"I don't believe in hustle culture. I know that's unpopular. Here's what I actually believe — and how it shaped both Pantheon and HOP Events."</p></div>
+        <div class="brief-grid">
+          <div class="bi bi-loc"><div class="bi-label">📍 Location</div><div class="bi-val">Home study or private room. NOT office. This is personal belief — not a company statement.</div></div>
+          <div class="bi bi-cos"><div class="bi-label">👔 Costume</div><div class="bi-val">Most casual on film — polo or simple shirt. No jacket. No accessories. The real KK, off-duty.</div></div>
+          <div class="bi bi-act"><div class="bi-label">🎬 Actors</div><div class="bi-val">KK only. Stillest camera in the series. Personal manifesto — not performance.</div></div>
+          <div class="bi bi-dur"><div class="bi-label">⏱ Duration</div><div class="bi-val">45–60s · Slower pace · The belief should land, not rush · 0 hashtags</div></div>
+        </div>
+        <div class="script-wrap">
+          <div class="script-label">🎬 Script</div>
+          <div class="scene"><div class="sc-t">0–4 sec · THE BELIEF</div><div class="sc-v">"I don't believe in hustle culture. I know that's unpopular to say."</div></div>
+          <div class="scene"><div class="sc-t">4–25 sec · WHAT I BELIEVE INSTEAD</div><div class="sc-v">"I believe in [specific principle — depth not breadth, saying no to most things, protecting thinking time]. Here's one decision at Pantheon that came from this belief: [specific — what happened, what the alternative would have been]."</div></div>
+          <div class="scene"><div class="sc-t">25–48 sec · THE PROOF</div><div class="sc-v">"The buildings we deliver on time — and the events that run without fail — are not the result of working more hours. They're the result of [the actual principle: Six Sigma, decision clarity, whatever KK genuinely runs on]."</div></div>
+          <div class="scene"><div class="sc-t">48–58 sec · INVITE</div><div class="sc-v">"I know most people will disagree. Tell me your experience — I genuinely want to understand the other side."</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CALENDAR ══ -->
+<div class="ps" id="calendar">
+  <div class="ps-title">📅 Weekly Production Calendar</div>
+  <div class="ps-sub">4 Instagram + 3 LinkedIn posts per week · Every post maps to one content type</div>
+  <div class="cal">
+    <div class="cal-d"><div class="cal-dh mon">MON</div><div class="cal-entry ce-n"><div class="ce-plat">PLANNING</div><div class="ce-title">Finalise week. Confirm Tue post ready.</div></div></div>
+    <div class="cal-d"><div class="cal-dh tue">TUE 🔒</div>
+      <div class="cal-entry ce-e"><div class="ce-plat">📱 Instagram</div><div class="ce-title">E1/E2/E3/E4 — Emotional Reel</div><div class="ce-time">12–15h UTC LOCKED</div></div>
+      <div class="cal-entry ce-g"><div class="ce-plat">💼 LinkedIn</div><div class="ce-title">G1 — Market Intel Post</div><div class="ce-time">7–9h GST</div></div>
+    </div>
+    <div class="cal-d"><div class="cal-dh wed">WED</div><div class="cal-entry ce-n"><div class="ce-plat">ENGAGE</div><div class="ce-title">Reply all Tue comments. 2h min. No post.</div></div></div>
+    <div class="cal-d"><div class="cal-dh thu">THU</div>
+      <div class="cal-entry ce-g"><div class="ce-plat">📱 Instagram</div><div class="ce-title">G1/G2/G3 — Growth Reel</div><div class="ce-time">12–15h UTC</div></div>
+      <div class="cal-entry ce-c"><div class="ce-plat">💼 LinkedIn</div><div class="ce-title">C1/C2/C3 — Controversy Post</div><div class="ce-time">7–9h GST</div></div>
+    </div>
+    <div class="cal-d"><div class="cal-dh fri">FRI</div><div class="cal-entry ce-n"><div class="ce-plat">REVIEW</div><div class="ce-title">Check performance. Note top post. No post.</div></div></div>
+    <div class="cal-d"><div class="cal-dh sat">SAT</div>
+      <div class="cal-entry ce-c"><div class="ce-plat">📱 Instagram</div><div class="ce-title">C1/C2/C3 — Controversy Reel (30–60s)</div><div class="ce-time">12–15h UTC</div></div>
+      <div class="cal-entry ce-e"><div class="ce-plat">💼 LinkedIn</div><div class="ce-title">Tue Emotional post adapted</div></div>
+    </div>
+    <div class="cal-d"><div class="cal-dh sun">SUN</div>
+      <div class="cal-entry ce-e"><div class="ce-plat">📱 Instagram</div><div class="ce-title">E4 — Light cultural / HOP moment</div></div>
+      <div class="cal-entry ce-n"><div class="ce-plat">PREP</div><div class="ce-title">Draft next Tue Reel script.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RULES ══ -->
+<div class="ps" id="rules">
+  <div class="ps-title">✅ Production Rules — Do's & Don'ts</div>
+  <div class="ps-sub">Non-negotiable for every piece of content on @kalpesh.kinariwala</div>
+  <div class="dd-grid">
+    <div class="dd-card e"><h4>❤️ Emotional — Always</h4>
+      <ul class="dd-list">
+        <li>Original voice-over only — zero trending audio</li>
+        <li>600+ char caption, first person, story arc</li>
+        <li>Start: "I" / "Tonight" / specific sensory detail</li>
+        <li>Tuesday 12–15h UTC — non-negotiable</li>
+        <li>0 hashtags (max 2 if truly necessary)</li>
+        <li>No CTA, no links, no project mentions</li>
+        <li>Film within 24h of HOP Events concert</li>
+      </ul>
+    </div>
+    <div class="dd-card g"><h4>🚀 Growth — Always</h4>
+      <ul class="dd-list">
+        <li>One clear insight per post — not a list of facts</li>
+        <li>Evidence from Pantheon/HOP pipeline — not news</li>
+        <li>LinkedIn is PRIMARY for Growth content</li>
+        <li>Numbered points in captions — saveable content</li>
+        <li>Soft question CTA: "What are you seeing?"</li>
+        <li>Site visits: hard hat + real active site, not showroom</li>
+        <li>Artist collabs: IG native Collab feature mandatory</li>
+      </ul>
+    </div>
+    <div class="dd-card c"><h4>⚡ Controversy — Always</h4>
+      <ul class="dd-list">
+        <li>Bold claim in first 3 seconds — no preamble</li>
+        <li>Steelman the opposing view before your evidence</li>
+        <li>Attack ideas — NEVER people or competitors</li>
+        <li>End every post: "Disagree? Tell me why."</li>
+        <li>0 hashtags — shares are the distribution</li>
+        <li>Reply every comment within 2h — mandatory</li>
+        <li>Max 1 controversy post per week</li>
+      </ul>
+    </div>
+  </div>
+  <div style="background:var(--ink);border-radius:11px;padding:16px 20px;margin-top:16px">
+    <p style="color:var(--gold);font-size:12px;font-weight:800;margin-bottom:10px">🚫 ABSOLUTE RED LINES — All Content Types</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+      <div style="color:rgba(255,255,255,.7);font-size:11px;line-height:1.6"><strong style="color:white;display:block;margin-bottom:3px">NEVER on personal feed:</strong>Project launches · "Book Now" CTAs · Unit pricing · Payment plan offers · Award posts without personal story</div>
+      <div style="color:rgba(255,255,255,.7);font-size:11px;line-height:1.6"><strong style="color:white;display:block;margin-bottom:3px">NEVER boost until:</strong>Post has cleared 9,600 organic engagements (2× avg). Boost on Reach objective only. No exceptions.</div>
+      <div style="color:rgba(255,255,255,.7);font-size:11px;line-height:1.6"><strong style="color:white;display:block;margin-bottom:3px">NEVER start a caption:</strong>"Grateful to…" · "Excited to share…" · "Honored to announce…" · "Check out our new…"</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">KK Content Production Hub · @kalpesh.kinariwala · Pantheon Development × HOP Events · June 2026</div>
+
+</div><!-- /main -->
+
+<script async src="https://www.instagram.com/embed.js"></script>
+<script>
+const links = document.querySelectorAll('.sb-link');
+const sections = document.querySelectorAll('[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id});
+  links.forEach(l=>{
+    l.classList.remove('active');
+    const h=l.getAttribute('href');
+    if(h&&h==='#'+cur)l.classList.add('active');
+  });
+});
+setTimeout(()=>{if(window.instgrm)window.instgrm.Embeds.process();},1000);
+</script>
+</body>
+</html>
