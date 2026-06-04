@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KK Weekly Content Planner & 90-Day Roadmap (Editable)</title>
+<style>
+:root{
+  --ink:#0A0A0A;--navy:#0D2B6E;--blue:#1B4F9B;
+  --gold:#C8922A;--gold-bg:#FBF5E8;--gold-mid:#E8C879;
+  --E:#C0392B;--E-bg:#FEF0EE;--E-dark:#7B241C;
+  --G:#1A7A45;--G-bg:#EAFAF1;--G-dark:#145A32;
+  --C:#6C3483;--C-bg:#F5EEF8;--C-dark:#4A235A;
+  /* brand pillar palette (distinct from content-type colours) */
+  --P1:#1B4F9B;--P1-bg:#EAF2FB;  /* Leadership & Market Authority */
+  --P2:#0E8C7A;--P2-bg:#E6F7F4;  /* Building & Execution */
+  --P3:#B9770E;--P3-bg:#FBF1DE;  /* People, Culture & Values */
+  --P4:#475569;--P4-bg:#EEF1F5;  /* Founder Presence & Visibility */
+  --surface:#FAFAF8;--border:#E8E4DC;--gray:#5D6D7E;
+  --shadow:0 3px 18px rgba(0,0,0,0.08);--shadow-lg:0 8px 30px rgba(0,0,0,0.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F5F3EF;color:var(--ink);line-height:1.5}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 26px}
+
+/* ── TOP BAR ── */
+.topbar{position:sticky;top:0;z-index:300;background:var(--ink);border-bottom:3px solid var(--gold);color:#fff}
+.topbar-in{max-width:1200px;margin:0 auto;padding:12px 26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.tb-title{font-size:15px;font-weight:900;color:var(--gold)}
+.tb-title small{display:block;font-size:10px;color:rgba(255,255,255,.45);font-weight:600}
+.tb-actions{margin-left:auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.btn{border:none;border-radius:8px;padding:8px 13px;font-size:12px;font-weight:800;cursor:pointer;transition:.15s}
+.btn-gold{background:var(--gold);color:var(--ink)}.btn-gold:hover{background:var(--gold-mid)}
+.btn-ghost{background:rgba(255,255,255,.1);color:#fff}.btn-ghost:hover{background:rgba(255,255,255,.2)}
+.btn-danger{background:transparent;color:#ff9b8e;border:1px solid rgba(255,155,142,.5)}.btn-danger:hover{background:rgba(192,57,43,.2)}
+.save-ind{font-size:11px;font-weight:700;color:rgba(255,255,255,.45)}
+.save-ind.on{color:#79e0a8}
+
+/* ── EDIT LEGEND ── */
+.legend{background:linear-gradient(135deg,var(--gold-bg),#fff);border-bottom:1px solid var(--border)}
+.legend-in{display:flex;gap:14px;align-items:center;padding:12px 0;font-size:12.5px;color:#4a3a16}
+.legend .pill-ex{background:#fff;border:1px dashed var(--gold);border-radius:6px;padding:2px 9px;color:var(--gold);font-weight:800}
+
+/* ── SECTION ── */
+section{padding:34px 0}
+.sec-kicker{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)}
+.sec-title{font-size:22px;font-weight:900;color:var(--navy);margin-top:4px}
+.sec-sub{color:var(--gray);font-size:13.5px;margin-top:5px;max-width:780px}
+
+/* ── EDITABLE FIELDS ── */
+.edit{background:#fff;border:1px solid var(--gold-mid);border-radius:7px;padding:6px 10px;outline:none;transition:.12s;min-height:30px}
+.edit:hover{border-color:var(--gold)}
+.edit:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,146,42,.18);background:#fffdf8}
+.edit.inline{display:inline-block;min-width:80px;padding:2px 8px;min-height:0}
+.edit.block{display:block;width:100%}
+.edit.need{background:var(--gold-bg);border-style:dashed}
+.edit[data-ph]:empty:before{content:attr(data-ph);color:#A99877;font-style:italic}
+.fld{margin-bottom:11px}
+.fld-l{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.fld-l .hint{font-weight:600;text-transform:none;letter-spacing:0;color:#A0A8B0;font-style:italic}
+select.sel{font-family:inherit;font-size:13px;font-weight:700;border:1px solid var(--border);border-radius:7px;padding:6px 8px;background:#fff;cursor:pointer;outline:none}
+select.sel:focus{border-color:var(--gold)}
+
+/* ── GOAL BANNER ── */
+.goal{background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:14px;padding:22px 26px;color:#fff;display:flex;gap:24px;align-items:center;flex-wrap:wrap;box-shadow:var(--shadow)}
+.goal .big{font-size:34px;font-weight:900;line-height:1}
+.goal .gl{font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.6);margin-top:3px}
+.goal .arrow{font-size:26px;opacity:.6}
+.goal .goal-edit{display:flex;flex-direction:column;gap:4px}
+.goal .edit{color:var(--ink)}
+.goal-note{margin-left:auto;max-width:330px;font-size:12px;color:rgba(255,255,255,.78);line-height:1.5}
+
+/* ── PILLAR CARDS ── */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+.pcard{background:#fff;border-radius:13px;box-shadow:var(--shadow);overflow:hidden;border-top:5px solid}
+.pcard.p1{border-color:var(--P1)} .pcard.p2{border-color:var(--P2)} .pcard.p3{border-color:var(--P3)} .pcard.p4{border-color:var(--P4)}
+.pcard-h{padding:14px 16px 10px}
+.pcard-n{font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}
+.pcard.p1 .pcard-n{color:var(--P1)} .pcard.p2 .pcard-n{color:var(--P2)} .pcard.p3 .pcard-n{color:var(--P3)} .pcard.p4 .pcard-n{color:var(--P4)}
+.pcard h3{font-size:15px;font-weight:900;color:var(--ink);margin:3px 0 8px;line-height:1.2}
+.pcard ul{list-style:none;padding:0 16px 14px;display:flex;flex-direction:column;gap:4px}
+.pcard li{font-size:11.5px;color:#444;padding-left:13px;position:relative;line-height:1.35}
+.pcard li::before{content:"›";position:absolute;left:1px;font-weight:900}
+.pcard.p1 li::before{color:var(--P1)} .pcard.p2 li::before{color:var(--P2)} .pcard.p3 li::before{color:var(--P3)} .pcard.p4 li::before{color:var(--P4)}
+
+/* ── CONTENT TYPE LEGEND ── */
+.types{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.tcard{border-radius:12px;padding:16px 18px;box-shadow:var(--shadow)}
+.tcard.e{background:var(--E-bg);border-left:5px solid var(--E)} .tcard.e h4{color:var(--E)}
+.tcard.g{background:var(--G-bg);border-left:5px solid var(--G)} .tcard.g h4{color:var(--G)}
+.tcard.c{background:var(--C-bg);border-left:5px solid var(--C)} .tcard.c h4{color:var(--C)}
+.tcard h4{font-size:14px;font-weight:900;margin-bottom:4px}
+.tcard .pct{float:right;font-size:18px;font-weight:900;opacity:.85}
+.tcard p{font-size:12px;color:#444;line-height:1.5}
+.tcard .rules{font-size:11px;color:#555;margin-top:8px;line-height:1.5}
+
+/* ── WEEK CARDS ── */
+.weekgrid{display:flex;flex-direction:column;gap:18px;margin-top:24px}
+.wk{background:#fff;border-radius:14px;box-shadow:var(--shadow-lg);overflow:hidden;border-left:6px solid var(--gray)}
+.wk[data-type="e"]{border-left-color:var(--E)} .wk[data-type="g"]{border-left-color:var(--G)} .wk[data-type="c"]{border-left-color:var(--C)}
+.wk-head{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--border);background:var(--surface);flex-wrap:wrap}
+.wk-num{width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;flex-shrink:0}
+.wk[data-type="e"] .wk-num{background:var(--E)} .wk[data-type="g"] .wk-num{background:var(--G)} .wk[data-type="c"] .wk-num{background:var(--C)}
+.wk-title{font-size:15px;font-weight:800;flex:1;min-width:180px}
+.wk-selects{display:flex;gap:8px;flex-wrap:wrap}
+.wk-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.wk-l{padding:16px 18px;border-right:1px solid var(--border)}
+.wk-r{padding:16px 18px}
+.meta3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:4px}
+@media(max-width:780px){.wk-body{grid-template-columns:1fr}.wk-l{border-right:none;border-bottom:1px solid var(--border)}.meta3{grid-template-columns:1fr}}
+
+/* ── ROADMAP ── */
+.ramp{display:flex;align-items:flex-end;gap:10px;height:120px;margin:20px 0 8px;padding:0 4px}
+.ramp .bar{flex:1;border-radius:7px 7px 0 0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;color:#fff;font-weight:900;font-size:12px;padding-bottom:6px;position:relative}
+.ramp .bcap{position:absolute;top:-19px;font-size:11px;font-weight:800;color:var(--navy)}
+.b0{background:#B6BCC4;height:18%} .b1{background:#6FA8DC;height:50%} .b2{background:#3D85C6;height:74%} .b3{background:var(--navy);height:100%}
+.months{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.mcard{background:#fff;border-radius:13px;box-shadow:var(--shadow);overflow:hidden;border-top:5px solid var(--navy)}
+.mcard .mh{padding:14px 16px 6px}
+.mcard .mph{font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--gold)}
+.mcard h3{font-size:16px;font-weight:900;color:var(--navy);margin:2px 0 2px}
+.mtar{display:flex;gap:10px;margin:8px 16px;background:var(--gold-bg);border-radius:9px;padding:9px 12px}
+.mtar .t{flex:1}.mtar .tl{font-size:9px;font-weight:800;text-transform:uppercase;color:var(--gray)}
+.mbody{padding:4px 16px 16px}
+.mbody .ml{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin:10px 0 5px}
+.mbody ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:4px}
+.mbody li{font-size:12px;color:#333;padding-left:13px;position:relative;line-height:1.4}
+.mbody li::before{content:"•";position:absolute;left:2px;color:var(--navy);font-weight:900}
+@media(max-width:780px){.pillars,.types,.months{grid-template-columns:1fr}}
+
+.footer{background:var(--ink);color:rgba(255,255,255,.45);text-align:center;padding:22px;font-size:11.5px;line-height:1.7;margin-top:10px}
+.footer a{color:var(--gold-mid);font-weight:700}
+
+/* ── PRINT ── */
+@media print{
+  .topbar,.legend,.tb-actions,.footer .noprint{display:none!important}
+  body{background:#fff}
+  .wk,.pcard,.mcard,.goal{box-shadow:none;border:1px solid #ccc}
+  .edit{border:1px solid #ddd;background:#fff!important}
+  section{padding:14px 0;break-inside:avoid}
+  .wk{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ TOP BAR ══ -->
+<div class="topbar">
+  <div class="topbar-in">
+    <div class="tb-title">KK Weekly Planner &amp; 90-Day Roadmap<small>@kalpesh.kinariwala · editable · auto-saves in this browser</small></div>
+    <div class="tb-actions">
+      <span class="save-ind" id="saveInd">Ready</span>
+      <a class="btn btn-ghost" href="../index.html">← Home</a>
+      <a class="btn btn-ghost" href="content-production-hub.html">Production Hub</a>
+      <button class="btn btn-gold" onclick="window.print()">⬇ Export / Print</button>
+      <button class="btn btn-danger" onclick="resetAll()">Reset</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EDIT LEGEND ══ -->
+<div class="legend">
+  <div class="wrap">
+    <div class="legend-in">
+      ✏️ <strong>This page is editable.</strong>&nbsp; Click any <span class="pill-ex">highlighted field</span> to type your input — concept, hook, dates, actors, location, costume. Everything you type <strong>auto-saves in this browser</strong>. Use <strong>Export / Print</strong> to save or share a copy.
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══ GOAL ══ -->
+<section>
+  <div class="sec-kicker">The target</div>
+  <h2 class="sec-title">Where we're driving this — 90 days</h2>
+  <p class="sec-sub">Overall goal: lift engagement rate to <strong>2% ER</strong>. Today's median sits near 0.36% — the ramp below gets there by reweighting toward founder voice, the 3 content types, and the 4 brand pillars.</p>
+  <div class="goal" style="margin-top:18px">
+    <div class="goal-edit">
+      <div class="gl">Current ER (your number)</div>
+      <span class="edit inline" contenteditable="true" data-key="er-now" data-ph="0.36%">0.36%</span>
+    </div>
+    <div class="arrow">→</div>
+    <div>
+      <div class="big">2%</div>
+      <div class="gl">Target ER · 90 days</div>
+    </div>
+    <div class="goal-note">Mix to hold: <strong style="color:#fff">Emotional 40% · Follower Growth 35% · Controversy 25%</strong>. Cadence: 4 Instagram + 3 LinkedIn / week. Every post = one content type + one brand pillar.</div>
+  </div>
+</section>
+
+<!-- ══ BRAND PILLARS ══ -->
+<section>
+  <div class="sec-kicker">Reference</div>
+  <h2 class="sec-title">The 4 brand pillars</h2>
+  <p class="sec-sub">Every piece of content sits on exactly one of these. (A pillar is <em>what the content is about</em>; the content type is <em>how it's told</em> — emotional, growth, or controversy.)</p>
+  <div class="pillars">
+    <div class="pcard p1">
+      <div class="pcard-h"><div class="pcard-n">Pillar 1</div><h3>Leadership &amp; Market Authority</h3></div>
+      <ul><li>Brand trust</li><li>Thought leadership</li><li>Credibility</li><li>Founder POVs</li><li>Market insights</li><li>Leadership philosophy</li><li>Town Hall reflections</li></ul>
+    </div>
+    <div class="pcard p2">
+      <div class="pcard-h"><div class="pcard-n">Pillar 2</div><h3>Building &amp; Execution</h3></div>
+      <ul><li>Delivery discipline</li><li>Progress &amp; long-term value</li><li>Site visits</li><li>Builder's diary</li><li>Project reviews</li><li>Pre-handover discipline</li></ul>
+    </div>
+    <div class="pcard p3">
+      <div class="pcard-h"><div class="pcard-n">Pillar 3</div><h3>People, Culture &amp; Values</h3></div>
+      <ul><li>Cultural leadership</li><li>People-first identity</li><li>Team moments</li><li>Awards</li><li>Values</li><li>Cultural messages</li></ul>
+    </div>
+    <div class="pcard p4">
+      <div class="pcard-h"><div class="pcard-n">Pillar 4</div><h3>Founder Presence &amp; Visibility</h3></div>
+      <ul><li>Consistent calm visibility</li><li>Meetings</li><li>Office moments</li><li>Partner interactions</li><li>Candid leadership</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTENT TYPES ══ -->
+<section>
+  <div class="sec-kicker">Reference</div>
+  <h2 class="sec-title">The 3 content types</h2>
+  <div class="types">
+    <div class="tcard e"><h4>❤️ Emotional<span class="pct">40%</span></h4><p>Human connection — personal stories, cultural moments, team &amp; values, vulnerability.</p><div class="rules"><strong>Format:</strong> Reel 45–90s · original voice · 600+ char caption · 0–2 hashtags · no CTA · Tue 12–15h UTC.</div></div>
+    <div class="tcard g"><h4>🚀 Follower Growth<span class="pct">35%</span></h4><p>Authority &amp; credibility — market intel, builder's diary, lessons, collabs. LinkedIn-primary.</p><div class="rules"><strong>Format:</strong> Reel 45–75s or carousel · 500–700 chars · numbered points · soft question CTA · 1–3 hashtags.</div></div>
+    <div class="tcard c"><h4>⚡ Controversy<span class="pct">25%</span></h4><p>Bold, defensible market takes. Attack ideas, never people. The debate is the distribution.</p><div class="rules"><strong>Format:</strong> Reel 30–60s · bold claim in 3s · 0 hashtags · end "Disagree? Tell me why." · max 1/week.</div></div>
+  </div>
+</section>
+
+<!-- ══ THIS WEEK — 5 PIECES ══ -->
+<section>
+  <div class="sec-kicker">Do this week</div>
+  <h2 class="sec-title">This week — 5 content pieces</h2>
+  <p class="sec-sub">A balanced week (2 Emotional · 2 Growth · 1 Controversy) across all 4 pillars. Pre-filled with a recommendation — <strong>change anything</strong>, then fill in the highlighted fields with your specifics. Set the type/pillar/status with the dropdowns.</p>
+  <div class="weekgrid" id="weekgrid"></div>
+</section>
+
+<!-- ══ 90-DAY ROADMAP ══ -->
+<section>
+  <div class="sec-kicker">The plan</div>
+  <h2 class="sec-title">90-day roadmap → 2% ER</h2>
+  <p class="sec-sub">Three phases. Targets are editable — log your actuals as you go.</p>
+
+  <div class="ramp">
+    <div class="bar b0"><span class="bcap">~0.36%</span>Now</div>
+    <div class="bar b1"><span class="bcap">~1.0%</span>M1</div>
+    <div class="bar b2"><span class="bcap">~1.5%</span>M2</div>
+    <div class="bar b3"><span class="bcap">2.0%+</span>M3</div>
+  </div>
+
+  <div class="months">
+    <div class="mcard">
+      <div class="mh"><div class="mph">Month 1 · Weeks 1–4</div><h3>Foundation</h3></div>
+      <div class="mtar">
+        <div class="t"><div class="tl">Target ER</div><span class="edit inline" contenteditable="true" data-key="m1-target">~1.0%</span></div>
+        <div class="t"><div class="tl">Actual</div><span class="edit inline need" contenteditable="true" data-key="m1-actual" data-ph="log it"></span></div>
+      </div>
+      <div class="mbody">
+        <div class="ml">Focus</div>
+        <p style="font-size:12px;color:#333">Reset the mix. Reintroduce founder voice &amp; personal storytelling. Remove project-launch &amp; investment posts from the personal feed.</p>
+        <div class="ml">Key actions</div>
+        <ul>
+          <li>Record Personal Story Reel #1 (origin) — Tue slot</li>
+          <li>Lock Tue 12–15h UTC emotional post every week</li>
+          <li>Set boost rule: no boost under 9,600 organic eng</li>
+          <li>Start 1 controversy take / week</li>
+        </ul>
+        <div class="ml">Your notes</div>
+        <div class="edit block need" contenteditable="true" data-key="m1-notes" data-ph="What you'll commit to in Month 1…"></div>
+      </div>
+    </div>
+
+    <div class="mcard">
+      <div class="mh"><div class="mph">Month 2 · Weeks 5–8</div><h3>Build</h3></div>
+      <div class="mtar">
+        <div class="t"><div class="tl">Target ER</div><span class="edit inline" contenteditable="true" data-key="m2-target">~1.5%</span></div>
+        <div class="t"><div class="tl">Actual</div><span class="edit inline need" contenteditable="true" data-key="m2-actual" data-ph="log it"></span></div>
+      </div>
+      <div class="mbody">
+        <div class="ml">Focus</div>
+        <p style="font-size:12px;color:#333">Consistency + authority. First native IG Collab. Begin media outreach. Raise founder-voice posts toward 60%.</p>
+        <div class="ml">Key actions</div>
+        <ul>
+          <li>1 IG Collab (cultural/community, not a launch)</li>
+          <li>Pitch @khaleejtimes &amp; @gulfbusiness</li>
+          <li>Builder's diary site visit live</li>
+          <li>Review top 3 posts/week — double down</li>
+        </ul>
+        <div class="ml">Your notes</div>
+        <div class="edit block need" contenteditable="true" data-key="m2-notes" data-ph="What you'll commit to in Month 2…"></div>
+      </div>
+    </div>
+
+    <div class="mcard">
+      <div class="mh"><div class="mph">Month 3 · Weeks 9–12</div><h3>Accelerate</h3></div>
+      <div class="mtar">
+        <div class="t"><div class="tl">Target ER</div><span class="edit inline" contenteditable="true" data-key="m3-target">2.0%+</span></div>
+        <div class="t"><div class="tl">Actual</div><span class="edit inline need" contenteditable="true" data-key="m3-actual" data-ph="log it"></span></div>
+      </div>
+      <div class="mbody">
+        <div class="ml">Focus</div>
+        <p style="font-size:12px;color:#333">Scale what works. Secure one marquee collab. Hold the full 4+3 weekly cadence. Push toward 72K followers.</p>
+        <div class="ml">Key actions</div>
+        <ul>
+          <li>1 marquee artist/celebrity collab (HOP Events)</li>
+          <li>Controversy series driving comments &amp; shares</li>
+          <li>Monthly review: is the 2% ER holding?</li>
+          <li>Repurpose winners to LinkedIn</li>
+        </ul>
+        <div class="ml">Your notes</div>
+        <div class="edit block need" contenteditable="true" data-key="m3-notes" data-ph="What you'll commit to in Month 3…"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<div class="footer">
+  <div class="noprint">KK Weekly Content Planner · auto-saves to this browser only — use <strong>Export / Print</strong> to keep a copy &nbsp;·&nbsp; <a href="../index.html">Home</a> · <a href="content-production-hub.html">Production Hub</a></div>
+  <div style="margin-top:6px">@kalpesh.kinariwala · Pantheon Development × HOP Events</div>
+</div>
+
+<script>
+// ── DATA: the 5 weekly pieces (recommended defaults; all editable) ──
+const TYPES = [['e','❤️ Emotional'],['g','🚀 Follower Growth'],['c','⚡ Controversy']];
+const PILLARS = [
+  ['p1','Pillar 1 · Leadership & Market Authority'],
+  ['p2','Pillar 2 · Building & Execution'],
+  ['p3','Pillar 3 · People, Culture & Values'],
+  ['p4','Pillar 4 · Founder Presence & Visibility'],
+];
+const STATUSES = ['Idea','Scripted','Filmed','Scheduled','Posted'];
+
+const WEEK = [
+  {type:'e',pillar:'p3',title:'Personal / cultural moment',day:'Tue · 12–15h UTC 🔒',
+   concept:'A personal or cultural story told in first person (origin, family, team, a value you live by). No project, no CTA — just the human behind Pantheon.',
+   hook:'"I didn’t arrive in Dubai with connections or capital…"',
+   actors:'KK (solo) — family / team optional',location:'Home or a personal space (not the office)',costume:'Smart casual or traditional — relatable, not corporate',
+   caption:'600+ chars, first person, story arc. 0–2 hashtags. No CTA.'},
+  {type:'g',pillar:'p1',title:'Market intelligence — developer’s desk',day:'Thu · 12–15h UTC + LinkedIn',
+   concept:'5 things the Dubai market is doing right now that aren’t in a press release — from inside Pantheon’s pipeline. Your founder POV = the credibility.',
+   hook:'"I’ve been building in Dubai since 2018. Here’s what the market is actually doing…"',
+   actors:'KK (solo), direct to camera',location:'Office — floor-to-ceiling skyline window',costume:'Formals — dark suit',
+   caption:'500–700 chars, 5 numbered points, soft question CTA. LinkedIn is primary.'},
+  {type:'c',pillar:'p1',title:'Bold market take (controversy)',day:'Sat · 12–15h UTC',
+   concept:'One defensible, debatable claim backed by your pipeline data (e.g. "Dubai real estate will NOT crash in 2026"). Steelman the other side, then your 3 points.',
+   hook:'"Dubai real estate will NOT crash in 2026. I’ll stake my reputation on it."',
+   actors:'KK (solo), locked-off camera',location:'Office — skyline behind',costume:'Formals — dark suit',
+   caption:'400–600 chars, argument format. 0 hashtags. End: "Disagree? Tell me why." Reply every comment in 2h.'},
+  {type:'g',pillar:'p2',title:'Builder’s diary — site visit',day:'Mid-week (flexible)',
+   concept:'On an active site: the one detail you personally check that most developers walk past — and why it matters to the resident. Delivery discipline made visual.',
+   hook:'"People ask why I visit every site personally. Here’s the detail I check…"',
+   actors:'KK + 1 site engineer (named & credited)',location:'Outside — active Pantheon site (real construction, not a showroom)',costume:'Branded — hard hat + high-vis vest over business casual',
+   caption:'The specific detail + why it matters. 1–3 hashtags. Soft CTA.'},
+  {type:'e',pillar:'p4',title:'Candid founder presence',day:'Sun · light post',
+   concept:'A calm, candid office or partner moment — a meeting, a broker/partner interaction, a behind-the-scenes second of real leadership. Consistent visibility, low production.',
+   hook:'"Most of the work nobody sees looks like this…"',
+   actors:'KK + partner / broker / team',location:'Office',costume:'Smart formal',
+   caption:'Short, warm, first person. Photo or 20–40s Reel. 0–1 hashtag.'},
+];
+
+// ── RENDER WEEK CARDS ──
+function optionList(arr, sel){
+  return arr.map(o=>{
+    const [v,l] = Array.isArray(o)?o:[o,o];
+    return `<option value="${v}"${v===sel?' selected':''}>${l}</option>`;
+  }).join('');
+}
+function wkCard(p,i){
+  const n=i+1;
+  return `<div class="wk" data-card data-type="${p.type}">
+    <div class="wk-head">
+      <div class="wk-num">${n}</div>
+      <span class="wk-title edit inline" contenteditable="true" data-key="w${n}-title">${p.title}</span>
+      <div class="wk-selects">
+        <select class="sel type-sel" data-key="w${n}-type" data-card-type>${optionList(TYPES,p.type)}</select>
+        <select class="sel" data-key="w${n}-pillar">${optionList(PILLARS,p.pillar)}</select>
+        <select class="sel" data-key="w${n}-status">${optionList(STATUSES,'Idea')}</select>
+      </div>
+    </div>
+    <div class="wk-body">
+      <div class="wk-l">
+        <div class="fld"><div class="fld-l">📅 Day &amp; time</div><div class="edit block" contenteditable="true" data-key="w${n}-day">${p.day}</div></div>
+        <div class="fld"><div class="fld-l">💡 Concept <span class="hint">— your angle / story</span></div><div class="edit block need" contenteditable="true" data-key="w${n}-concept" data-ph="What’s the specific story / angle?">${p.concept}</div></div>
+        <div class="fld"><div class="fld-l">🎬 Hook <span class="hint">— first line</span></div><div class="edit block need" contenteditable="true" data-key="w${n}-hook" data-ph="The opening line that stops the scroll">${p.hook}</div></div>
+      </div>
+      <div class="wk-r">
+        <div class="meta3">
+          <div class="fld"><div class="fld-l">🎭 Actors</div><div class="edit block" contenteditable="true" data-key="w${n}-actors" data-ph="KK, influencers, agents, brokers…">${p.actors}</div></div>
+          <div class="fld"><div class="fld-l">📍 Location</div><div class="edit block" contenteditable="true" data-key="w${n}-location" data-ph="office / home / outside">${p.location}</div></div>
+          <div class="fld"><div class="fld-l">👔 Costume</div><div class="edit block" contenteditable="true" data-key="w${n}-costume" data-ph="formals / casuals / branded / traditional">${p.costume}</div></div>
+        </div>
+        <div class="fld"><div class="fld-l">📝 Caption / format notes</div><div class="edit block" contenteditable="true" data-key="w${n}-caption">${p.caption}</div></div>
+        <div class="fld"><div class="fld-l">✅ Your input / to-do <span class="hint">— anything else</span></div><div class="edit block need" contenteditable="true" data-key="w${n}-todo" data-ph="Add your notes, owner, props, links…"></div></div>
+      </div>
+    </div>
+  </div>`;
+}
+document.getElementById('weekgrid').innerHTML = WEEK.map(wkCard).join('');
+
+// ── PERSISTENCE (localStorage) ──
+const STORE='kk_planner_v1';
+let state = (()=>{try{return JSON.parse(localStorage.getItem(STORE))||{}}catch(e){return {}}})();
+const ind = document.getElementById('saveInd');
+let t;
+function flashSaved(){ ind.textContent='Saved ✓'; ind.classList.add('on'); clearTimeout(t); t=setTimeout(()=>{ind.textContent='Saved'; },1200); }
+function persist(k,v){ state[k]=v; localStorage.setItem(STORE, JSON.stringify(state)); flashSaved(); }
+
+function applyCardType(sel){
+  const card = sel.closest('[data-card]');
+  if(card) card.setAttribute('data-type', sel.value);
+}
+
+document.querySelectorAll('[data-key]').forEach(el=>{
+  const k = el.getAttribute('data-key');
+  const isField = (el.tagName==='SELECT'||el.tagName==='INPUT'||el.tagName==='TEXTAREA');
+  // restore
+  if(state[k]!==undefined){
+    if(isField){ el.value = state[k]; } else { el.textContent = state[k]; }
+  }
+  // listeners
+  if(isField){
+    el.addEventListener('change', ()=>{ persist(k, el.value); if(el.hasAttribute('data-card-type')) applyCardType(el); });
+    el.addEventListener('input', ()=>{ persist(k, el.value); });
+  } else {
+    el.addEventListener('input', ()=>{ persist(k, el.textContent); });
+    el.addEventListener('blur', ()=>{ persist(k, el.textContent); });
+  }
+  // sync card colour to restored type
+  if(el.hasAttribute('data-card-type')) applyCardType(el);
+});
+
+function resetAll(){
+  if(!confirm('Clear all your edits on this page and restore the recommended defaults? This only affects this browser.')) return;
+  localStorage.removeItem(STORE);
+  location.reload();
+}
+</script>
+</body>
+</html>
