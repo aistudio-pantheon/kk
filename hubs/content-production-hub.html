@@ -223,27 +223,58 @@ a{text-decoration:none}
 }
 </style>
 <style>
-/* ───────── EDIT LAYER ───────── */
+/* ───────── EDIT LAYER (dashboard) ───────── */
 .edit-toolbar{position:sticky;top:0;z-index:250;background:var(--ink);border-bottom:3px solid var(--gold);display:flex;align-items:center;gap:14px;padding:10px 44px;color:#fff;flex-wrap:wrap}
 .edit-toolbar .et-title{font-size:13px;font-weight:900;color:var(--gold)}
 .edit-toolbar .et-weekof{font-size:12px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:6px}
+.edit-toolbar .et-weekof input{font-family:inherit;font-size:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;border-radius:6px;padding:4px 8px;width:130px;outline:none}
 .edit-toolbar .et-actions{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .ebtn{border:none;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:800;cursor:pointer;transition:.15s}
 .ebtn-gold{background:var(--gold);color:var(--ink)} .ebtn-gold:hover{background:var(--gold-mid)}
 .ebtn-ghost{background:rgba(255,255,255,.12);color:#fff} .ebtn-ghost:hover{background:rgba(255,255,255,.22)}
 .esave{font-size:11px;font-weight:700;color:rgba(255,255,255,.45)} .esave.on{color:#79e0a8}
-.edit-legend{background:linear-gradient(135deg,var(--gold-bg),#fff);padding:9px 44px;font-size:12px;color:#4a3a16;border-bottom:1px solid var(--border);line-height:1.5}
-.editable{cursor:text;border-radius:5px;transition:background .12s;outline:1px dashed transparent;outline-offset:1px}
-.editable:hover{background:rgba(200,146,42,.10);outline-color:var(--gold-mid)}
-.editable:focus{background:#fffdf8;outline:2px solid var(--gold)}
-.card-ctl{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:9px;padding-top:9px;border-top:1px dashed var(--border)}
-.card-ctl .cl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gray)}
-.csel,.cdate{font-family:inherit;font-size:12px;font-weight:600;border:1px solid var(--border);border-radius:6px;padding:5px 7px;background:#fff;cursor:pointer;outline:none}
-.csel:focus,.cdate:focus{border-color:var(--gold)}
+.edit-legend{background:linear-gradient(135deg,var(--gold-bg),#fff);padding:10px 44px;font-size:12px;color:#4a3a16;border-bottom:1px solid var(--border);line-height:1.5}
+/* plan brief shown on every card */
+.plan-brief{margin:14px 22px 0;background:linear-gradient(135deg,#fff,var(--gold-bg));border:1px solid var(--gold-mid);border-radius:12px;padding:14px 16px}
+.pb-top{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.pb-emotion{flex:1;min-width:200px}
+.pb-emotion .pl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#B9770E}
+.pb-emotion .pv{font-size:18px;font-weight:900;color:var(--E);line-height:1.25;margin-top:2px}
+.pb-badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pbadge{font-size:10px;font-weight:800;padding:3px 9px;border-radius:8px;border:1px solid}
+.pb-editbtn{background:var(--ink);color:#fff;border:none;border-radius:9px;padding:9px 14px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap}
+.pb-editbtn:hover{background:var(--gold);color:var(--ink)}
+.pb-rows{margin-top:11px;display:grid;gap:7px}
+.pb-row{display:grid;grid-template-columns:90px 1fr;gap:10px;font-size:12.5px;align-items:start}
+.pb-row .rl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--gray);padding-top:2px}
+.pb-row .rv{color:#222;line-height:1.5}
+/* edit drawer */
+.kk-overlay{position:fixed;inset:0;background:rgba(10,10,10,.45);z-index:400;opacity:0;visibility:hidden;transition:.2s}
+.kk-overlay.open{opacity:1;visibility:visible}
+.kk-drawer{position:fixed;top:0;right:0;height:100vh;width:440px;max-width:92vw;background:#fff;z-index:401;box-shadow:-10px 0 40px rgba(0,0,0,.25);transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column}
+.kk-drawer.open{transform:none}
+.kk-dhead{background:var(--ink);color:#fff;padding:15px 20px;display:flex;align-items:center;gap:10px}
+.kk-dhead h3{font-size:15px;font-weight:900;flex:1;line-height:1.2}
+.kk-dhead .x{background:rgba(255,255,255,.15);border:none;color:#fff;width:30px;height:30px;border-radius:8px;font-size:15px;cursor:pointer;flex-shrink:0}
+.kk-dbody{flex:1;overflow-y:auto;padding:18px 20px}
+.df{margin-bottom:14px}
+.df>label{display:block;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin-bottom:5px}
+.df input,.df textarea,.df select{width:100%;font-family:inherit;font-size:13px;border:1.5px solid var(--border);border-radius:8px;padding:9px 11px;outline:none;transition:.12s;color:#222;background:#fff}
+.df input:focus,.df textarea:focus,.df select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,146,42,.15)}
+.df textarea{min-height:72px;resize:vertical;line-height:1.5}
+.df.emo>label{color:var(--E)}
+.df.emo input{border-color:#EBA99F;background:#FEF6F4}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-size:11px;font-weight:700;border:1px solid var(--E);color:var(--E);background:var(--E-bg);border-radius:20px;padding:4px 10px;cursor:pointer}
+.chip:hover{background:var(--E);color:#fff}
+.kk-dfoot{border-top:1px solid var(--border);padding:12px 20px;display:flex;gap:8px}
+.kk-dfoot .done{flex:1;background:var(--gold);color:var(--ink);border:none;border-radius:9px;padding:11px;font-weight:800;font-size:13px;cursor:pointer}
+.kk-dfoot .done:hover{background:var(--gold-mid)}
+.kk-dfoot .clearone{background:#fff;border:1px solid var(--border);border-radius:9px;padding:11px 14px;font-weight:700;font-size:12px;color:var(--gray);cursor:pointer}
 @media print{
-  .sb,.edit-toolbar,.edit-legend{display:none!important}
+  .sb,.edit-toolbar,.edit-legend,.pb-editbtn,.kk-drawer,.kk-overlay{display:none!important}
   .main{margin-left:0!important}
-  .editable{outline:1px solid #ddd}
+  .plan-brief{break-inside:avoid;border:1px solid #ccc}
   .prod{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
 }
 </style>
@@ -1111,102 +1142,143 @@ window.addEventListener('scroll',()=>{
 setTimeout(()=>{if(window.instgrm)window.instgrm.Embeds.process();},1000);
 </script>
 
-<!-- ───────── EDIT LAYER ───────── -->
+<!-- ───────── EDIT LAYER (dashboard) ───────── -->
 <script>
 (function(){
-  const PILLARS=[['','— pick brand pillar —'],
-    ['p1','P1 · Leadership & Market Authority'],
-    ['p2','P2 · Building & Execution'],
-    ['p3','P3 · People, Culture & Values'],
-    ['p4','P4 · Founder Presence & Visibility']];
-  const STATUS=['Idea','Scripted','Filmed','Scheduled','Posted'];
+  const PILLARS={p1:['Leadership & Market Authority','#1B4F9B'],p2:['Building & Execution','#0E8C7A'],p3:['People, Culture & Values','#B9770E'],p4:['Founder Presence & Visibility','#475569']};
+  const PILLAR_OPTS=[['','— pick brand pillar —'],['p1','P1 · Leadership & Market Authority'],['p2','P2 · Building & Execution'],['p3','P3 · People, Culture & Values'],['p4','P4 · Founder Presence & Visibility']];
+  const TYPE_OPTS=[['e','❤️ Emotional'],['g','🚀 Follower Growth'],['c','⚡ Controversy']];
+  const STATUS=[['Idea','Idea'],['Scripted','Scripted'],['Filmed','Filmed'],['Scheduled','Scheduled'],['Posted','Posted']];
   const DEF_PILLAR={e1:'p3',e2:'p3',e3:'p3',e4:'p3',g1:'p1',g2:'p2',g3:'p3',c1:'p1',c2:'p1',c3:'p1'};
-  const STORE='kk_prodhub_v1';
-  let state=(()=>{try{return JSON.parse(localStorage.getItem(STORE))||{}}catch(e){return{}}})();
-  const save=()=>localStorage.setItem(STORE,JSON.stringify(state));
-  let ind,t;
+  const EMOTION={e1:'Humble pride & quiet vulnerability',e2:'Joy & belonging',e3:'Raw honesty & empathy',e4:'Warmth & gratitude',g1:'Calm, confident conviction',g2:'Pride in craft & trust',g3:'Admiration & shared values',c1:'Bold conviction',c2:'Honest courage',c3:'Quiet defiance & authenticity'};
+  const EMO_CHIPS=['Nostalgia','Pride','Vulnerability','Hope','Joy','Belonging','Gratitude','Conviction','Awe','Trust','Warmth','Courage'];
+  const STORE='kk_prodhub_v2';
+  let saved=(()=>{try{return JSON.parse(localStorage.getItem(STORE))||{}}catch(e){return{}}})();
+  const data={}, defaults={};
+  let ind,t,curId=null;
+
   function flash(){ if(!ind)return; ind.textContent='Saved ✓'; ind.classList.add('on'); clearTimeout(t); t=setTimeout(()=>{ind.textContent='Saved';},1200); }
-  function put(k,v){ state[k]=v; save(); flash(); }
-  function opts(arr,sel){ return arr.map(o=>{const a=Array.isArray(o)?o:[o,o];return '<option value="'+a[0]+'"'+(a[0]===sel?' selected':'')+'>'+a[1]+'</option>';}).join(''); }
+  function persist(){ localStorage.setItem(STORE,JSON.stringify(data)); flash(); }
+  function opt(arr,sel){ return arr.map(a=>'<option value="'+a[0]+'"'+(a[0]===sel?' selected':'')+'>'+a[1]+'</option>').join(''); }
+  function txt(el){ return el?el.textContent.trim():''; }
 
-  function editable(el,key){
-    if(!el) return;
-    el.classList.add('editable'); el.setAttribute('contenteditable','true'); el.setAttribute('spellcheck','false');
-    if(state[key]!==undefined) el.innerHTML=state[key];
-    el.addEventListener('input',()=>put(key,el.innerHTML));
-    el.addEventListener('blur',()=>put(key,el.innerHTML));
-  }
-  function field(el,key){
-    if(state[key]!==undefined) el.value=state[key];
-    el.addEventListener('change',()=>put(key,el.value));
-    el.addEventListener('input',()=>put(key,el.value));
-  }
-
-  // 1) toolbar + legend
+  // ── toolbar + legend ──
   const main=document.querySelector('.main');
   const bar=document.createElement('div'); bar.className='edit-toolbar';
-  bar.innerHTML='<span class="et-title">📝 KK Production Plan — Editable</span>'+
-    '<span class="et-weekof">Plan for: <span id="ehubWeek" class="editable" style="min-width:120px;display:inline-block">this week</span></span>'+
+  bar.innerHTML='<span class="et-title">📝 KK Production Plan — Edit Dashboard</span>'+
+    '<span class="et-weekof">Plan for <input id="ehubWeek" placeholder="this week"></span>'+
     '<span class="esave" id="ehubSave">Ready</span>'+
-    '<span class="et-actions">'+
-      '<button class="ebtn ebtn-gold" id="ehubPrint">⬇ Export / Print</button>'+
-      '<button class="ebtn ebtn-ghost" id="ehubReset">Reset edits</button>'+
-    '</span>';
+    '<span class="et-actions"><button class="ebtn ebtn-gold" id="ehubPrint">⬇ Export / Print</button>'+
+    '<button class="ebtn ebtn-ghost" id="ehubReset">Reset</button></span>';
   main.insertBefore(bar, main.firstChild);
   const legend=document.createElement('div'); legend.className='edit-legend';
-  legend.innerHTML='✏️ <strong>This plan is editable.</strong> Click any concept, script line, brief or calendar entry to type your input. Tag each post with its <strong>brand pillar</strong>, <strong>status</strong> and <strong>shoot date</strong> on the card. Everything auto-saves in this browser — use <strong>Export / Print</strong> to keep a copy.';
+  legend.innerHTML='❤️ <strong>Start with the feeling.</strong> Every post leads with the human emotion it should create — that’s what makes someone stop and care. Hit <strong>✏️ Edit this post</strong> on any card to open the editor and shape the emotion, concept, hook, cast, look and dates. Auto-saves here; use <strong>Export / Print</strong> to keep a copy.';
   bar.insertAdjacentElement('afterend',legend);
   ind=document.getElementById('ehubSave');
   document.getElementById('ehubPrint').addEventListener('click',()=>window.print());
-  document.getElementById('ehubReset').addEventListener('click',()=>{ if(confirm('Clear all your edits on this page and restore the defaults? (affects this browser only)')){ localStorage.removeItem(STORE); location.reload(); }});
-  editable(document.getElementById('ehubWeek'),'plan-weekof');
+  document.getElementById('ehubReset').addEventListener('click',()=>{ if(confirm('Clear all your edits and restore defaults? (this browser only)')){ localStorage.removeItem(STORE); location.reload(); }});
+  const weekEl=document.getElementById('ehubWeek');
+  data.__weekof = saved.__weekof || ''; weekEl.value = data.__weekof;
+  weekEl.addEventListener('input',()=>{ data.__weekof=weekEl.value; persist(); });
 
-  // 2) brand-pillar reference, inserted after the "What Will Work" section
+  // ── brand pillar reference ──
   const ws=document.querySelector('.works-section');
-  function pillarCard(n,t,items,c){
-    return '<div style="background:#fff;border-radius:11px;box-shadow:var(--shadow);border-top:4px solid '+c+';padding:13px 15px">'+
-      '<div style="font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:'+c+'">'+n+'</div>'+
-      '<div style="font-size:14px;font-weight:900;margin:2px 0 6px">'+t+'</div>'+
-      '<div style="font-size:11px;color:#555;line-height:1.5">'+items+'</div></div>';
-  }
+  function pillarCard(n,t,items,c){ return '<div style="background:#fff;border-radius:11px;box-shadow:var(--shadow);border-top:4px solid '+c+';padding:13px 15px"><div style="font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:'+c+'">'+n+'</div><div style="font-size:14px;font-weight:900;margin:2px 0 6px">'+t+'</div><div style="font-size:11px;color:#555;line-height:1.5">'+items+'</div></div>'; }
   if(ws){
     const ref=document.createElement('div'); ref.className='ps'; ref.id='pillars';
-    ref.innerHTML='<div class="ps-title">🏛 KK’s 4 Brand Pillars</div>'+
-      '<div class="ps-sub">Every post maps to one <em>content type</em> (how it’s told — Emotional / Growth / Controversy) and one <em>brand pillar</em> (what it’s about). Tag each card below.</div>'+
-      '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">'+
-        pillarCard('Pillar 1','Leadership &amp; Market Authority','Brand trust · Thought leadership · Credibility · Founder POVs · Market insights · Leadership philosophy · Town Hall reflections','#1B4F9B')+
-        pillarCard('Pillar 2','Building &amp; Execution','Delivery discipline · Progress &amp; long-term value · Site visits · Builder’s diary · Project reviews · Pre-handover discipline','#0E8C7A')+
-        pillarCard('Pillar 3','People, Culture &amp; Values','Cultural leadership · People-first identity · Team moments · Awards · Values · Cultural messages','#B9770E')+
-        pillarCard('Pillar 4','Founder Presence &amp; Visibility','Consistent calm visibility · Meetings · Office moments · Partner interactions · Candid leadership','#475569')+
+    ref.innerHTML='<div class="ps-title">🏛 KK’s 4 Brand Pillars</div><div class="ps-sub">Each post carries one <em>emotion</em> (the human feeling), one <em>content type</em> (how it’s told), and one <em>brand pillar</em> (what it’s about).</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">'+
+      pillarCard('Pillar 1','Leadership &amp; Market Authority','Brand trust · Thought leadership · Credibility · Founder POVs · Market insights · Leadership philosophy · Town Hall reflections','#1B4F9B')+
+      pillarCard('Pillar 2','Building &amp; Execution','Delivery discipline · Progress &amp; long-term value · Site visits · Builder’s diary · Project reviews · Pre-handover discipline','#0E8C7A')+
+      pillarCard('Pillar 3','People, Culture &amp; Values','Cultural leadership · People-first identity · Team moments · Awards · Values · Cultural messages','#B9770E')+
+      pillarCard('Pillar 4','Founder Presence &amp; Visibility','Consistent calm visibility · Meetings · Office moments · Partner interactions · Candid leadership','#475569')+
       '</div>';
     ws.insertAdjacentElement('afterend',ref);
   }
 
-  // 3) per production card: controls + editable fields
+  // ── init each production card ──
   document.querySelectorAll('.prod').forEach(card=>{
     const id=card.id; if(!id) return;
-    const hdrInner=card.querySelector('.prod-header > div:last-child');
-    if(hdrInner){
-      hdrInner.style.flex='1';
-      const ctl=document.createElement('div'); ctl.className='card-ctl';
-      ctl.innerHTML='<span class="cl">Pillar</span><select class="csel" data-fkey="'+id+'-pillar">'+opts(PILLARS,DEF_PILLAR[id]||'')+'</select>'+
-        '<span class="cl">Status</span><select class="csel" data-fkey="'+id+'-status">'+opts(STATUS,'Idea')+'</select>'+
-        '<span class="cl">Shoot date</span><input type="date" class="cdate" data-fkey="'+id+'-date">';
-      hdrInner.appendChild(ctl);
-    }
-    editable(card.querySelector('.prod-htitle'), id+'-title');
-    editable(card.querySelector('.concept p'), id+'-concept');
-    editable(card.querySelector('.kk-works-box p'), id+'-why');
-    card.querySelectorAll('.bi-val').forEach((el,i)=>editable(el,id+'-bi'+i));
-    card.querySelectorAll('.sc-v').forEach((el,i)=>editable(el,id+'-scv'+i));
-    card.querySelectorAll('.sc-vis').forEach((el,i)=>editable(el,id+'-scvis'+i));
+    const type=card.classList.contains('e')?'e':card.classList.contains('g')?'g':'c';
+    const titleEl=card.querySelector('.prod-htitle');
+    const conceptEl=card.querySelector('.concept p');
+    const biEls=card.querySelectorAll('.bi-val');
+    const hookEl=card.querySelector('.sc-v');
+    const def={ title:txt(titleEl), type:type, pillar:DEF_PILLAR[id]||'', emotion:EMOTION[id]||'',
+      status:'Idea', date:'', concept:txt(conceptEl), hook:txt(hookEl).replace(/^"|"$/g,''),
+      location:txt(biEls[0]), costume:txt(biEls[1]), actors:txt(biEls[2]), caption:'', notes:'' };
+    defaults[id]=def;
+    data[id]=Object.assign({},def,saved[id]||{});
+    card._refs={titleEl,conceptEl,biEls};
+    const brief=document.createElement('div'); brief.className='plan-brief'; brief.id='brief-'+id;
+    card.querySelector('.prod-header').insertAdjacentElement('afterend',brief);
+    renderCard(id);
   });
 
-  // 4) weekly calendar entries
-  document.querySelectorAll('.cal-entry .ce-title').forEach((el,i)=>editable(el,'cal'+i));
+  function badge(text,color){ return '<span class="pbadge" style="color:'+color+';border-color:'+color+';background:'+color+'14">'+text+'</span>'; }
+  function prow(label,key){ return '<div class="pb-row"><span class="rl">'+label+'</span><div class="rv" data-rv="'+key+'"></div></div>'; }
+  function sv(scope,key,val){ const el=scope.querySelector('[data-rv="'+key+'"]'); if(el) el.textContent=val||''; }
+  function renderCard(id){
+    const d=data[id], card=document.getElementById(id); if(!card)return;
+    card.classList.remove('e','g','c'); card.classList.add(d.type);
+    if(card._refs.titleEl) card._refs.titleEl.textContent=d.title;
+    if(card._refs.conceptEl) card._refs.conceptEl.textContent=d.concept;
+    if(card._refs.biEls[0]) card._refs.biEls[0].textContent=d.location;
+    if(card._refs.biEls[1]) card._refs.biEls[1].textContent=d.costume;
+    if(card._refs.biEls[2]) card._refs.biEls[2].textContent=d.actors;
+    const p=PILLARS[d.pillar];
+    let badges=''; if(p) badges+=badge(p[0],p[1]); badges+=badge(d.status||'Idea','#5D6D7E'); if(d.date) badges+=badge('📅 '+d.date,'#0D2B6E');
+    const brief=document.getElementById('brief-'+id);
+    brief.innerHTML='<div class="pb-top"><div class="pb-emotion"><div class="pl">❤️ Emotion · the human feeling</div><div class="pv" data-rv="emo"></div></div><div class="pb-badges">'+badges+'</div><button class="pb-editbtn" data-edit="'+id+'">✏️ Edit this post</button></div>'+
+      '<div class="pb-rows">'+prow('💡 Concept','concept')+prow('🎬 Hook','hook')+(d.caption?prow('📝 Caption','caption'):'')+(d.notes?prow('✅ Notes','notes'):'')+'</div>';
+    sv(brief,'emo',d.emotion||'—'); sv(brief,'concept',d.concept); sv(brief,'hook',d.hook);
+    if(d.caption) sv(brief,'caption',d.caption); if(d.notes) sv(brief,'notes',d.notes);
+  }
 
-  // wire all selects / date inputs
-  document.querySelectorAll('[data-fkey]').forEach(el=>field(el,el.getAttribute('data-fkey')));
+  // ── edit drawer (built once) ──
+  function dfText(f,l){ return '<div class="df"><label>'+l+'</label><input data-field="'+f+'"></div>'; }
+  function dfArea(f,l){ return '<div class="df"><label>'+l+'</label><textarea data-field="'+f+'"></textarea></div>'; }
+  function dfSel(f,l,o){ return '<div class="df"><label>'+l+'</label><select data-field="'+f+'">'+opt(o,'')+'</select></div>'; }
+  function dfDate(f,l){ return '<div class="df"><label>'+l+'</label><input type="date" data-field="'+f+'"></div>'; }
+  function dfEmo(){ return '<div class="df emo"><label>❤️ Emotion / feeling — what should this make people feel?</label><input data-field="emotion"><div class="chips">'+EMO_CHIPS.map(c=>'<span class="chip">'+c+'</span>').join('')+'</div></div>'; }
+
+  const overlay=document.createElement('div'); overlay.className='kk-overlay';
+  const drawer=document.createElement('div'); drawer.className='kk-drawer';
+  drawer.innerHTML='<div class="kk-dhead"><h3 id="dwTitle">Edit post</h3><button class="x" id="dwClose">✕</button></div>'+
+    '<div class="kk-dbody">'+dfText('title','Title')+dfSel('type','Content type',TYPE_OPTS)+dfSel('pillar','Brand pillar',PILLAR_OPTS)+
+      dfEmo()+dfSel('status','Status',STATUS)+dfDate('date','Shoot date')+
+      dfArea('concept','💡 Concept — the idea / story')+dfArea('hook','🎬 Hook — the opening line')+
+      dfText('location','📍 Location')+dfText('costume','👔 Costume')+dfText('actors','🎭 Actors')+
+      dfArea('caption','📝 Caption notes')+dfArea('notes','✅ Your notes / to-do')+'</div>'+
+    '<div class="kk-dfoot"><button class="done" id="dwDone">Done</button><button class="clearone" id="dwClear">Reset this post</button></div>';
+  document.body.appendChild(overlay); document.body.appendChild(drawer);
+  const dwTitle=document.getElementById('dwTitle');
+
+  function openDrawer(id){
+    curId=id; const d=data[id];
+    drawer.querySelectorAll('[data-field]').forEach(el=>{ el.value=d[el.getAttribute('data-field')]||''; });
+    dwTitle.textContent='Editing: '+(d.title||'post');
+    overlay.classList.add('open'); drawer.classList.add('open');
+  }
+  function closeDrawer(){ overlay.classList.remove('open'); drawer.classList.remove('open'); curId=null; }
+
+  drawer.querySelectorAll('[data-field]').forEach(el=>{
+    const f=el.getAttribute('data-field');
+    const handler=()=>{ if(!curId)return; data[curId][f]=el.value; persist(); renderCard(curId); if(f==='title') dwTitle.textContent='Editing: '+(el.value||'post'); };
+    el.addEventListener('input',handler); el.addEventListener('change',handler);
+  });
+  drawer.querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{
+    const inp=drawer.querySelector('[data-field="emotion"]');
+    inp.value = inp.value.trim() ? inp.value.trim()+' · '+ch.textContent : ch.textContent;
+    inp.dispatchEvent(new Event('input'));
+  }));
+  document.getElementById('dwClose').addEventListener('click',closeDrawer);
+  document.getElementById('dwDone').addEventListener('click',closeDrawer);
+  overlay.addEventListener('click',closeDrawer);
+  document.getElementById('dwClear').addEventListener('click',()=>{
+    if(!curId)return;
+    if(confirm('Reset this post to its default?')){ data[curId]=Object.assign({},defaults[curId]); persist(); renderCard(curId); openDrawer(curId); }
+  });
+  document.addEventListener('click',e=>{ const b=e.target.closest('[data-edit]'); if(b) openDrawer(b.getAttribute('data-edit')); });
 })();
 </script>
 </body>
