@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KK Brand & Content Hub — Kalpesh Kinariwala</title>
+<meta name="description" content="Content strategy command centre for Kalpesh Kinariwala — Founder & Chairman, Pantheon Development × HOP Events. Three interactive hubs, the full 2026 strategy, and the underlying research.">
+<style>
+:root{
+  --ink:#0A0A0A;--navy:#0D2B6E;--blue:#1B4F9B;
+  --gold:#C8922A;--gold-bg:#FBF5E8;--gold-mid:#E8C879;
+  --E:#C0392B;--E-bg:#FEF0EE;
+  --G:#1A7A45;--G-bg:#EAFAF1;
+  --C:#6C3483;--C-bg:#F5EEF8;
+  --hop:#E07B00;--hop-bg:#FFF3E0;
+  --pdev:#0D2B6E;--pdev-bg:#EAF2FB;
+  --surface:#FAFAF8;--border:#E8E4DC;--gray:#5D6D7E;
+  --shadow:0 3px 18px rgba(0,0,0,0.08);--shadow-lg:0 10px 38px rgba(0,0,0,0.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F5F3EF;color:var(--ink);line-height:1.5}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* ── HERO ── */
+.hero{background:radial-gradient(1200px 500px at 80% -10%,rgba(200,146,42,.25),transparent),linear-gradient(135deg,#0A1A40 0%,var(--navy) 55%,#15356f 100%);color:white;border-bottom:3px solid var(--gold)}
+.hero-inner{display:flex;gap:34px;align-items:center;padding:54px 28px}
+.hero-av{width:104px;height:104px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;flex-shrink:0;background:#13294f}
+.hero-av-fb{width:104px;height:104px;border-radius:50%;border:3px solid var(--gold);background:#13294f;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:900;color:var(--gold);flex-shrink:0}
+.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-mid);font-weight:800;margin-bottom:8px}
+.hero h1{font-size:34px;font-weight:900;line-height:1.08;margin-bottom:8px}
+.hero h1 .tick{color:var(--gold)}
+.hero-roles{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.role{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:800}
+.role-p{background:var(--pdev-bg);color:var(--pdev)}
+.role-h{background:var(--hop-bg);color:var(--hop)}
+.role-v{border:1px solid rgba(255,255,255,.35);color:rgba(255,255,255,.85)}
+.hero-desc{color:rgba(255,255,255,.78);font-size:14px;line-height:1.65;max-width:680px;margin-bottom:18px}
+.hero-stats{display:flex;gap:26px;flex-wrap:wrap}
+.hs .v{font-size:21px;font-weight:900}
+.hs .l{font-size:9px;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.5)}
+
+/* ── PILLAR STRIP ── */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:white;border-bottom:2px solid var(--border)}
+.pillar{padding:20px 28px;display:flex;gap:14px;align-items:flex-start;border-right:1px solid var(--border)}
+.pillar:last-child{border-right:none}
+.pillar .ic{font-size:26px;line-height:1}
+.pillar .pt{font-size:14px;font-weight:900}
+.pillar .pp{font-size:11px;color:var(--gray);line-height:1.45;margin-top:3px}
+.pe .pt{color:var(--E)} .pg .pt{color:var(--G)} .pc .pt{color:var(--C)}
+.pe{background:linear-gradient(180deg,var(--E-bg),white)}
+.pg{background:linear-gradient(180deg,var(--G-bg),white)}
+.pc{background:linear-gradient(180deg,var(--C-bg),white)}
+.pct{margin-left:auto;font-size:18px;font-weight:900;opacity:.85}
+
+/* ── SECTION ── */
+section{padding:46px 0}
+.sec-head{margin-bottom:8px}
+.sec-kicker{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)}
+.sec-title{font-size:23px;font-weight:900;color:var(--navy);margin-top:4px}
+.sec-sub{color:var(--gray);font-size:14px;margin-top:5px;max-width:720px}
+
+/* ── HUB CARDS ── */
+.hub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px}
+.hub{background:white;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;border-top:5px solid var(--navy);transition:transform .15s,box-shadow .15s}
+.hub:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.hub.h1{border-top-color:var(--gold)} .hub.h2{border-top-color:var(--E)} .hub.h3{border-top-color:var(--C)}
+.hub-top{padding:20px 20px 0}
+.hub-eyebrow{font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--gray);margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.hub-ic{font-size:30px;display:block;margin-bottom:10px}
+.hub h3{font-size:17px;font-weight:900;color:var(--ink);margin-bottom:8px;line-height:1.2}
+.hub p{font-size:12.5px;color:#444;line-height:1.55}
+.hub-feat{list-style:none;margin:12px 0 0;display:flex;flex-direction:column;gap:5px}
+.hub-feat li{font-size:11.5px;color:#333;padding-left:16px;position:relative;line-height:1.4}
+.hub-feat li::before{content:"›";position:absolute;left:2px;color:var(--gold);font-weight:900}
+.hub-cta{margin:18px 20px 20px;background:var(--navy);color:white;text-align:center;padding:11px;border-radius:10px;font-weight:800;font-size:13px;transition:background .15s}
+.hub:hover .hub-cta{background:var(--blue)}
+.hub.h1 .hub-cta{background:var(--gold);color:var(--ink)} .hub.h1:hover .hub-cta{background:var(--gold-mid)}
+.hub.h2 .hub-cta{background:var(--E)} .hub.h3 .hub-cta{background:var(--C)}
+
+/* ── DOC CARDS ── */
+.doc-section{background:white;border-top:2px solid var(--border);border-bottom:2px solid var(--border)}
+.doc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}
+.doc-grid.research{grid-template-columns:repeat(3,1fr)}
+.doc{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:18px;transition:border-color .15s,transform .15s}
+.doc:hover{transform:translateY(-3px);border-color:var(--gold-mid)}
+.doc-ic{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:var(--gold-bg)}
+.doc-ic.r{background:var(--pdev-bg)}
+.doc h4{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:4px;line-height:1.25}
+.doc p{font-size:12px;color:var(--gray);line-height:1.45}
+.doc .open{font-size:11px;font-weight:800;color:var(--gold);margin-top:7px;display:inline-block}
+.doc .open.r{color:var(--blue)}
+
+/* ── HOW TO / FOOTER ── */
+.note{background:var(--gold-bg);border:1px solid var(--gold-mid);border-radius:13px;padding:18px 22px;margin-top:26px;font-size:13px;color:#4a3a16;line-height:1.6}
+.note strong{color:var(--ink)}
+.note code{background:#fff;border:1px solid var(--gold-mid);border-radius:5px;padding:1px 6px;font-family:'Consolas',monospace;font-size:12px}
+.footer{background:var(--ink);color:rgba(255,255,255,.5);text-align:center;padding:26px;font-size:11.5px;line-height:1.7}
+.footer a{color:var(--gold-mid);font-weight:700}
+
+@media(max-width:920px){
+  .hub-grid,.pillars,.doc-grid,.doc-grid.research{grid-template-columns:1fr}
+  .pillar{border-right:none;border-bottom:1px solid var(--border)}
+  .hero-inner{flex-direction:column;text-align:center;align-items:center;padding:40px 22px}
+  .hero-roles,.hero-stats{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="wrap hero-inner">
+    <img src="https://instagram.fmem1-1.fna.fbcdn.net/v/t51.82787-19/623515557_18255800566295355_1590699961883432261_n.jpg?stp=dst-jpg_s320x320_tt6"
+         class="hero-av" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="Kalpesh Kinariwala">
+    <div class="hero-av-fb" style="display:none">KK</div>
+    <div>
+      <div class="eyebrow">Brand &amp; Content Command Centre · 2026</div>
+      <h1>Kalpesh Kinariwala <span class="tick">✓</span></h1>
+      <div class="hero-roles">
+        <span class="role role-p">🏗 Founder &amp; Chairman — Pantheon Development</span>
+        <span class="role role-h">🎭 Founder — HOP Events</span>
+        <span class="role role-v">@kalpesh.kinariwala</span>
+      </div>
+      <p class="hero-desc">Everything in one place: three interactive content hubs, the full Instagram &amp; social strategy for 2026, and the underlying market research. Built on a 3-pillar system — <strong style="color:#fff">Emotional</strong>, <strong style="color:#fff">Growth</strong>, and <strong style="color:#fff">Controversy</strong> — and on data from 800+ posts across the UAE founder cohort.</p>
+      <div class="hero-stats">
+        <div class="hs"><div class="v">55.5K</div><div class="l">Followers</div></div>
+        <div class="hs"><div class="v">4.8K</div><div class="l">Avg Eng</div></div>
+        <div class="hs"><div class="v">7.3M</div><div class="l">Annual Reach</div></div>
+        <div class="hs"><div class="v">35.3×</div><div class="l">vs Brand Acct</div></div>
+        <div class="hs"><div class="v">468%</div><div class="l">Peak ER</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ PILLAR STRIP ══ -->
+<div class="pillars">
+  <div class="pillar pe"><span class="ic">❤️</span><div><div class="pt">Emotional</div><div class="pp">Personal stories, cultural moments, HOP Events, vulnerability. His highest-ER pillar.</div></div><div class="pct" style="color:var(--E)">40%</div></div>
+  <div class="pillar pg"><span class="ic">🚀</span><div><div class="pt">Growth</div><div class="pp">Developer-insider market intel, builder's diary, artist collabs. Authority &amp; credibility.</div></div><div class="pct" style="color:var(--G)">35%</div></div>
+  <div class="pillar pc"><span class="ic">⚡</span><div><div class="pt">Controversy</div><div class="pp">Bold, defensible market takes. First-mover white space — zero competitors here.</div></div><div class="pct" style="color:var(--C)">25%</div></div>
+</div>
+
+<!-- ══ PLANNER CTA ══ -->
+<section style="padding-bottom:0">
+  <div class="wrap">
+    <a href="hubs/weekly-planner.html" style="display:flex;gap:18px;align-items:center;background:linear-gradient(135deg,var(--ink),#15356f);border:2px solid var(--gold);border-radius:16px;padding:22px 26px;color:#fff;box-shadow:var(--shadow-lg)">
+      <div style="font-size:38px">📝</div>
+      <div style="flex:1">
+        <div style="font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-mid)">Editable · start here this week</div>
+        <div style="font-size:20px;font-weight:900;margin:3px 0 4px">Weekly Planner &amp; 90-Day Roadmap</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.8);line-height:1.5;max-width:760px">Your 5 content pieces for this week — each mapped to a content type, one of the 4 brand pillars, actors, location and costume — plus the 3-month roadmap to 2% ER. Click any field to add your input; it auto-saves.</div>
+      </div>
+      <div style="background:var(--gold);color:var(--ink);padding:11px 18px;border-radius:10px;font-weight:800;font-size:13px;white-space:nowrap">Open planner →</div>
+    </a>
+  </div>
+</section>
+
+<!-- ══ HUBS ══ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">Start here</div>
+      <h2 class="sec-title">Three interactive hubs</h2>
+      <p class="sec-sub">Each is a standalone, self-contained dashboard. Open any of them full-screen — they pull live Instagram embeds and include an on-page content assistant.</p>
+    </div>
+    <div class="hub-grid">
+
+      <a class="hub h1" href="hubs/content-production-hub.html">
+        <div class="hub-top">
+          <div class="hub-eyebrow">Hub 01 · Pantheon × HOP Events</div>
+          <span class="hub-ic">🎬</span>
+          <h3>Content Production Hub</h3>
+          <p>The production playbook. Ten ready-to-shoot content templates (E1–E4, G1–G3, C1–C3) — each with a competitor benchmark, a concept, a full shoot brief, and a scene-by-scene script.</p>
+          <ul class="hub-feat">
+            <li>Production-ready scripts &amp; shoot briefs</li>
+            <li>Weekly production calendar</li>
+            <li>Do's, Don'ts &amp; red lines</li>
+          </ul>
+        </div>
+        <div class="hub-cta">Open Production Hub →</div>
+      </a>
+
+      <a class="hub h2" href="hubs/3-pillar-reference.html">
+        <div class="hub-top">
+          <div class="hub-eyebrow">Hub 02 · Reference library</div>
+          <span class="hub-ic">📊</span>
+          <h3>3-Pillar Content Reference</h3>
+          <p>The reference deck. Tabbed by pillar, with KK's own top reels beside competitor benchmarks, caption formulas, the weekly plan, and an AI content-suggestion assistant.</p>
+          <ul class="hub-feat">
+            <li>KK reels vs competitor reels, side by side</li>
+            <li>Caption formulas per pillar</li>
+            <li>Built-in content suggestion bot</li>
+          </ul>
+        </div>
+        <div class="hub-cta">Open Reference →</div>
+      </a>
+
+      <a class="hub h3" href="hubs/brand-intelligence-hub.html">
+        <div class="hub-top">
+          <div class="hub-eyebrow">Hub 03 · Data &amp; analysis</div>
+          <span class="hub-ic">🧠</span>
+          <h3>Brand Intelligence Hub</h3>
+          <p>The data layer. The full post dataset across KK and four peer accounts — engagement, ER, theme and a replication note on every card — plus performance diagnostics and the assistant.</p>
+          <ul class="hub-feat">
+            <li>Post-level dataset with metrics</li>
+            <li>Performance snapshot &amp; diagnosis</li>
+            <li>Ready-to-record controversy ideas</li>
+          </ul>
+        </div>
+        <div class="hub-cta">Open Intelligence Hub →</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ STRATEGY DOCS ══ -->
+<section class="doc-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">The strategy</div>
+      <h2 class="sec-title">Strategy documents</h2>
+      <p class="sec-sub">The written plans the hubs are built on — rendered in your browser, no download needed.</p>
+    </div>
+    <div class="doc-grid">
+      <a class="doc" href="docs.html?doc=strategy/instagram-growth-strategy-2026.md">
+        <div class="doc-ic">📈</div>
+        <div>
+          <h4>Instagram Growth Strategy 2026</h4>
+          <p>Where KK stands today, what's working, the gaps, the 90-day action plan, LinkedIn cross-posting, KPIs and quick wins.</p>
+          <span class="open">Read document →</span>
+        </div>
+      </a>
+      <a class="doc" href="docs.html?doc=strategy/social-media-content-plan-2026.md">
+        <div class="doc-ic">🗂️</div>
+        <div>
+          <h4>Social Media Content Plan 2026</h4>
+          <p>The full 3-pillar system, 30 post ideas, the weekly calendar, monthly rhythm, caption templates and red-line rules.</p>
+          <span class="open">Read document →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RESEARCH DOCS ══ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-kicker">The evidence</div>
+      <h2 class="sec-title">Research &amp; reference</h2>
+      <p class="sec-sub">Supporting research for positioning, outreach and thought leadership.</p>
+    </div>
+    <div class="doc-grid research">
+      <a class="doc" href="docs.html?doc=research/uae-real-estate-founders-linkedin.md">
+        <div class="doc-ic r">👤</div>
+        <div>
+          <h4>UAE Real Estate Founders</h4>
+          <p>Top 50 UAE developer &amp; PropTech founders with LinkedIn profiles, tiered for outreach.</p>
+          <span class="open r">Read document →</span>
+        </div>
+      </a>
+      <a class="doc" href="docs.html?doc=research/proptech-event-companies-uae.md">
+        <div class="doc-ic r">🎤</div>
+        <div>
+          <h4>PropTech Events &amp; Companies</h4>
+          <p>Key UAE &amp; global events to attend or speak at, plus event partners — with a pitch priority order.</p>
+          <span class="open r">Read document →</span>
+        </div>
+      </a>
+      <a class="doc" href="docs.html?doc=research/proptech-ai-thought-leadership.md">
+        <div class="doc-ic r">💡</div>
+        <div>
+          <h4>PropTech &amp; AI Thought Leadership</h4>
+          <p>LinkedIn strategy, five thought-leadership pillars, and six ready-to-post articles plus quick hits.</p>
+          <span class="open r">Read document →</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="note">
+      <strong>Deploying this site.</strong> It's a static site — push this repo and enable <strong>GitHub Pages</strong> (Settings → Pages → Deploy from branch → root). The <code>.nojekyll</code> file is already included so every file is served as-is.
+      <br><br>
+      <strong>Previewing locally?</strong> The strategy/research pages fetch Markdown files, so open the folder through a tiny web server rather than <code>file://</code> — e.g. <code>python3 -m http.server</code>, then visit <code>http://localhost:8000/</code>. The three hubs open fine on their own either way.
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div>KK Brand &amp; Content Hub · @kalpesh.kinariwala · Pantheon Development × HOP Events</div>
+  <div style="margin-top:6px">Instagram: <a href="https://www.instagram.com/kalpesh.kinariwala/" target="_blank" rel="noopener">@kalpesh.kinariwala</a> · Prepared June 2026</div>
+</footer>
+
+</body>
+</html>
