@@ -62,17 +62,20 @@ python3 -m http.server 8000
 
 ## Deploy on GitHub Pages
 
-1. Push this repository to GitHub.
-2. **Settings → Pages → Build and deployment → Deploy from a branch.**
-3. Choose this branch and the **`/ (root)`** folder, then **Save**.
-4. Your site goes live at `https://<owner>.github.io/<repo>/`.
+This repo includes a workflow — [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)
+— that publishes the site to GitHub Pages automatically on every push (it enables Pages on
+first run). Once it completes, the site is live at `https://<owner>.github.io/<repo>/`.
+
+Prefer to do it by hand instead? **Settings → Pages → Build and deployment → Deploy from a
+branch**, pick the branch and the **`/ (root)`** folder, then **Save**.
 
 The included `.nojekyll` file disables Jekyll processing so every file is served exactly as-is.
 
 ## Notes
 
-- The hubs embed live Instagram posts via Instagram's official `embed.js`, and `docs.html`
-  renders Markdown via [`marked`](https://marked.js.org/) from a CDN — both require an
-  internet connection at view time.
+- The hubs embed live Instagram posts via Instagram's official `embed.js` (needs internet at
+  view time). The doc viewer renders Markdown with [`marked`](https://marked.js.org/), which is
+  **vendored locally** at `assets/vendor/marked.min.js` — so `docs.html` works with no external
+  dependency.
 - Engagement figures and post references reflect the analysis window of **May 2025 – May 2026**.
 - This is a content-strategy reference site — there is no build step and no backend.
