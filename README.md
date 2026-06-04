@@ -62,12 +62,17 @@ python3 -m http.server 8000
 
 ## Deploy on GitHub Pages
 
-This repo includes a workflow — [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml)
-— that publishes the site to GitHub Pages automatically on every push (it enables Pages on
-first run). Once it completes, the site is live at `https://<owner>.github.io/<repo>/`.
+**Live site:** https://aistudio-pantheon.github.io/kk/
 
-Prefer to do it by hand instead? **Settings → Pages → Build and deployment → Deploy from a
-branch**, pick the branch and the **`/ (root)`** folder, then **Save**.
+This site is published from the **`gh-pages`** branch (GitHub Pages → *Deploy from a branch* →
+`gh-pages` / root). To update the live site, publish the latest files to that branch — for
+example, from the site source:
+
+```bash
+git switch --orphan gh-pages   # first time only
+git add -A && git commit -m "Publish site"
+git push -f origin gh-pages
+```
 
 The included `.nojekyll` file disables Jekyll processing so every file is served exactly as-is.
 
