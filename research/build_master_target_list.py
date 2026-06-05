@@ -306,7 +306,7 @@ for root, idxs in clusters.items():
                        field="LinkedIn_URL", kept=url_norm,
                        discarded="VERIFY / placeholder",
                        note="One source had a real profile URL, another a placeholder; kept the real URL."))
-    final_url = url_norm if url_norm else "NEEDS MANUAL FIND"
+    final_url = ("https://www." + url_norm) if url_norm else "NEEDS MANUAL FIND"
 
     # ---- company (most complete, non-placeholder)
     comps = [clean_company(r["company_raw"]) for r in recs if clean_company(r["company_raw"])]
@@ -485,6 +485,7 @@ BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 HDR_FILL = PatternFill("solid", fgColor="1F4E78")
 HDR_FONT = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
 BASE_FONT = Font(name="Calibri", size=11)
+LINK_FONT = Font(name="Calibri", size=11, color="0563C1", underline="single")
 REL_FILL = {"High": PatternFill("solid", fgColor="C6EFCE"),
             "Medium": PatternFill("solid", fgColor="FFEB9C"),
             "Low": PatternFill("solid", fgColor="F2F2F2")}
@@ -521,6 +522,10 @@ for i, p in enumerate(people, start=2):
         wrap = c in ("Why_Relevant", "Company", "Title", "Source_Files")
         cell.alignment = Alignment(horizontal="center" if c in ("#", "Geography", "Profile_Verified", "Relevance_to_KK") else "left",
                                    vertical="top", wrap_text=wrap)
+    url_cell = ws.cell(row=i, column=url_idx)
+    if str(p["LinkedIn_URL"]).startswith("http"):
+        url_cell.hyperlink = p["LinkedIn_URL"]   # makes the cell clickable in Excel
+        url_cell.font = LINK_FONT
     ws.cell(row=i, column=rel_idx).fill = REL_FILL[p["Relevance_to_KK"]]
     if p["Profile_Verified"] == "N":
         ws.cell(row=i, column=pv_idx).fill = NEED_FILL
@@ -533,7 +538,7 @@ ws.freeze_panes = "A2"
 ws.auto_filter.ref = f"A1:{get_column_letter(len(COLS))}{len(people)+1}"
 
 WIDTHS = {"#": 5, "Full Name": 26, "Title": 20, "Company": 26, "Sector_Bucket": 17,
-          "Geography": 10, "LinkedIn_URL": 38, "Profile_Verified": 9,
+          "Geography": 10, "LinkedIn_URL": 46, "Profile_Verified": 9,
           "Est_Followers_UNVERIFIED": 13, "Verified_Follower_Count": 13,
           "Date_Checked": 12, "Relevance_to_KK": 13, "Why_Relevant": 52, "Source_Files": 24}
 for j, c in enumerate(COLS, 1):
