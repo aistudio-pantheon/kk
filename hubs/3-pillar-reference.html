@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalpesh Kinariwala — 3-Pillar Content Reference</title>
+<style>
+:root{
+  --navy:#0D2B6E; --blue:#1B4F9B;
+  --E:#C0392B; --E-bg:#FEF0EE; --E-dark:#922B21;
+  --G:#1A7A45; --G-bg:#EAFAF1; --G-dark:#145A32;
+  --C:#6C3483; --C-bg:#F5EEF8; --C-dark:#512E5F;
+  --gold:#D4860A; --gold-bg:#FEF9E7;
+  --gray:#5D6D7E; --light:#F0F4FA; --white:#fff;
+  --shadow:0 4px 24px rgba(0,0,0,0.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:var(--light);color:#1a1a1a}
+
+/* ─── HERO ─── */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,#1B4F9B 100%);padding:48px 40px;display:flex;align-items:center;gap:36px}
+.hero-avatar{width:110px;height:110px;border-radius:50%;border:4px solid rgba(255,255,255,0.35);object-fit:cover;flex-shrink:0}
+.hero-avatar-fb{width:110px;height:110px;border-radius:50%;border:4px solid rgba(255,255,255,0.35);background:linear-gradient(135deg,#2E4FA0,#1B4F9B);display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900;color:white;flex-shrink:0}
+.hero h1{color:white;font-size:34px;font-weight:900;line-height:1.1;margin-bottom:5px}
+.hero .handle{color:rgba(255,255,255,0.7);font-size:16px;margin-bottom:14px}
+.hero .bio{color:rgba(255,255,255,0.85);font-size:14px;line-height:1.6;max-width:580px}
+.hero-stats{display:flex;gap:28px;margin-top:18px}
+.hero-stat .v{color:white;font-size:22px;font-weight:900}
+.hero-stat .l{color:rgba(255,255,255,0.6);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+.hero-pills{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.pill{padding:5px 14px;border-radius:20px;font-weight:800;font-size:12px}
+.pill-e{background:var(--E);color:white}
+.pill-g{background:var(--G);color:white}
+.pill-c{background:var(--C);color:white}
+.pill-v{background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.4)}
+
+/* ─── WHO IS KK ─── */
+.who{max-width:1280px;margin:0 auto;padding:40px 40px 0}
+.who h2{font-size:22px;font-weight:900;color:var(--navy);margin-bottom:4px}
+.who p.sub{color:var(--gray);font-size:14px;margin-bottom:24px}
+.who-grid{display:grid;grid-template-columns:3fr 2fr;gap:20px}
+.who-card{background:white;border-radius:14px;padding:24px;box-shadow:var(--shadow)}
+.who-card h3{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:16px}
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.id-item{border-radius:9px;padding:11px 14px}
+.id-item .lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin-bottom:4px}
+.id-item .val{font-size:13px;font-weight:600;line-height:1.4}
+.rule-list{display:flex;flex-direction:column;gap:9px}
+.rule-item{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.5}
+.rule-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.alert{background:var(--E-bg);border-left:5px solid var(--E);border-radius:0 10px 10px 0;padding:12px 16px;margin-top:14px}
+.alert p{font-size:12px;color:var(--E);font-weight:700;line-height:1.5}
+.perf-item{margin-bottom:12px}
+.perf-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin-bottom:5px}
+.perf-bar-wrap{background:#EEF3FA;border-radius:6px;height:8px;margin-bottom:3px}
+.perf-bar{height:8px;border-radius:6px}
+.perf-val{font-size:12px;font-weight:700}
+
+/* ─── TABS ─── */
+.tabs-nav{position:sticky;top:0;z-index:200;background:white;border-bottom:2px solid #E8EDF4;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.tabs-inner{max-width:1280px;margin:0 auto;display:flex}
+.tab-btn{flex:1;padding:14px 8px;font-weight:800;font-size:13px;border:none;background:none;cursor:pointer;border-bottom:4px solid transparent;color:var(--gray);transition:all .15s}
+.tab-btn.e:hover,.tab-btn.e.active{color:var(--E);border-color:var(--E);background:var(--E-bg)}
+.tab-btn.g:hover,.tab-btn.g.active{color:var(--G);border-color:var(--G);background:var(--G-bg)}
+.tab-btn.c:hover,.tab-btn.c.active{color:var(--C);border-color:var(--C);background:var(--C-bg)}
+.tab-btn.s:hover,.tab-btn.s.active{color:var(--navy);border-color:var(--navy);background:#EAF2FB}
+.tab-btn.b:hover,.tab-btn.b.active{color:var(--gold);border-color:var(--gold);background:var(--gold-bg)}
+
+/* ─── SECTIONS ─── */
+.section{display:none;max-width:1280px;margin:0 auto;padding:36px 40px 60px}
+.section.active{display:block}
+
+/* ─── SECTION HEADER ─── */
+.sec-head{border-radius:14px;padding:24px 28px;margin-bottom:28px;display:flex;align-items:center;gap:18px}
+.sec-head.e{background:linear-gradient(135deg,var(--E),var(--E-dark))}
+.sec-head.g{background:linear-gradient(135deg,var(--G),var(--G-dark))}
+.sec-head.c{background:linear-gradient(135deg,var(--C),var(--C-dark))}
+.sec-head-icon{font-size:44px}
+.sec-head-text h2{color:white;font-size:26px;font-weight:900}
+.sec-head-text p{color:rgba(255,255,255,.85);font-size:13px;margin-top:4px;line-height:1.5;max-width:680px}
+.sec-head-pct{margin-left:auto;background:rgba(255,255,255,.2);border-radius:10px;padding:10px 18px;text-align:center;min-width:100px}
+.sec-head-pct .pct{color:white;font-size:26px;font-weight:900}
+.sec-head-pct .pl{color:rgba(255,255,255,.7);font-size:10px}
+
+/* ─── BRIEF GRID ─── */
+.brief-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+.brief-card{background:white;border-radius:12px;padding:18px;box-shadow:var(--shadow);border-top:4px solid}
+.brief-card.e{border-color:var(--E)}
+.brief-card.g{border-color:var(--G)}
+.brief-card.c{border-color:var(--C)}
+.brief-card h4{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+.brief-card.e h4{color:var(--E)}
+.brief-card.g h4{color:var(--G)}
+.brief-card.c h4{color:var(--C)}
+.brief-card ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.brief-card ul li{font-size:12px;line-height:1.4;padding-left:12px;position:relative;color:#333}
+.brief-card ul li::before{content:"•";position:absolute;left:0;font-weight:900}
+.brief-card.e ul li::before{color:var(--E)}
+.brief-card.g ul li::before{color:var(--G)}
+.brief-card.c ul li::before{color:var(--C)}
+
+/* ─── SECTION DIVIDER ─── */
+.section-divider{display:flex;align-items:center;gap:12px;margin:8px 0 20px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--gray)}
+.section-divider::after{content:"";flex:1;height:2px;background:#E8EDF4;border-radius:2px}
+
+/* ─── REEL COLUMNS ─── */
+.reels-columns{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;margin-bottom:36px}
+
+/* ─── REEL CARD ─── */
+.reel-card{background:white;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.reel-card-header{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid #F5F5F5}
+.acct-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:white;flex-shrink:0}
+.acct-name{font-size:13px;font-weight:700;color:#111}
+.acct-followers{font-size:11px;color:var(--gray)}
+.reel-pillar-badge{margin-left:auto;font-size:10px;font-weight:800;padding:3px 9px;border-radius:8px}
+.reel-pillar-badge.e{background:var(--E-bg);color:var(--E)}
+.reel-pillar-badge.g{background:var(--G-bg);color:var(--G)}
+.reel-pillar-badge.c{background:var(--C-bg);color:var(--C)}
+
+/* ─── EMBED AREA ─── */
+.embed-wrap{width:100%;background:#f8f8f8;display:flex;justify-content:center;align-items:center;min-height:340px;position:relative;border-bottom:1px solid #F0F0F0}
+.embed-wrap .instagram-media{margin:0 !important;min-width:100% !important;max-width:100% !important;border:none !important;border-radius:0 !important}
+/* Loading state */
+.embed-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:#f9fafb;z-index:1}
+.embed-loading .spinner{width:28px;height:28px;border:3px solid #E8EDF4;border-top-color:var(--blue);border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.embed-loading p{font-size:12px;color:var(--gray)}
+
+/* ─── REEL STATS ─── */
+.reel-stats{display:flex;border-bottom:1px solid #F5F5F5}
+.reel-stat{flex:1;text-align:center;padding:8px 4px;border-right:1px solid #F5F5F5}
+.reel-stat:last-child{border-right:none}
+.reel-stat .sv{font-size:15px;font-weight:900;color:#111}
+.reel-stat .sl{font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:.3px}
+
+/* ─── THEME + LESSON ─── */
+.reel-theme{padding:8px 14px;font-size:11px;font-weight:800}
+.reel-theme.e{background:var(--E-bg);color:var(--E)}
+.reel-theme.g{background:var(--G-bg);color:var(--G)}
+.reel-theme.c{background:var(--C-bg);color:var(--C)}
+.reel-lesson{padding:10px 14px;font-size:12px;color:#444;line-height:1.5;background:#FAFAFA;border-top:1px solid #F0F0F0}
+.reel-lesson strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.reel-lesson.e strong{color:var(--E)}
+.reel-lesson.g strong{color:var(--G)}
+.reel-lesson.c strong{color:var(--C)}
+.reel-ig-btn{display:flex;align-items:center;justify-content:center;gap:7px;padding:10px;font-size:12px;font-weight:800;color:white;background:linear-gradient(90deg,#833ab4,#fd1d1d,#fcb045);transition:opacity .15s;text-decoration:none;border-top:1px solid #E8E8E8}
+.reel-ig-btn:hover{opacity:.87}
+
+/* ─── KK IDEA CARD ─── */
+.idea-card{background:white;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;border:2px solid var(--C)}
+.idea-visual{background:linear-gradient(135deg,#1C1040,#6C3483);min-height:200px;display:flex;align-items:flex-end;padding:16px;position:relative}
+.idea-visual .play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-70%);width:52px;height:52px;background:rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;border:2px solid rgba(255,255,255,.5)}
+.idea-visual .idea-hook{color:white;font-size:13px;font-weight:700;line-height:1.4;text-shadow:0 1px 4px rgba(0,0,0,.8);z-index:2}
+.idea-visual .idea-badge{position:absolute;top:10px;right:10px;background:var(--C);color:white;font-size:10px;font-weight:800;padding:3px 9px;border-radius:8px}
+
+/* ─── WHITE SPACE BANNER ─── */
+.ws-banner{background:linear-gradient(135deg,var(--C),#9B59B6);border-radius:14px;padding:22px 26px;color:white;margin-bottom:24px;display:flex;gap:18px;align-items:flex-start}
+.ws-banner .icon{font-size:38px;flex-shrink:0}
+.ws-banner h3{font-size:18px;font-weight:900;margin-bottom:6px}
+.ws-banner p{font-size:13px;opacity:.9;line-height:1.5}
+
+/* ─── WEEKLY TABLE ─── */
+.weekly-table{width:100%;border-collapse:collapse;background:white;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.weekly-table th{background:var(--navy);color:white;padding:12px 14px;font-size:12px;text-align:left}
+.weekly-table td{padding:11px 14px;font-size:12px;border-bottom:1px solid #F0F0F0;vertical-align:top}
+.weekly-table tr:last-child td{border-bottom:none}
+.weekly-table tr:nth-child(even) td{background:#F9FBFF}
+.p-tag{display:inline-block;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:800}
+.p-e{background:var(--E-bg);color:var(--E)}
+.p-g{background:var(--G-bg);color:var(--G)}
+.p-c{background:var(--C-bg);color:var(--C)}
+
+/* ─── AI BOT ─── */
+.bot-wrap{max-width:780px;margin:0 auto;background:white;border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.bot-head{background:linear-gradient(135deg,var(--navy),var(--blue));padding:18px 22px;display:flex;align-items:center;gap:14px}
+.bot-icon-wrap{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:22px}
+.bot-head h3{color:white;font-size:18px;font-weight:800}
+.bot-head p{color:rgba(255,255,255,.75);font-size:12px}
+.bot-msgs{height:400px;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;background:#F8FAFD}
+.msg{max-width:82%;padding:11px 15px;border-radius:16px;font-size:13px;line-height:1.6}
+.msg.bot{background:white;border:1px solid #E0E8F4;border-radius:4px 16px 16px 16px;align-self:flex-start;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.msg.user{background:var(--navy);color:white;border-radius:16px 4px 16px 16px;align-self:flex-end}
+.msg .lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;opacity:.6}
+.msg .ptag{display:inline-block;padding:2px 8px;border-radius:8px;font-size:11px;font-weight:800;margin:1px 2px}
+.typing{display:flex;gap:5px;padding:12px 16px;align-self:flex-start;background:white;border-radius:4px 14px 14px 14px;border:1px solid #E0E8F4}
+.typing span{width:7px;height:7px;border-radius:50%;background:#C0D0E0;animation:bounce 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+.bot-input-row{padding:14px 18px;border-top:1px solid #E8EDF4;display:flex;gap:8px}
+.bot-input{flex:1;padding:10px 14px;border:2px solid #E0E8F4;border-radius:10px;font-size:13px;outline:none;transition:border .15s}
+.bot-input:focus{border-color:var(--blue)}
+.bot-send{background:var(--navy);color:white;border:none;padding:10px 18px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer}
+.bot-send:hover{background:var(--blue)}
+.quick-row{padding:0 18px 14px;display:flex;gap:7px;flex-wrap:wrap}
+.qbtn{padding:5px 12px;border:1.5px solid #D0DAE8;border-radius:18px;font-size:11px;font-weight:700;cursor:pointer;background:white;color:var(--navy);transition:all .15s}
+.qbtn:hover{background:var(--navy);color:white}
+.qbtn.qe{border-color:var(--E);color:var(--E)}.qbtn.qe:hover{background:var(--E);color:white}
+.qbtn.qg{border-color:var(--G);color:var(--G)}.qbtn.qg:hover{background:var(--G);color:white}
+.qbtn.qc{border-color:var(--C);color:var(--C)}.qbtn.qc:hover{background:var(--C);color:white}
+.msg code{background:#EEF3FA;padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px}
+.msg ul{margin-top:6px;padding-left:16px}
+.msg ul li{margin-bottom:3px}
+
+@media(max-width:900px){
+  .hero{flex-wrap:wrap;padding:32px 20px}
+  .who-grid,.brief-grid{grid-template-columns:1fr}
+  .section{padding:24px 16px 48px}
+  .reels-columns{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <img src="https://instagram.fmem1-1.fna.fbcdn.net/v/t51.82787-19/623515557_18255800566295355_1590699961883432261_n.jpg?stp=dst-jpg_s320x320_tt6"
+       class="hero-avatar"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+       alt="Kalpesh Kinariwala">
+  <div class="hero-avatar-fb" style="display:none">KK</div>
+  <div>
+    <h1 class="hero-h1">Kalpesh Kinariwala ✓</h1>
+    <div class="handle">@kalpesh.kinariwala &nbsp;·&nbsp; Founder & Chairman, Pantheon Development</div>
+    <div class="bio">Visionary real estate developer building landmark communities in Dubai. Founder of Pantheon Development — portfolio: Dusit, Voxa, Elysee Heights, Maison Élysée I/II/III, Orvessa. Active on Instagram since 2018. Known for connecting culture, community, and architecture across the Indian diaspora in the UAE.</div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="v">55.5K</div><div class="l">Followers</div></div>
+      <div class="hero-stat"><div class="v">4.8K</div><div class="l">Avg Eng</div></div>
+      <div class="hero-stat"><div class="v">7.3M</div><div class="l">Annual Reach</div></div>
+      <div class="hero-stat"><div class="v">35.3×</div><div class="l">vs @pantheon</div></div>
+    </div>
+    <div class="hero-pills">
+      <span class="pill pill-e">❤️ #P-Emotion 40%</span>
+      <span class="pill pill-g">🚀 #P-Growth 35%</span>
+      <span class="pill pill-c">⚡ #P-Controversy 25%</span>
+      <span class="pill pill-v">✓ Verified</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WHO IS KK ══ -->
+<div class="who">
+  <h2>Who is Kalpesh Kinariwala?</h2>
+  <p class="sub">Brand identity, content rules, and what his account must communicate</p>
+  <div class="who-grid">
+    <div>
+      <div class="who-card">
+        <h3>🎯 Brand Identity & Voice</h3>
+        <div class="id-grid">
+          <div class="id-item" style="background:#EAF2FB"><div class="lbl">Role</div><div class="val">Founder & Chairman — Pantheon Development</div></div>
+          <div class="id-item" style="background:#EAF2FB"><div class="lbl">Category</div><div class="val">Real Estate Developer + Cultural Figure</div></div>
+          <div class="id-item" style="background:#FEF9E7"><div class="lbl">Market</div><div class="val">Dubai off-plan luxury + HNI investor community</div></div>
+          <div class="id-item" style="background:#FEF9E7"><div class="lbl">Audience</div><div class="val">Indian diaspora, UAE professionals, HNI investors</div></div>
+          <div class="id-item" style="background:#EAFAF1"><div class="lbl">Tone</div><div class="val">Warm authority — confident but human, never corporate</div></div>
+          <div class="id-item" style="background:#EAFAF1"><div class="lbl">Voice Rule</div><div class="val">First person ALWAYS. "I believe…" "When I…" "We built…"</div></div>
+        </div>
+        <div class="rule-list">
+          <div class="rule-item"><div class="rule-dot" style="background:var(--E)"></div><span><strong>He is human first, founder second.</strong> Cultural moments, personal stories, community = highest engagement. Arijit Singh Reel: 259K eng, 468% ER.</span></div>
+          <div class="rule-item"><div class="rule-dot" style="background:var(--G)"></div><span><strong>He has real insight that earns attention.</strong> Not generic motivation — his actual perspective on Dubai real estate built from operating Pantheon since 2018.</span></div>
+          <div class="rule-item"><div class="rule-dot" style="background:var(--C)"></div><span><strong>He holds opinions others won't share.</strong> Bold market stances = his untapped white space. Zero competitors doing this systematically.</span></div>
+          <div class="rule-item"><div class="rule-dot" style="background:var(--navy)"></div><span><strong>His personal account is NOT Pantheon's marketing channel.</strong> No project launches. No "Book Now" CTAs. No award posts without personal narrative. Projects go to @pantheon_development.</span></div>
+        </div>
+        <div class="alert"><p>⚠️ URGENT: ER dropped 67% in 90 days (11.87% → 3.94%) — worst in entire 9-account peer cohort. Too much project-launch and generic business content is drowning his authentic voice.</p></div>
+      </div>
+    </div>
+    <div>
+      <div class="who-card" style="height:100%">
+        <h3>📊 Content Performance by Theme</h3>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="perf-item">
+            <div class="perf-label" style="color:var(--E)">Cultural / Community</div>
+            <div class="perf-bar-wrap"><div class="perf-bar" style="width:100%;background:var(--E)"></div></div>
+            <div class="perf-val" style="color:var(--E)">9,200 avg eng · His #1 theme</div>
+          </div>
+          <div class="perf-item">
+            <div class="perf-label" style="color:var(--E)">Event / Occasion</div>
+            <div class="perf-bar-wrap"><div class="perf-bar" style="width:55%;background:var(--E)"></div></div>
+            <div class="perf-val" style="color:var(--E)">5,000 avg eng</div>
+          </div>
+          <div class="perf-item">
+            <div class="perf-label" style="color:var(--G)">Motivational / Inspirational</div>
+            <div class="perf-bar-wrap"><div class="perf-bar" style="width:28%;background:var(--G)"></div></div>
+            <div class="perf-val" style="color:var(--G)">2,600 avg eng</div>
+          </div>
+          <div class="perf-item">
+            <div class="perf-label" style="color:var(--G)">Business / Leadership</div>
+            <div class="perf-bar-wrap"><div class="perf-bar" style="width:10%;background:var(--G)"></div></div>
+            <div class="perf-val" style="color:var(--G)">942 avg eng · 26% of posts, low return</div>
+          </div>
+          <div class="perf-item">
+            <div class="perf-label" style="color:#C0392B">Project Launch (personal feed)</div>
+            <div class="perf-bar-wrap"><div class="perf-bar" style="width:3%;background:#C0392B"></div></div>
+            <div class="perf-val" style="color:#C0392B">272 avg eng · REMOVE from personal feed</div>
+          </div>
+          <div class="perf-item">
+            <div class="perf-label" style="color:#C0392B">Investment</div>
+            <div class="perf-bar-wrap"><div class="perf-bar" style="width:1%;background:#C0392B"></div></div>
+            <div class="perf-val" style="color:#C0392B">54 avg eng · Worst ROI. Drop to 0%.</div>
+          </div>
+          <div style="background:var(--G-bg);border-radius:9px;padding:12px;margin-top:4px">
+            <div style="font-size:22px;font-weight:900;color:var(--G)">+357% ER lift</div>
+            <div style="font-size:12px;color:#444;margin-top:2px">When caption is first-person &gt;180 chars<br>19.22% ER vs 4.21% for other posts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TABS ══ -->
+<div class="tabs-nav" style="margin-top:32px">
+  <div class="tabs-inner">
+    <button class="tab-btn e active" onclick="showTab('emotion',this)">❤️ #P-Emotion</button>
+    <button class="tab-btn g" onclick="showTab('growth',this)">🚀 #P-Growth</button>
+    <button class="tab-btn c" onclick="showTab('contro',this)">⚡ #P-Controversy</button>
+    <button class="tab-btn s" onclick="showTab('summary',this)">📅 Weekly Plan</button>
+    <button class="tab-btn b" onclick="showTab('bot',this)">🤖 AI Suggest</button>
+  </div>
+</div>
+
+<!-- ════════════════ P-EMOTION ════════════════ -->
+<div id="tab-emotion" class="section active">
+  <div class="sec-head e">
+    <div class="sec-head-icon">❤️</div>
+    <div class="sec-head-text">
+      <h2>#P-Emotion — Human Connection</h2>
+      <p>Personal stories, cultural moments, vulnerability, gratitude. The content that proves Kalpesh is a person, not a corporation. His highest-performing pillar by ER. Original voice only — no trending audio.</p>
+    </div>
+    <div class="sec-head-pct"><div class="pct">40%</div><div class="pl">of posts</div></div>
+  </div>
+
+  <div class="brief-grid">
+    <div class="brief-card e">
+      <h4>What to Post</h4>
+      <ul>
+        <li>Personal origin story (India → Dubai → Pantheon)</li>
+        <li>Concert & live event moments — replicate Arijit Singh formula</li>
+        <li>Cultural celebrations — Eid, Diwali, UAE National Day</li>
+        <li>Vulnerability — real failure or low point + what it taught</li>
+        <li>Family & gratitude (authentic, not performative)</li>
+        <li>Aspirational lifestyle glimpse (feeling, not luxury flex)</li>
+      </ul>
+    </div>
+    <div class="brief-card e">
+      <h4>How to Post — Instagram</h4>
+      <ul>
+        <li>Format: Reel, 45–90 seconds</li>
+        <li>Audio: Original voice-over ONLY. No trending audio.</li>
+        <li>Caption: 600+ chars · first person · story arc (setup → tension → resolution)</li>
+        <li>Hashtags: 0–2 max</li>
+        <li>CTA: NONE — emotion is the call to action</li>
+        <li>Day: Tuesday 12–15h UTC 🔒 LOCKED</li>
+      </ul>
+    </div>
+    <div class="brief-card e">
+      <h4>Caption Formula</h4>
+      <ul>
+        <li><strong>Line 1–2:</strong> The moment — specific and sensory, not generic</li>
+        <li><strong>Line 3–6:</strong> The story — what happened, first person</li>
+        <li><strong>Line 7–8:</strong> The turn — what it meant or reminded you of</li>
+        <li><strong>Last line:</strong> One honest sentence. No CTA. No question.</li>
+        <li>Start: "I" / "Tonight" / "There was a day…"</li>
+        <li>Never start with "Grateful to…" or "Excited to share…"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-divider">⭐ Kalpesh's Own Top P-Emotion Reels — His Proven Formula</div>
+  <div class="reels-columns" id="kk-emotion-reels"></div>
+
+  <div class="section-divider">📌 Competitor P-Emotion References — What 100K+ Looks Like</div>
+  <div class="reels-columns" id="comp-emotion-reels"></div>
+</div>
+
+<!-- ════════════════ P-GROWTH ════════════════ -->
+<div id="tab-growth" class="section">
+  <div class="sec-head g">
+    <div class="sec-head-icon">🚀</div>
+    <div class="sec-head-text">
+      <h2>#P-Growth — Authority & Intelligence</h2>
+      <p>Prove you know things others don't. Real market intelligence, business lessons, investment thinking — from a developer who has operated in Dubai since 2018. Not motivation. Lived intelligence.</p>
+    </div>
+    <div class="sec-head-pct"><div class="pct">35%</div><div class="pl">of posts</div></div>
+  </div>
+
+  <div class="brief-grid">
+    <div class="brief-card g">
+      <h4>What to Post</h4>
+      <ul>
+        <li>Dubai market insights — things you see that news misses</li>
+        <li>Business lessons from building Pantheon (real trade-offs)</li>
+        <li>Investment thinking — your specific, defensible view</li>
+        <li>Milestone reframed as a lesson, not a trophy</li>
+        <li>Partnership announcements as "what I learned from this person"</li>
+        <li>Industry observations — what developers get wrong</li>
+      </ul>
+    </div>
+    <div class="brief-card g">
+      <h4>How to Post — Both Platforms</h4>
+      <ul>
+        <li>IG: Reel 45–75s talking-head OR carousel 3–5 slides</li>
+        <li>Caption: 500–700 chars · numbered points · one insight per post</li>
+        <li>Hashtags: 1–3 (#dubai #realestate #foundermindset)</li>
+        <li>Soft CTA: "What's your take?" — never a sales link</li>
+        <li>LinkedIn: 600–1,200 chars OR PDF carousel (PRIMARY platform for P-Growth)</li>
+        <li>Day: Thursday IG / Tuesday 7–9h GST LinkedIn</li>
+      </ul>
+    </div>
+    <div class="brief-card g">
+      <h4>Caption Formula</h4>
+      <ul>
+        <li><strong>Hook:</strong> "Here's what 10 years in Dubai taught me about X"</li>
+        <li><strong>Context:</strong> Why this matters + your specific experience</li>
+        <li><strong>Insight:</strong> 1. … 2. … 3. … (one sentence each)</li>
+        <li><strong>Implication:</strong> What this means for investors/buyers</li>
+        <li><strong>Optional:</strong> One genuine question for debate</li>
+        <li>NEVER: "Honored to announce" / "Excited to share"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-divider">⭐ Kalpesh's Own Top P-Growth Reels</div>
+  <div class="reels-columns" id="kk-growth-reels"></div>
+
+  <div class="section-divider">📌 Competitor P-Growth References — Authority-Building at Scale</div>
+  <div class="reels-columns" id="comp-growth-reels"></div>
+</div>
+
+<!-- ════════════════ P-CONTROVERSY ════════════════ -->
+<div id="tab-contro" class="section">
+  <div class="sec-head c">
+    <div class="sec-head-icon">⚡</div>
+    <div class="sec-head-text">
+      <h2>#P-Controversy — Say What Others Won't</h2>
+      <p>Stake a clear, defensible position on Dubai real estate, business, or founder life. Zero founders in the peer group do this systematically. This is Kalpesh's white space to own.</p>
+    </div>
+    <div class="sec-head-pct"><div class="pct">25%</div><div class="pl">of posts</div></div>
+  </div>
+
+  <div class="ws-banner">
+    <div class="icon">🏳️</div>
+    <div>
+      <h3>White Space Alert — Zero Competitors Doing This</h3>
+      <p>Analysis of 804 posts across 5 UAE founder accounts: NONE run systematic controversy content. The best-performing hook in the entire dataset ("From no income tax…" — 342K avg, 23.6% ER) earns that engagement precisely because it is a bold, debatable claim. Kalpesh can own this territory completely. First-mover advantage available now.</p>
+    </div>
+  </div>
+
+  <div class="brief-grid">
+    <div class="brief-card c">
+      <h4>What to Post</h4>
+      <ul>
+        <li>"Dubai real estate will NOT crash in 2026" — with evidence</li>
+        <li>"Stop chasing payment plans — here's the real math"</li>
+        <li>"Most Dubai investors are buying the wrong thing"</li>
+        <li>"Hustle culture kills good businesses. Here's what I believe."</li>
+        <li>"Branded residences are overrated — the data shows why"</li>
+        <li>Any opinion smart people in his network would debate</li>
+      </ul>
+    </div>
+    <div class="brief-card c">
+      <h4>How to Post</h4>
+      <ul>
+        <li>Instagram: Short Reel, 30–60 seconds</li>
+        <li>Opening: Bold statement in first 3 seconds — no warm-up</li>
+        <li>Caption: 400–600 chars · argument format</li>
+        <li>Hashtags: 0 — shares are the distribution engine</li>
+        <li>End: "Disagree? Tell me why." — drives comments</li>
+        <li>Day: Saturday 12–15h UTC · Max 1 per week</li>
+      </ul>
+    </div>
+    <div class="brief-card c">
+      <h4>The Only Rule</h4>
+      <ul>
+        <li>Attack IDEAS and assumptions — NEVER people or competitors</li>
+        <li>"The Dubai crash thesis is wrong" ✅</li>
+        <li>"Developer X is doing it wrong" ❌</li>
+        <li>Acknowledge the opposing view first (steelman)</li>
+        <li>Provide evidence — not just opinion</li>
+        <li>Confident tone, never aggressive</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-divider">📌 Controversy-Adjacent Competitor Reels — Best Performing Bold Claims</div>
+  <div class="reels-columns" id="comp-contro-reels"></div>
+
+  <div class="section-divider" style="margin-top:32px">⚡ Ready-to-Record P-Controversy Ideas for Kalpesh</div>
+  <div class="reels-columns" id="kk-contro-ideas"></div>
+</div>
+
+<!-- ════════════════ WEEKLY PLAN ════════════════ -->
+<div id="tab-summary" class="section">
+  <h2 style="font-size:24px;font-weight:900;color:var(--navy);margin-bottom:6px">📅 Weekly Content Plan</h2>
+  <p style="color:var(--gray);margin-bottom:24px;font-size:14px">4 Instagram + 3 LinkedIn posts per week. Every post maps to exactly one pillar.</p>
+
+  <table class="weekly-table">
+    <thead>
+      <tr><th>Day</th><th>Platform</th><th>Pillar</th><th>Content Type</th><th>Key Rule</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Mon</strong></td><td>—</td><td>—</td><td>Plan & schedule the week. Confirm Tue post is ready.</td><td>No post</td></tr>
+      <tr><td><strong>Tue</strong></td><td>📱 IG</td><td><span class="p-tag p-e">❤️ P-Emotion</span></td><td>Personal Story or Cultural/Community Reel</td><td>12–15h UTC 🔒 · 600+ chars · 0 hashtags · original audio</td></tr>
+      <tr><td><strong>Tue</strong></td><td>💼 LinkedIn</td><td><span class="p-tag p-g">🚀 P-Growth</span></td><td>Market take or business lesson</td><td>7–9h GST · 600–1,200 chars long-form</td></tr>
+      <tr><td><strong>Wed</strong></td><td>—</td><td>—</td><td>Engage ALL comments on Tue posts for 2+ hours</td><td>No new post — let Tuesday breathe</td></tr>
+      <tr><td><strong>Thu</strong></td><td>📱 IG</td><td><span class="p-tag p-g">🚀 P-Growth</span></td><td>Talking-head Reel — market insight or lesson</td><td>12–15h UTC · numbered points · soft question CTA</td></tr>
+      <tr><td><strong>Thu</strong></td><td>💼 LinkedIn</td><td><span class="p-tag p-c">⚡ P-Controversy</span></td><td>Bold opinion post</td><td>7–9h GST · Reply every comment within 2h</td></tr>
+      <tr><td><strong>Fri</strong></td><td>—</td><td>—</td><td>Review week performance. Note what's trending.</td><td>No post — let Thursday breathe</td></tr>
+      <tr><td><strong>Sat</strong></td><td>📱 IG</td><td><span class="p-tag p-c">⚡ P-Controversy</span></td><td>Short punchy Reel — bold take (30–60s)</td><td>12–15h UTC · 0 hashtags · end: "Disagree? Tell me why."</td></tr>
+      <tr><td><strong>Sat</strong></td><td>💼 LinkedIn</td><td><span class="p-tag p-e">❤️ P-Emotion</span></td><td>Tue IG story adapted for professional tone</td><td>"Full story in my IG Reel" cross-link</td></tr>
+      <tr><td><strong>Sun</strong></td><td>📱 IG</td><td><span class="p-tag p-e">❤️ P-Emotion</span></td><td>Light cultural or lifestyle moment</td><td>Optional 4th post · draft next Tue Reel</td></tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:28px;background:var(--E-bg);border-left:5px solid var(--E);border-radius:0 12px 12px 0;padding:16px 20px">
+    <p style="font-weight:800;color:var(--E);font-size:14px;margin-bottom:8px">🚨 5 Quick Wins — Start This Week</p>
+    <ol style="padding-left:18px;font-size:13px;line-height:1.9;color:#333">
+      <li><strong>Record P-Emotion Reel #1</strong> — Origin story. Voice-over only. 60 seconds. Next Tuesday 12–15h UTC.</li>
+      <li><strong>Remove all Project Launch posts</strong> from KK's personal queue. Move to @pantheon_development calendar.</li>
+      <li><strong>DM @khaleejtimes and @gulfbusiness</strong> — 2-line pitch for KK as a Dubai real estate market commentator.</li>
+      <li><strong>Set the boost rule:</strong> no Reel gets paid budget until it clears 9,600 organic engagements first.</li>
+      <li><strong>Lock in @midasevents.ae</strong> — minimum 1 native IG Collab post per month.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ════════════════ AI BOT ════════════════ -->
+<div id="tab-bot" class="section">
+  <h2 style="font-size:24px;font-weight:900;color:var(--navy);margin-bottom:6px">🤖 KK Content Suggestion Bot</h2>
+  <p style="color:var(--gray);margin-bottom:22px;font-size:14px">Type any topic, event, or idea — get the right pillar, a hook, format specs, and a caption starter.</p>
+  <div class="bot-wrap">
+    <div class="bot-head">
+      <div class="bot-icon-wrap">🤖</div>
+      <div>
+        <h3>KK Brand Assistant</h3>
+        <p>Content strategy · pillar mapping · caption ideas · reel scripts for @kalpesh.kinariwala</p>
+      </div>
+    </div>
+    <div class="bot-msgs" id="bot-msgs">
+      <div class="msg bot">
+        <div class="lbl">KK Assistant</div>
+        Hi! I'm trained on Kalpesh's data — his top posts, competitor analysis, and 3-pillar strategy.<br><br>
+        Tell me a topic, event, or ask for content ideas. I'll assign the right pillar and give you a hook + caption starter. Try: <em>"I just won an award"</em> or <em>"Give me a controversy post"</em> or <em>"What should KK post this week?"</em>
+      </div>
+    </div>
+    <div class="quick-row">
+      <button class="qbtn" onclick="qa('What should KK post this week?')">📅 This week</button>
+      <button class="qbtn qe" onclick="qa('Give me a P-Emotion post idea')">❤️ Emotion idea</button>
+      <button class="qbtn qg" onclick="qa('Give me a P-Growth post idea')">🚀 Growth idea</button>
+      <button class="qbtn qc" onclick="qa('Give me a P-Controversy post idea')">⚡ Controversy idea</button>
+      <button class="qbtn" onclick="qa('I attended a concert last night')">🎵 Concert moment</button>
+      <button class="qbtn" onclick="qa('I won an award')">🏆 Award post</button>
+      <button class="qbtn" onclick="qa('What is wrong with KK content right now?')">🔍 Diagnose</button>
+    </div>
+    <div class="bot-input-row">
+      <input class="bot-input" id="bot-input" placeholder="Ask about content ideas, caption templates, pillar guidance…" onkeydown="if(event.key==='Enter')sendMsg()">
+      <button class="bot-send" onclick="sendMsg()">Send →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ INSTAGRAM EMBED SCRIPT ══ -->
+<script async src="https://www.instagram.com/embed.js"></script>
+
+<script>
+// ── TAB NAVIGATION ─────────────────────────────────────────
+function showTab(name,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(window.instgrm) window.instgrm.Embeds.process();
+}
+
+// ── DATA ───────────────────────────────────────────────────
+const ACCTS = {
+  kk:    {label:'@kalpesh.kinariwala', color:'#0D2B6E', abbr:'KK', followers:'55.5K'},
+  rizwan:{label:'@rizwan.sajan',       color:'#C0392B', abbr:'RS', followers:'1.4M'},
+  ankur: {label:'@ankur.aggarwal01',   color:'#2980B9', abbr:'CA', followers:'5.9M'},
+  vivek: {label:'@vivekoberoi',        color:'#8E44AD', abbr:'VO', followers:'3.3M'},
+  masih: {label:'@masihimtiaz',        color:'#17A589', abbr:'MI', followers:'8.6K'},
+};
+
+// All posts with real shortcodes from CSV data
+const POSTS = {
+  kk:[
+    {sc:'DWFyMMiEzvr',eng:33568,er:60.4,views:62116,   pillar:'e',theme:'Cultural Moment — Eid',
+     lesson:'Cultural/Religious moment: no CTA, pure emotion. 60× ER. This exact formula earns 10× more than project launch posts.'},
+    {sc:'DW8s_zvAL_b', eng:12163,er:21.9,views:316175,  pillar:'e',theme:'Cultural/Spiritual — Pooja Setup',
+     lesson:'"Where beauty meets belief" — spiritual content with personal caption. KK\'s #2 all-time post. Replicable every cultural occasion.'},
+    {sc:'DW9IhIlpyoR', eng:6455, er:11.6,views:152522,  pillar:'e',theme:'Personal Gratitude — New Chapter',
+     lesson:'Gratitude framed as personal milestone: "With blessings and gratitude we step into this new chapter." Emotional anchor > announcement.'},
+    {sc:'DVnOZY5jiU7', eng:6150, er:11.1,views:155238,  pillar:'e',theme:'Personal Story — Family Strength',
+     lesson:'"Behind every step forward, there is the strength, resilience…" — personal tribute drives 6K eng. Vulnerability pays.'},
+    {sc:'DYZoujMuNFw', eng:9888, er:17.8,views:288869,  pillar:'g',theme:'Award / Industry Recognition — Gulf Business',
+     lesson:'Gulf Business Real Estate Awards 2026: 9.9K eng when reframed as a connection post, not just an announcement.'},
+    {sc:'DYZf384KRub', eng:6955, er:12.5,views:317188,  pillar:'g',theme:'Milestone — Luxury Developer of Year',
+     lesson:'Award milestone earns 7K eng when the caption expresses genuine pride and names the journey, not just the trophy.'},
+    {sc:'DX0M6Blhshl', eng:5623, er:10.1,views:176280,  pillar:'g',theme:'Event — SOIC 2026 Day 1',
+     lesson:'Event coverage works when the caption focuses on energy and people ("Energy landed exactly where it needed to") not logistics.'},
+    {sc:'DXhTka0m3YI', eng:5610, er:10.1,views:322123,  pillar:'g',theme:'Partnership / Shared Vision',
+     lesson:'"Where vision is shared, ideas take shape" — partnership framed as insight, not announcement. 5.6K eng.'},
+  ],
+  rizwan:[
+    {sc:'DX8nYznoiKM',eng:233623,er:16.7,views:1557348,pillar:'e',theme:'Personal Storytelling — Humble Origins',
+     lesson:'#1 post: "Every success has a small beginning. Selling rakhis at 14…" This IS the P-Emotion formula KK must replicate with his own origin.'},
+    {sc:'DYY4COjonyQ',eng:54897, er:3.9, views:313068, pillar:'e',theme:'Personal Journey — Life Change',
+     lesson:'"Life can change in unbelievable ways. As a young boy I used to visit…" — Personal journey earns 55K eng. KK has this story untold.'},
+    {sc:'DXt8hbaj1M5',eng:97458, er:6.9, views:872062, pillar:'g',theme:'P-Growth: Market/Project — Greenz by Danube',
+     lesson:'97K eng on a project reel because it leads with lifestyle feeling ("Future ka lifestyle aaj hi dekh liya") not specs.'},
+    {sc:'DXgSnnwCQhY',eng:83629, er:5.9, views:762313, pillar:'g',theme:'P-Growth: Investor Credibility — BreezByDanube',
+     lesson:'83K eng: testimonial-as-market-proof format. Builds investor credibility at scale. KK equivalent: what Pantheon buyers say.'},
+    {sc:'DX4GwtjsGxE',eng:76006, er:5.4, views:1482226,pillar:'c',theme:'P-Controversy: Bold Advice + Business Take',
+     lesson:'76K eng on conversation-format business advice. Casual confidence. No graphics. Just Rizwan talking. KK can do this on Dubai market.'},
+  ],
+  ankur:[
+    {sc:'DP1N0LPkpSm',eng:52435,er:0.9,views:1004602,pillar:'e',theme:'P-Emotion: Team Story — BNW Team Meeting',
+     lesson:'52K eng: "Behind every number lies a story of people." Team story reframed as emotion. KK\'s equivalent: his Pantheon team at a milestone.'},
+    {sc:'DNC_MZMyf9m',eng:48702,er:0.8,views:1220505,pillar:'g',theme:'P-Growth: Celebrity Collab — Bageshwar Dham',
+     lesson:'49K eng: cultural/spiritual authority figure collab. KK has cultural event credibility — find one marquee collab at this tier.'},
+    {sc:'DWeVVSJiN1_',eng:40338,er:0.7,views:935020, pillar:'e',theme:'P-Emotion: Cultural — Navratri/Maa Durga',
+     lesson:'40K eng on Navratri post. Cultural/religious festivals are proven P-Emotion territory. KK\'s Eid post already proved this (33K).'},
+    {sc:'DJzPaaKSDLb',eng:31862,er:0.5,views:253644, pillar:'g',theme:'P-Growth: Origin + Brand Vision',
+     lesson:'"A dream scribbled on paper…" — 32K eng. The founder-origin-to-brand-vision arc is KK\'s most powerful untold P-Growth story.'},
+  ],
+  vivek:[
+    {sc:'DRJtqtFkcUC',eng:4148549,er:125.7,views:40843287,pillar:'e',theme:'P-Emotion: Cultural — Song/Music Moment',
+     lesson:'4.1M eng. Cultural/music moment is KK\'s proven formula too (Arijit Singh 259K). The bigger the cultural moment, the bigger the reach.'},
+    {sc:'DQKQW1kEhWL',eng:1444277,er:43.8,views:18412227,pillar:'e',theme:'P-Emotion: Celebrity Cultural Collab — Prabhas',
+     lesson:'1.4M eng: celebrity birthday tribute with a personal message. For KK: any major Indian entertainment/cultural figure tie-in.'},
+    {sc:'DWTeDxljPVv',eng:413594,er:12.5,views:0,       pillar:'g',theme:'P-Growth: Lifestyle + Partnership — Fitness First',
+     lesson:'414K eng on fitness lifestyle post. Personal health/aspiration content earns massive engagement. KK\'s lifestyle glimpses are underposted.'},
+    {sc:'DPv-DZ1CXVU',eng:310020,er:9.4, views:0,       pillar:'g',theme:'P-Growth: Motivational — Vision & Ambition',
+     lesson:'"Next stop: Higher. What began as a dream in 2024…" 310K eng. Milestone reframed as ambition. KK should tell the Pantheon vision this way.'},
+  ],
+  masih:[
+    {sc:'DXPR0ZWDEZ1',eng:263194,er:3060,views:0,      pillar:'g',theme:'P-Growth: Marquee Celebrity Collab — Hrithik Roshan',
+     lesson:'263K eng / 3060% ER. One marquee collab transformed Masih\'s entire account. KK needs ONE big cultural/celebrity collab in 2026.'},
+    {sc:'DYFJQjiRfkH',eng:1425, er:16.6,views:141397,  pillar:'g',theme:'P-Growth: Flagship Project — Symphony (Zaha Hadid)',
+     lesson:'Flagship project anchor: "The Symphony by Imtiaz: a landmark in making." KK needs one hero project told as a brand story, not a launch.'},
+    {sc:'DW0ULgjjNMF',eng:3785, er:44.0,views:0,       pillar:'e',theme:'P-Emotion: Micro-Emotion — Love & Respect',
+     lesson:'"Love and respect." — 3 words. 3.8K eng from only 8.6K followers = 44% ER. Simplest P-Emotion works. Authentic beats polished.'},
+    {sc:'DWmSELajTzw',eng:2302, er:26.8,views:165973,  pillar:'e',theme:'P-Emotion: Personal Lifestyle — Pet/Family',
+     lesson:'Pet/family lifestyle 27% ER. Masih shows personal life = trust. KK\'s personal moments are underrepresented at only 2% lifestyle content.'},
+  ],
+};
+
+const LESSONS_C = [
+  {sc:'DX8nYznoiKM',acct:'rizwan',hook:'"Every success has a small beginning. Selling rakhis at 14…" — #1 bold personal claim in entire cohort',
+   eng:233623,er:16.7,views:1557348,
+   lesson:'This is a BOLD CLAIM — "I started with nothing and built Danube." Debatable. Inspiring. Shareable. KK equivalent: "I had no network in Dubai. Here\'s what I built from zero."'},
+  {sc:'DX4GwtjsGxE',acct:'rizwan',hook:'"Sir ko dil ki baat bata Rahi thi unhone business analysis me Badal diya" — contrarian business conversation',
+   eng:76006,er:5.4,views:1482226,
+   lesson:'Bold business conversation: "Someone told me what I was doing wrong and they were right." For KK: a market take that challenges the conventional Dubai investor wisdom.'},
+  {sc:'DRJtqtFkcUC',acct:'vivek',hook:'"This song is just magic…" — cultural boldness: letting joy go viral without strategy',
+   eng:4148549,er:125.7,views:40843287,
+   lesson:'Vivek\'s top post is defiantly authentic — pure joy with no strategy. That boldness IS the controversy: "I don\'t post to perform. I post when I feel something."'},
+  {sc:'DXt8hbaj1M5',acct:'rizwan',hook:'"Future ka lifestyle aaj hi dekh liya" — bold lifestyle claim about Danube',
+   eng:97458,er:6.9,views:872062,
+   lesson:'Bold lifestyle claim: "Future ka lifestyle aaj hi dekh liya" challenges conventional real estate marketing. KK equivalent: "Stop thinking Dubai real estate is unaffordable — here\'s the real math."'},
+];
+
+const CONTRO_IDEAS = [
+  {hook:'Dubai real estate will NOT crash in 2026. I\'ll stake my reputation on it. Here\'s why the pessimists are wrong.',theme:'Market Myth-Bust — Real Estate',script:'State the claim (5 sec). Acknowledge the bears: "I hear the concerns about oversupply…" Give 3 data points from Pantheon\'s pipeline. End: "Disagree? Tell me why."'},
+  {hook:'Stop chasing payment plans. I build them — and I\'m telling you they\'re not what you think they are.',theme:'Developer Insider — Industry Contrarian',script:'Your developer perspective on how payment plans are structured. Show the buyer vs developer math. Position yourself as the honest insider.'},
+  {hook:'Most real estate investors in Dubai are buying the wrong thing. Not the wrong location. The wrong product type.',theme:'Investment Contrarian',script:'Specific product category critique. Evidence from Pantheon\'s sales/resale data. What buyers actually see 3 years in vs what they expected.'},
+  {hook:'Hustle culture is destroying good businesses. I know that\'s unpopular. Here\'s how Pantheon is actually built.',theme:'Founder Hot Take — Work Culture',script:'Personal belief post. "I don\'t believe in 20-hour days. I believe in [X]." Shows confident identity beyond real estate. 45 seconds, face to camera.'},
+];
+
+// ── RENDER REEL CARD WITH INSTAGRAM EMBED ──────────────────
+function fmt(n){
+  if(!n||n===0) return '—';
+  n=parseInt(n);
+  if(n>=1000000) return (n/1000000).toFixed(1)+'M';
+  if(n>=1000) return (n/1000).toFixed(n>=10000?0:1)+'K';
+  return String(n);
+}
+
+function reelCard(post, acctKey, overrideLesson){
+  const a = ACCTS[acctKey];
+  const p = post.pillar;
+  const lesson = overrideLesson || post.lesson;
+  const igUrl = `https://www.instagram.com/reel/${post.sc}/`;
+
+  return `
+  <div class="reel-card">
+    <div class="reel-card-header">
+      <div class="acct-avatar" style="background:${a.color}">${a.abbr}</div>
+      <div>
+        <div class="acct-name">${a.label}${acctKey==='kk'?' ⭐':''}</div>
+        <div class="acct-followers">${a.followers} followers</div>
+      </div>
+      <div class="reel-pillar-badge ${p}">${p==='e'?'❤️ P-Emotion':p==='g'?'🚀 P-Growth':'⚡ P-Controversy'}</div>
+    </div>
+    <div class="embed-wrap">
+      <div class="embed-loading" id="loading-${post.sc}">
+        <div class="spinner"></div>
+        <p>Loading Instagram Reel…</p>
+      </div>
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="${igUrl}?utm_source=ig_embed"
+        data-instgrm-version="14"
+        style="background:#FFF;border:0;border-radius:0;box-shadow:none;margin:0;max-width:100%;min-width:100%;padding:0;width:calc(100% - 0px);">
+        <a href="${igUrl}" target="_blank" style="display:block;padding:16px;text-align:center;font-size:13px;color:#385898">
+          ▶ View Reel on Instagram →
+        </a>
+      </blockquote>
+    </div>
+    <div class="reel-stats">
+      <div class="reel-stat"><div class="sv">${fmt(post.eng)}</div><div class="sl">Engagement</div></div>
+      <div class="reel-stat"><div class="sv" style="color:${p==='e'?'var(--E)':p==='g'?'var(--G)':'var(--C)'}">${post.er}%</div><div class="sl">ER</div></div>
+      <div class="reel-stat"><div class="sv">${fmt(post.views)}</div><div class="sl">Views</div></div>
+    </div>
+    <div class="reel-theme ${p}">📌 ${post.theme}</div>
+    <div class="reel-lesson ${p}"><strong>KK Replication →</strong>${lesson}</div>
+    <a class="reel-ig-btn" href="${igUrl}" target="_blank">▶ &nbsp;Open Reel on Instagram</a>
+  </div>`;
+}
+
+function ideaCard(idea){
+  return `
+  <div class="idea-card">
+    <div class="idea-visual">
+      <div class="idea-badge">⚡ P-Controversy</div>
+      <div class="play-btn">▶</div>
+      <div class="idea-hook">"${idea.hook}"</div>
+    </div>
+    <div class="reel-stats">
+      <div class="reel-stat"><div class="sv" style="color:var(--C)">~?K</div><div class="sl">Projected</div></div>
+      <div class="reel-stat"><div class="sv" style="color:var(--C)">High</div><div class="sl">Share Rate</div></div>
+      <div class="reel-stat"><div class="sv">30–60s</div><div class="sl">Duration</div></div>
+    </div>
+    <div class="reel-theme c">📌 ${idea.theme}</div>
+    <div class="reel-lesson c"><strong>Reel Script →</strong>${idea.script}</div>
+  </div>`;
+}
+
+// ── BUILD ALL GRIDS ─────────────────────────────────────────
+function buildAll(){
+  // KK emotion
+  document.getElementById('kk-emotion-reels').innerHTML =
+    POSTS.kk.filter(p=>p.pillar==='e').map(p=>reelCard(p,'kk')).join('');
+
+  // Comp emotion
+  const compE = [
+    ...POSTS.rizwan.filter(p=>p.pillar==='e').slice(0,2).map(p=>({p,k:'rizwan'})),
+    ...POSTS.ankur.filter(p=>p.pillar==='e').slice(0,1).map(p=>({p,k:'ankur'})),
+    ...POSTS.vivek.filter(p=>p.pillar==='e').slice(0,1).map(p=>({p,k:'vivek'})),
+    ...POSTS.masih.filter(p=>p.pillar==='e').slice(0,2).map(p=>({p,k:'masih'})),
+  ];
+  document.getElementById('comp-emotion-reels').innerHTML = compE.map(({p,k})=>reelCard(p,k)).join('');
+
+  // KK growth
+  document.getElementById('kk-growth-reels').innerHTML =
+    POSTS.kk.filter(p=>p.pillar==='g').map(p=>reelCard(p,'kk')).join('');
+
+  // Comp growth
+  const compG = [
+    ...POSTS.rizwan.filter(p=>p.pillar==='g').slice(0,2).map(p=>({p,k:'rizwan'})),
+    ...POSTS.ankur.filter(p=>p.pillar==='g').slice(0,2).map(p=>({p,k:'ankur'})),
+    ...POSTS.vivek.filter(p=>p.pillar==='g').slice(0,2).map(p=>({p,k:'vivek'})),
+    ...POSTS.masih.filter(p=>p.pillar==='g').slice(0,1).map(p=>({p,k:'masih'})),
+  ];
+  document.getElementById('comp-growth-reels').innerHTML = compG.map(({p,k})=>reelCard(p,k)).join('');
+
+  // Comp controversy
+  document.getElementById('comp-contro-reels').innerHTML =
+    LESSONS_C.map(l => reelCard(
+      POSTS[l.acct].find(p=>p.sc===l.sc) || {sc:l.sc,eng:l.eng,er:l.er,views:l.views,pillar:'c',theme:l.hook.slice(0,50),lesson:l.lesson},
+      l.acct, l.lesson
+    )).join('');
+
+  // KK controversy ideas
+  document.getElementById('kk-contro-ideas').innerHTML = CONTRO_IDEAS.map(ideaCard).join('');
+
+  // Trigger Instagram embed processing
+  setTimeout(()=>{ if(window.instgrm) window.instgrm.Embeds.process(); }, 800);
+}
+
+buildAll();
+
+// Hide loading spinners when embeds load
+document.addEventListener('DOMContentLoaded', ()=>{
+  setTimeout(()=>{
+    document.querySelectorAll('.embed-loading').forEach(el=>{
+      const blockquote = el.nextElementSibling;
+      if(blockquote && blockquote.offsetHeight > 100) el.style.display='none';
+    });
+  }, 4000);
+});
+
+// ── AI BOT ──────────────────────────────────────────────────
+function getBotResponse(q){
+  q = q.toLowerCase();
+
+  if(q.includes('this week')||q.includes('what should')){
+    return `Here's KK's content plan for this week:\n\n<strong>Tuesday 12–15h UTC</strong> <span class="ptag" style="background:var(--E-bg);color:var(--E)">❤️ P-Emotion</span>\nRecord your origin story Reel. Opening: <em>"I didn't grow up with money. I grew up watching my father work 16-hour days."</em> Voice-over only. 60 seconds. No music. 0 hashtags. This is the Rizwan formula that gets 233K eng.\n\n<strong>Thursday 12–15h UTC</strong> <span class="ptag" style="background:var(--G-bg);color:var(--G)">🚀 P-Growth</span>\n<em>"5 things the Dubai real estate market is doing right now that most investors are missing."</em> Talking-head Reel. Your actual desk view — not a news summary.\n\n<strong>Saturday 12–15h UTC</strong> <span class="ptag" style="background:var(--C-bg);color:var(--C)">⚡ P-Controversy</span>\n<em>"Dubai real estate will NOT crash in 2026. I'll stake my reputation on it."</em> 45 seconds. 0 hashtags. End: "Disagree? Tell me why."`;
+  }
+  if(q.includes('concert')||q.includes('music')||q.includes('performance')||q.includes('arijit')){
+    return `<span class="ptag" style="background:var(--E-bg);color:var(--E)">❤️ P-Emotion — Cultural Moment</span>\n\nThis is KK's proven formula. The Arijit Singh Reel did <strong>259K engagement at 468% ER</strong>. Replicate it every time.\n\n<strong>Reel structure:</strong>\n<ul><li>Open on the crowd/venue energy — establish the scale</li><li>Cut to your face — your reaction tells the story</li><li>Voice-over: one sentence about what the night meant, not what happened</li><li>Close on a wide shot or crowd moment</li></ul>\n<strong>Caption opener:</strong> <em>"Tonight was different."</em> — NOT "Great evening at [venue]"\n<strong>Rules:</strong> Original audio or ambient crowd sound. 0 hashtags. No sponsor mentions. No CTA. Post within 24h of the event.\n\n📍 Post: Tuesday 12–15h UTC if you can hold it. Otherwise post hot — within 24h.`;
+  }
+  if(q.includes('award')||q.includes('won')||q.includes('trophy')||q.includes('recognition')){
+    return `<span class="ptag" style="background:var(--G-bg);color:var(--G)">🚀 P-Growth — Milestone as Lesson</span>\n\nDon't post the award. Post what it cost to get here.\n\n<strong>KK's Gulf Business award posts got 9,888 and 6,955 eng.</strong> That's solid but below his potential because the caption was announcement-forward. The upgrade:\n\n❌ <em>"Proud to receive Luxury Developer of the Year…"</em>\n✅ <em>"Winning takes 2 minutes on stage. Getting here took [X]. Here's the one decision that almost broke us before we got it right."</em>\n\n<strong>Caption formula:</strong>\n<ul><li>The milestone (1 sentence max)</li><li>The real story behind it — what it actually cost</li><li>One lesson or trade-off</li><li>Gratitude to specific people (not vague "the team")</li></ul>\n📍 Post: Any day. Milestone posts don't need the Tuesday slot.`;
+  }
+  if(q.includes('emotion')||q.includes('p-emotion')||q.includes('personal story')){
+    return `<span class="ptag" style="background:var(--E-bg);color:var(--E)">❤️ P-Emotion Post Idea</span>\n\n<strong>Post: "The moment I knew Pantheon was real"</strong>\n\n<strong>Hook:</strong> <em>"There was a day I sat alone in my first site office in Dubai. No furniture. No team. Just me and a blueprint. I thought: what if this doesn't work?"</em>\n\n<strong>Format:</strong> Reel, 60–90 seconds, face-to-camera, original voice, no music.\n<strong>Caption:</strong>\n<ul><li>Line 1–2: The specific moment (the office, the blueprint, the silence)</li><li>Line 3–6: What happened next — the first small win</li><li>Line 7–8: What it meant</li><li>Close: One honest truth. No CTA.</li></ul>\n<strong>Projected ER:</strong> 10–20% (founder voice posts average 19.22% ER for KK)\n📍 Post: <strong>Tuesday 12–15h UTC 🔒</strong>`;
+  }
+  if(q.includes('growth')||q.includes('p-growth')||q.includes('market')||q.includes('invest')){
+    return `<span class="ptag" style="background:var(--G-bg);color:var(--G)">🚀 P-Growth Post Idea</span>\n\n<strong>Post: "What I see from inside a developer's desk right now"</strong>\n\n<strong>Hook:</strong> <em>"I've been building in Dubai since 2018. Here are 5 things the market is doing that aren't in the news."</em>\n\n<strong>Points to cover:</strong>\n<ul><li>One buyer behaviour shift you're seeing in Pantheon's pipeline</li><li>A neighbourhood or product type you're watching</li><li>What agents are getting wrong vs what buyers actually want</li><li>One macro trend and your specific view on it</li><li>Your H2 2026 prediction — specific, not hedged</li></ul>\n<strong>Caption:</strong> Numbered list, first person, end with: <em>"What are you seeing from your side? Drop it below."</em>\n\n📍 Instagram: Thursday 12–15h UTC\n📍 LinkedIn: <strong>PRIMARY platform for this</strong> — 600–1,200 chars, Tuesday 7–9h GST`;
+  }
+  if(q.includes('controversy')||q.includes('p-contro')||q.includes('bold')||q.includes('hot take')||q.includes('opinion')){
+    return `<span class="ptag" style="background:var(--C-bg);color:var(--C)">⚡ P-Controversy Post Idea</span>\n\n<strong>⚡ WHITE SPACE:</strong> Zero of the 5 UAE founders are doing this. First-mover advantage is yours right now.\n\n<strong>Post: "The payment plan obsession is creating a problem"</strong>\n\n<strong>Opening (first 5 seconds):</strong> <em>"I'm going to say something unpopular as a developer who offers payment plans: the industry's obsession with extended plans is creating a problem. Here's the math."</em>\n\n<strong>Structure:</strong>\n<ul><li>State the claim (no warm-up, no "Hi guys")</li><li>Acknowledge why people think otherwise</li><li>Your evidence from Pantheon's actual data</li><li>The implication for buyers and investors</li><li>End: "Disagree? Tell me what I'm missing."</li></ul>\n<strong>Format:</strong> Reel 30–60s. 0 hashtags. No music. Direct to camera.\n📍 Post: <strong>Saturday 12–15h UTC</strong>`;
+  }
+  if(q.includes('wrong')||q.includes('diagnos')||q.includes('problem')||q.includes('issue')||q.includes('fix')){
+    return `<strong>🔍 KK Content Diagnosis — What's Wrong Right Now</strong>\n\n<span style="color:var(--E);font-weight:800">CRITICAL: ER dropped 67% in 90 days</span> — worst decline in the 9-account peer cohort.\n\n<strong>Root causes:</strong>\n<ul><li><span class="ptag" style="background:var(--E-bg);color:var(--E)">❤️ Missing</span> <strong>Personal Storytelling = 0 posts.</strong> Rizwan gets 44,100 avg eng here. KK's story is completely untold.</li><li><span class="ptag" style="background:#FEF0EE;color:#C0392B">🚫 Wrong</span> <strong>Project Launch on personal feed</strong> — 272 avg eng. Move all to @pantheon_development.</li><li><span class="ptag" style="background:#FEF0EE;color:#C0392B">🚫 Wrong</span> <strong>Investment posts</strong> — 54 avg eng. Worst ROI in dataset. Remove immediately.</li><li><span class="ptag" style="background:var(--C-bg);color:var(--C)">⚡ Unused</span> <strong>P-Controversy = 0 posts.</strong> Zero competitors doing this — white space available now.</li><li><span class="ptag" style="background:var(--G-bg);color:var(--G)">📉 Underused</span> <strong>Founder voice only 29%.</strong> Should be 60%. These posts earn 19.22% vs 4.21% ER.</li></ul>\n<strong>Fix this week:</strong> Record 1 Personal Story Reel → remove Project Launch posts → draft 1 Controversy take.`;
+  }
+  if(q.includes('caption')||q.includes('template')||q.includes('how to write')){
+    return `<strong>Caption Templates by Pillar:</strong>\n\n<span class="ptag" style="background:var(--E-bg);color:var(--E)">❤️ P-Emotion</span>\n<code>[Specific moment/feeling — 1–2 lines]</code>\n<code>[The story — first person — 3–5 lines]</code>\n<code>[The turn — what it meant]</code>\n<code>[One honest closing sentence. No CTA.]</code>\n→ 600+ chars · 0–2 hashtags · Start with "I" or sensory moment\n\n<span class="ptag" style="background:var(--G-bg);color:var(--G)">🚀 P-Growth</span>\n<code>[The insight stated directly — 1 line hook]</code>\n<code>1. [Point — one sentence]</code>\n<code>2. [Point — one sentence]</code>\n<code>3. [Point — one sentence]</code>\n<code>[Optional: one genuine question for debate]</code>\n→ 500–700 chars · 1–3 hashtags\n\n<span class="ptag" style="background:var(--C-bg);color:var(--C)">⚡ P-Controversy</span>\n<code>[Bold claim — no preamble]</code>\n<code>[Acknowledge the opposing view]</code>\n<code>[Your evidence — 3–4 lines]</code>\n<code>"Disagree? Tell me why."</code>\n→ 400–600 chars · 0 hashtags`;
+  }
+  if(q.includes('pillar')||q.includes('which pillar')){
+    return `<strong>How to choose the right pillar:</strong>\n\n<span class="ptag" style="background:var(--E-bg);color:var(--E)">❤️ P-Emotion</span> — If it makes someone feel something (pride, nostalgia, inspiration, joy). Personal moments, cultural events, family, vulnerability.\n\n<span class="ptag" style="background:var(--G-bg);color:var(--G)">🚀 P-Growth</span> — If it demonstrates knowledge or expertise. Market insights, business lessons, investment thinking, milestone lessons.\n\n<span class="ptag" style="background:var(--C-bg);color:var(--C)">⚡ P-Controversy</span> — If smart people in KK's network might disagree with it. Bold claims, contrarian takes, positions that invite debate.\n\n<strong>Quick test:</strong> Would this post get more likes (Emotion), more saves (Growth), or more comments (Controversy)?`;
+  }
+  // Generic with pillar assignment
+  const isG = /market|real estate|invest|business|lesson|insight|project|develop/.test(q);
+  const isE = /concert|event|personal|family|cultural|feel|gratitude|moment|night|celebration/.test(q);
+  const pillar = isE ? 'e' : isG ? 'g' : 'g';
+  const pName = pillar==='e' ? 'P-Emotion' : 'P-Growth';
+  const pColor = pillar==='e' ? 'var(--E)' : 'var(--G)';
+  const pBg = pillar==='e' ? 'var(--E-bg)' : 'var(--G-bg)';
+  const day = pillar==='e' ? 'Tuesday 12–15h UTC' : 'Thursday 12–15h UTC';
+  return `For the topic <strong>"${q.slice(0,60)}"</strong>:\n\n<span class="ptag" style="background:${pBg};color:${pColor}">📌 ${pName}</span>\n\n<strong>Suggested hook:</strong> Start with a first-person statement that makes the audience lean in. <em>"I've been thinking about this for weeks. Here's my honest take on ${q.slice(0,40)}…"</em>\n\n<strong>Format:</strong> ${pillar==='e' ? 'Reel 45–90s · original voice-over · 600+ chars · 0–2 hashtags · no CTA' : 'Reel 45–75s talking-head · 500–700 chars · numbered points · 1–3 hashtags'}\n\n<strong>Post day:</strong> ${day}\n\nWant a full caption draft or reel script for this? Type the topic in more detail.`;
+}
+
+function addMsg(text,type){
+  const c=document.getElementById('bot-msgs');
+  const d=document.createElement('div');
+  d.className='msg '+type;
+  if(type==='bot') d.innerHTML=`<div class="lbl">KK Assistant</div>${text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>')}`;
+  else d.innerHTML=text;
+  c.appendChild(d);
+  c.scrollTop=c.scrollHeight;
+}
+function addTyping(){
+  const c=document.getElementById('bot-msgs');
+  const d=document.createElement('div');
+  d.id='typing';d.className='typing';
+  d.innerHTML='<span></span><span></span><span></span>';
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+function removeTyping(){const t=document.getElementById('typing');if(t)t.remove();}
+function sendMsg(){
+  const i=document.getElementById('bot-input');
+  const v=i.value.trim();if(!v)return;
+  addMsg(v,'user');i.value='';addTyping();
+  setTimeout(()=>{removeTyping();addMsg(getBotResponse(v),'bot');},700);
+}
+function qa(q){addMsg(q,'user');addTyping();setTimeout(()=>{removeTyping();addMsg(getBotResponse(q),'bot');},600);}
+</script>
+</body>
+</html>
